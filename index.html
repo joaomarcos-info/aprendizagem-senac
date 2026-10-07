@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Missão: Atendimento</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-frame">
+    <section id="tela-inicial" class="screen screen-start active" aria-labelledby="titulo-inicial">
+      <div class="start-panel">
+        <div class="brand-strip">
+          <span>CONECTA SERVIÇOS</span>
+          <strong>UC1 — Recepcionar e atender pessoas</strong>
+        </div>
+        <div class="start-grid">
+          <div class="start-copy">
+            <p class="eyebrow">Simulador profissional gamificado</p>
+            <h1 id="titulo-inicial">MISSÃO: ATENDIMENTO</h1>
+            <h2>Você é o primeiro contato.</h2>
+            <p>Seu primeiro dia na Conecta Serviços começa agora.</p>
+          </div>
+          <form id="form-inicio" class="login-card" autocomplete="off">
+            <label for="nome-jogador">DIGITE SEU NOME</label>
+            <input id="nome-jogador" name="nome-jogador" type="text" maxlength="36" placeholder="Seu nome" required>
+            <button type="submit" class="btn btn-primary">INICIAR JORNADA</button>
+            <button type="button" id="btn-continuar" class="btn btn-outline hidden">CONTINUAR</button>
+            <div id="resumo-salvo" class="saved-summary" aria-live="polite"></div>
+          </form>
+        </div>
+        <button type="button" id="btn-professor-inicial" class="teacher-link">MODO PROFESSOR</button>
+      </div>
+    </section>
+
+    <main id="app-shell" class="screen shell" aria-live="polite">
+      <header class="topbar">
+        <button type="button" id="btn-menu" class="icon-button menu-button" aria-label="Abrir menu">☰</button>
+        <div class="topbar-title">
+          <strong>MISSÃO: ATENDIMENTO</strong>
+          <span id="topbar-player">Conecta Serviços</span>
+        </div>
+        <nav id="main-nav" class="main-nav" aria-label="Navegação principal">
+          <button type="button" class="nav-btn active" data-view="dashboard">Painel</button>
+          <button type="button" class="nav-btn" data-view="central-missoes">Missões</button>
+          <button type="button" class="nav-btn" data-view="perfil">Meu Perfil</button>
+          <button type="button" class="nav-btn" data-view="conquistas">Conquistas</button>
+          <button type="button" class="nav-btn" data-view="ranking">Ranking</button>
+          <button type="button" class="nav-btn" data-view="conceitos">Você Sabia?</button>
+          <button type="button" class="nav-btn" data-view="professor">Modo Professor</button>
+        </nav>
+        <div class="topbar-actions">
+          <button type="button" id="btn-toggle-som" class="btn btn-small">SOM OFF</button>
+          <button type="button" id="btn-sair" class="btn btn-small btn-outline">Sair</button>
+        </div>
+      </header>
+
+      <section id="dashboard" class="view active" aria-labelledby="titulo-dashboard">
+        <div class="content-head">
+          <div>
+            <p class="eyebrow">Painel do aprendiz</p>
+            <h2 id="titulo-dashboard">Olá, <span id="dash-nome">jogador</span>.</h2>
+          </div>
+          <button type="button" id="btn-resetar" class="btn btn-danger">REINICIAR PROGRESSO</button>
+        </div>
+
+        <div class="dashboard-layout">
+          <article class="hero-status">
+            <div>
+              <span class="status-label">Cargo atual</span>
+              <strong id="dash-cargo">APRENDIZ</strong>
+            </div>
+            <div class="level-progress">
+              <div class="progress-head">
+                <span>XP atual</span>
+                <strong id="dash-xp">0 / 300</strong>
+              </div>
+              <div class="progress-bar" aria-label="Progresso de nível">
+                <span id="barra-xp" style="width:0%"></span>
+              </div>
+            </div>
+            <div class="status-grid">
+              <div><span>Nível</span><strong id="dash-nivel">1</strong></div>
+              <div><span>Sequência</span><strong id="dash-sequencia">0 acertos</strong></div>
+              <div><span>Precisão</span><strong id="dash-precisao">0%</strong></div>
+              <div><span>Missões</span><strong id="dash-missoes">0/10</strong></div>
+              <div><span>Conquistas</span><strong id="dash-conquistas">0</strong></div>
+              <div><span>Recorde</span><strong id="dash-recorde">0</strong></div>
+            </div>
+          </article>
+
+          <aside class="quick-panel">
+            <h3>Próxima ação</h3>
+            <p id="dash-proxima">Entre na Central de Missões para começar a jornada.</p>
+            <button type="button" class="btn btn-primary" data-view-target="central-missoes">CENTRAL DE MISSÕES</button>
+            <button type="button" class="btn btn-outline" data-view-target="perfil">MEU PERFIL</button>
+          </aside>
+        </div>
+      </section>
+
+      <section id="central-missoes" class="view" aria-labelledby="titulo-missoes">
+        <div class="content-head">
+          <div>
+            <p class="eyebrow">Mapa de aprendizagem</p>
+            <h2 id="titulo-missoes">CENTRAL DE MISSÕES</h2>
+          </div>
+          <button type="button" class="btn btn-outline" data-view-target="dashboard">Voltar ao painel</button>
+        </div>
+        <div id="grid-missoes" class="mission-grid"></div>
+      </section>
+
+      <section id="tela-missao" class="view mission-view" aria-labelledby="missao-titulo">
+        <div class="mission-toolbar">
+          <button type="button" id="btn-voltar-missoes" class="btn btn-outline">Voltar</button>
+          <div>
+            <p id="missao-subtitulo" class="eyebrow">Missão</p>
+            <h2 id="missao-titulo">Missão</h2>
+          </div>
+          <div class="round-score">
+            <span>XP rodada</span>
+            <strong id="missao-xp-rodada">0</strong>
+          </div>
+        </div>
+        <div id="missao-progresso" class="mini-progress" aria-label="Progresso da missão"><span style="width:0%"></span></div>
+        <div id="missao-conteudo" class="mission-content"></div>
+      </section>
+
+      <section id="tela-resultados" class="view" aria-labelledby="resultado-titulo">
+        <div class="result-panel">
+          <p class="eyebrow">Relatório de desempenho</p>
+          <h2 id="resultado-titulo">MISSÃO CONCLUÍDA</h2>
+          <div id="resultado-resumo" class="result-grid"></div>
+          <div id="resultado-indicadores" class="indicator-grid"></div>
+          <p id="resultado-explicacao" class="result-note"></p>
+          <div class="result-actions">
+            <button type="button" id="btn-jogar-novamente" class="btn btn-outline">JOGAR NOVAMENTE</button>
+            <button type="button" id="btn-proxima-missao" class="btn btn-primary">PRÓXIMA MISSÃO</button>
+            <button type="button" class="btn btn-outline" data-view-target="dashboard">VOLTAR AO PAINEL</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="perfil" class="view" aria-labelledby="titulo-perfil">
+        <div class="content-head">
+          <div>
+            <p class="eyebrow">Resumo do perfil</p>
+            <h2 id="titulo-perfil">MEU PERFIL</h2>
+          </div>
+          <button type="button" class="btn btn-outline" data-view-target="dashboard">Voltar ao painel</button>
+        </div>
+        <div class="profile-layout">
+          <article class="profile-card">
+            <h3 id="perfil-nome">Nome</h3>
+            <dl>
+              <div><dt>Cargo</dt><dd id="perfil-cargo">Aprendiz</dd></div>
+              <div><dt>Nível</dt><dd id="perfil-nivel">1</dd></div>
+              <div><dt>XP</dt><dd id="perfil-xp">0</dd></div>
+              <div><dt>Missões</dt><dd id="perfil-missoes">0</dd></div>
+              <div><dt>Acertos</dt><dd id="perfil-acertos">0</dd></div>
+              <div><dt>Precisão</dt><dd id="perfil-precisao">0%</dd></div>
+              <div><dt>Conquistas</dt><dd id="perfil-conquistas">0</dd></div>
+            </dl>
+          </article>
+          <article class="skills-card">
+            <h3>Competências</h3>
+            <div id="perfil-barras" class="skill-bars"></div>
+          </article>
+        </div>
+      </section>
+
+      <section id="conquistas" class="view" aria-labelledby="titulo-conquistas">
+        <div class="content-head">
+          <div>
+            <p class="eyebrow">Badges</p>
+            <h2 id="titulo-conquistas">CONQUISTAS</h2>
+          </div>
+          <button type="button" class="btn btn-outline" data-view-target="dashboard">Voltar ao painel</button>
+        </div>
+        <div id="grid-conquistas" class="badge-grid"></div>
+      </section>
+
+      <section id="ranking" class="view" aria-labelledby="titulo-ranking">
+        <div class="content-head">
+          <div>
+            <p class="eyebrow">Ranking deste dispositivo</p>
+            <h2 id="titulo-ranking">RANKING LOCAL</h2>
+          </div>
+          <button type="button" class="btn btn-outline" data-view-target="dashboard">Voltar ao painel</button>
+        </div>
+        <div class="table-card">
+          <table>
+            <thead>
+              <tr>
+                <th>Posição</th>
+                <th>Nome</th>
+                <th>Nível</th>
+                <th>XP</th>
+                <th>Pontuação máxima</th>
+              </tr>
+            </thead>
+            <tbody id="ranking-corpo"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="conceitos" class="view" aria-labelledby="titulo-conceitos">
+        <div class="content-head">
+          <div>
+            <p class="eyebrow">Conceitos complementares</p>
+            <h2 id="titulo-conceitos">VOCÊ SABIA?</h2>
+          </div>
+          <button type="button" class="btn btn-outline" data-view-target="dashboard">Voltar ao painel</button>
+        </div>
+        <div id="grid-conceitos" class="concept-grid"></div>
+      </section>
+
+      <section id="professor" class="view" aria-labelledby="titulo-professor">
+        <div class="content-head">
+          <div>
+            <p class="eyebrow">Acompanhamento local</p>
+            <h2 id="titulo-professor">MODO PROFESSOR</h2>
+          </div>
+          <div class="action-row">
+            <button type="button" id="btn-exportar" class="btn btn-primary">EXPORTAR RESULTADOS</button>
+            <button type="button" id="btn-zerar-ranking" class="btn btn-danger">ZERAR RANKING</button>
+          </div>
+        </div>
+        <p class="section-note">Os dados abaixo pertencem somente a este navegador e a este dispositivo.</p>
+        <div class="table-card">
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>XP</th>
+                <th>Nível</th>
+                <th>Acertos</th>
+                <th>Erros</th>
+                <th>Precisão</th>
+                <th>Missões</th>
+                <th>Pontuação</th>
+                <th>Data</th>
+              </tr>
+            </thead>
+            <tbody id="professor-corpo"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast-area" class="toast-area" aria-live="assertive"></div>
+  <div id="level-flash" class="level-flash hidden" role="status" aria-live="assertive"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
