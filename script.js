@@ -45,11 +45,11 @@
       { id: "enc-08", pergunta: "Tenho uma reclamação sobre o atendimento recebido ontem.", alternativas: ["Atendimento", "Compras", "Arquivo", "Manutenção"], correta: 0, explicacao: "Reclamações devem ser acolhidas, registradas e encaminhadas ao Atendimento ou responsável pelo serviço.", categoria: "atendimento", dificuldade: 2 },
       { id: "enc-09", pergunta: "Sou novo funcionário e preciso saber onde assino os documentos admissionais.", alternativas: ["Recursos Humanos", "Comercial", "Financeiro", "Portaria"], correta: 0, explicacao: "Documentos de contratação são responsabilidade do RH ou departamento pessoal.", categoria: "encaminhamento", dificuldade: 1 },
       { id: "enc-10", pergunta: "Quero negociar uma proposta para contratar os serviços da empresa.", alternativas: ["Comercial", "Financeiro", "Compras", "Arquivo"], correta: 0, explicacao: "Propostas comerciais, negociação e contratação de serviços ficam com o Comercial.", categoria: "encaminhamento", dificuldade: 2 },
-      { id: "enc-11", pergunta: "Um visitante chegou sem agendamento e quer falar com a gerência.", alternativas: ["Confirmar necessidade e verificar disponibilidade", "Mandar direto para a sala da gerência", "Dizer que não pode entrar", "Pedir para voltar outro dia"], correta: 0, explicacao: "A recepção identifica a pessoa, entende a demanda, registra a chegada e consulta a disponibilidade antes de encaminhar.", categoria: "organizacao", dificuldade: 3 },
+      { id: "enc-11", pergunta: "Um visitante chegou sem agendamento e quer falar com a gerência.", alternativas: ["Confirmar necessidade e verificar disponibilidade", "Mandar direto para a sala da gerência sem avisar", "Dizer que não pode entrar sem registrar a demanda", "Pedir para voltar outro dia sem consultar ninguém"], correta: 0, explicacao: "A recepção identifica a pessoa, entende a demanda, registra a chegada e consulta a disponibilidade antes de encaminhar.", categoria: "organizacao", dificuldade: 3 },
       { id: "enc-12", pergunta: "Uma pessoa pede informações sobre uma vaga anunciada pela empresa.", alternativas: ["Recursos Humanos", "Financeiro", "Diretoria", "Compras"], correta: 0, explicacao: "Vagas, seleção e orientações para candidatura são temas do RH.", categoria: "encaminhamento", dificuldade: 1 },
-      { id: "enc-13", pergunta: "Um cliente quer alterar dados cadastrais do contrato.", alternativas: ["Atendimento ou Comercial", "Compras", "RH", "Manutenção"], correta: 0, explicacao: "Alterações cadastrais exigem identificação, registro e encaminhamento ao Atendimento ou Comercial conforme o contrato.", categoria: "atendimento", dificuldade: 2 },
-      { id: "enc-14", pergunta: "Uma transportadora chegou com nota fiscal e caixas para conferência.", alternativas: ["Compras ou Almoxarifado", "Recursos Humanos", "Diretoria", "Marketing"], correta: 0, explicacao: "Entrega física de materiais deve seguir conferência e registro pelo setor responsável por compras/estoque.", categoria: "organizacao", dificuldade: 2 },
-      { id: "enc-15", pergunta: "Uma pessoa quer falar sobre desconto indevido no salário.", alternativas: ["Recursos Humanos ou Departamento Pessoal", "Comercial", "Compras", "Marketing"], correta: 0, explicacao: "Questões de salário e folha envolvem dados pessoais e devem ir para RH ou departamento pessoal, com cuidado de sigilo.", categoria: "sigilo", dificuldade: 3 }
+      { id: "enc-13", pergunta: "Um cliente quer alterar dados cadastrais do contrato.", alternativas: ["Atendimento ou Comercial", "Compras e controle de fornecedores", "RH e documentos de colaboradores", "Manutenção e serviços prediais"], correta: 0, explicacao: "Alterações cadastrais exigem identificação, registro e encaminhamento ao Atendimento ou Comercial conforme o contrato.", categoria: "atendimento", dificuldade: 2 },
+      { id: "enc-14", pergunta: "Uma transportadora chegou com nota fiscal e caixas para conferência.", alternativas: ["Compras ou Almoxarifado", "Recursos Humanos e seleção", "Diretoria e agenda executiva", "Marketing e comunicação"], correta: 0, explicacao: "Entrega física de materiais deve seguir conferência e registro pelo setor responsável por compras/estoque.", categoria: "organizacao", dificuldade: 2 },
+      { id: "enc-15", pergunta: "Uma pessoa quer falar sobre desconto indevido no salário.", alternativas: ["Recursos Humanos ou Departamento Pessoal", "Comercial e atendimento de clientes", "Compras e recebimento de materiais", "Marketing e divulgação externa"], correta: 0, explicacao: "Questões de salário e folha envolvem dados pessoais e devem ir para RH ou departamento pessoal, com cuidado de sigilo.", categoria: "sigilo", dificuldade: 3 }
     ],
 
     certoErrado: [
@@ -71,21 +71,21 @@
     ],
 
     respostas: [
-      { id: "rs-01", pergunta: "Um cliente está irritado e aumenta o tom de voz. O que você faria?", alternativas: ["Aumentaria o tom para mostrar autoridade.", "Pediria para ele voltar outro dia.", "Ouviria a situação, manteria postura profissional e buscaria compreender a demanda.", "Encerraria o atendimento imediatamente."], correta: 2, explicacao: "Acolher, escutar e manter postura profissional ajuda a entender a necessidade sem ampliar o conflito.", categoria: "decisao", dificuldade: 2 },
-      { id: "rs-02", pergunta: "Um visitante chega sem documento de identificação para uma reunião. Qual é a melhor conduta?", alternativas: ["Liberar a entrada para não atrasar.", "Consultar o procedimento interno e avisar o responsável pela reunião.", "Dizer que ele perdeu a reunião.", "Pedir para outro visitante confirmar quem ele é."], correta: 1, explicacao: "A recepção deve seguir normas internas, preservar segurança e comunicar o setor responsável.", categoria: "organizacao", dificuldade: 3 },
-      { id: "rs-03", pergunta: "Você não sabe informar o ramal de um setor. Qual resposta é mais adequada?", alternativas: ["Não sei.", "Procure no site.", "Vou verificar o ramal correto para direcionar você.", "Isso muda toda hora."], correta: 2, explicacao: "A melhor resposta reconhece a necessidade e assume uma ação concreta de verificação.", categoria: "postura", dificuldade: 1 },
-      { id: "rs-04", pergunta: "Duas pessoas chegam ao mesmo tempo: uma para reunião agendada e outra para entregar currículo. Como agir?", alternativas: ["Atender a pessoa mais simpática primeiro.", "Acolher ambas, confirmar urgência e organizar a ordem conforme agenda e fluxo.", "Mandar uma delas esperar fora.", "Ignorar a entrega de currículo."], correta: 1, explicacao: "Organização envolve acolher, identificar demandas e respeitar agenda sem desconsiderar ninguém.", categoria: "organizacao", dificuldade: 2 },
-      { id: "rs-05", pergunta: "Um cliente pede dados pessoais de outro cliente. O que você responde?", alternativas: ["Passo se ele explicar o motivo.", "Forneço apenas telefone.", "Informo que não posso compartilhar dados pessoais e oriento o canal adequado.", "Pergunto para outros colegas se posso falar."], correta: 2, explicacao: "Dados pessoais exigem autorização e regras internas. A resposta deve ser firme e cordial.", categoria: "sigilo", dificuldade: 2 },
-      { id: "rs-06", pergunta: "O telefone toca enquanto há uma fila pequena na recepção. Qual decisão é mais equilibrada?", alternativas: ["Nunca atender telefone quando há fila.", "Atender rapidamente com identificação, registrar ou orientar retorno e continuar a fila.", "Deixar tocar até parar.", "Pedir para um visitante atender."], correta: 1, explicacao: "A recepção administra múltiplos canais. O ideal é atender com objetividade e manter a fila informada.", categoria: "organizacao", dificuldade: 3 },
-      { id: "rs-07", pergunta: "Uma pessoa com deficiência visual chega à recepção. O que demonstra postura adequada?", alternativas: ["Falar com o acompanhante, caso exista.", "Oferecer ajuda, perguntar como prefere ser orientada e respeitar sua resposta.", "Pegar no braço sem avisar.", "Falar mais alto automaticamente."], correta: 1, explicacao: "Atendimento inclusivo pergunta a preferência da pessoa e respeita autonomia.", categoria: "atendimento", dificuldade: 2 },
-      { id: "rs-08", pergunta: "Um colaborador pede para você avisar a todos que uma colega faltou por motivo médico. O que fazer?", alternativas: ["Avisar no grupo geral.", "Divulgar apenas para quem perguntar.", "Evitar expor o motivo e encaminhar a informação necessária ao responsável autorizado.", "Comentar que parece grave."], correta: 2, explicacao: "Informações de saúde são sensíveis. Só devem ser compartilhadas quando necessário e autorizado.", categoria: "sigilo", dificuldade: 3 },
-      { id: "rs-09", pergunta: "Um visitante não entendeu o caminho até o setor indicado. Qual é a melhor ação?", alternativas: ["Repetir a mesma frase mais rápido.", "Dizer que está bem sinalizado.", "Explicar novamente com referências claras e confirmar se ficou compreensível.", "Pedir para ele seguir outra pessoa."], correta: 2, explicacao: "Clareza e feedback reduzem ruídos e aumentam a qualidade do atendimento.", categoria: "comunicacao", dificuldade: 2 },
-      { id: "rs-10", pergunta: "Um fornecedor chega fora do horário combinado. Como agir?", alternativas: ["Recusar sem ouvir.", "Registrar a chegada, verificar possibilidade com o setor de compras e orientar o fornecedor.", "Mandar descarregar mesmo assim.", "Dizer que a culpa é dele."], correta: 1, explicacao: "A solução profissional combina registro, consulta ao setor e orientação respeitosa.", categoria: "organizacao", dificuldade: 2 },
-      { id: "rs-11", pergunta: "Você percebe que passou uma orientação incompleta. Qual atitude é mais profissional?", alternativas: ["Esperar a pessoa reclamar.", "Corrigir a informação assim que possível e pedir desculpas pela falha.", "Fingir que não percebeu.", "Culpar outro setor."], correta: 1, explicacao: "Responsabilidade e correção rápida preservam confiança.", categoria: "postura", dificuldade: 2 },
-      { id: "rs-12", pergunta: "Uma pessoa tenta furar a fila alegando pressa, sem prioridade aparente. O que fazer?", alternativas: ["Permitir para evitar conflito.", "Explicar a ordem de atendimento e verificar se há urgência real ou prioridade.", "Responder com ironia.", "Ignorar a pessoa."], correta: 1, explicacao: "A recepção precisa ser justa, acolhedora e organizada.", categoria: "decisao", dificuldade: 2 },
-      { id: "rs-13", pergunta: "Um cliente pergunta quando receberá retorno de uma solicitação. O que é melhor?", alternativas: ["Dizer que depende.", "Prometer retorno imediato sem consultar.", "Consultar o prazo possível, registrar a solicitação e informar o canal de retorno.", "Encaminhar sem anotar nada."], correta: 2, explicacao: "Promessas precisam ser realistas. Registro e prazo orientam o cliente e a equipe.", categoria: "organizacao", dificuldade: 3 },
-      { id: "rs-14", pergunta: "Um colega pede sua senha para acessar o sistema da recepção rapidamente. Qual é a atitude correta?", alternativas: ["Emprestar se for colega de confiança.", "Digitar a senha e sair de perto.", "Não compartilhar senha e orientar o procedimento correto.", "Anotar a senha em papel."], correta: 2, explicacao: "Senha é individual. Compartilhar compromete segurança e responsabilidade.", categoria: "sigilo", dificuldade: 2 },
-      { id: "rs-15", pergunta: "A sala de espera está cheia e há atraso no atendimento. Como a recepção pode agir?", alternativas: ["Evitar contato visual.", "Informar a situação com cordialidade, atualizar previsão quando possível e manter organização.", "Dizer que todos terão que esperar.", "Fechar a porta da recepção."], correta: 1, explicacao: "Comunicação transparente reduz ansiedade e demonstra respeito.", categoria: "atendimento", dificuldade: 3 }
+      { id: "rs-01", pergunta: "Um cliente está irritado e aumenta o tom de voz. O que você faria?", alternativas: ["Elevaria o tom antes de entender melhor a demanda apresentada.", "Pediria para o cliente voltar somente quando estivesse mais calmo.", "Ouviria a situacao, manteria postura calma e buscaria entender a demanda.", "Encerraria o atendimento e passaria o caso sem registrar detalhes."], correta: 2, explicacao: "Acolher, escutar e manter postura profissional ajuda a entender a necessidade sem ampliar o conflito.", categoria: "decisao", dificuldade: 2 },
+      { id: "rs-02", pergunta: "Um visitante chega sem documento de identificação para uma reunião. Qual é a melhor conduta?", alternativas: ["Liberar a entrada para nao atrasar a agenda do visitante.", "Consultar o procedimento interno e avisar o responsavel pela reuniao.", "Informar que ele perdeu a reuniao por nao trazer documento.", "Pedir a outro visitante que confirme informalmente quem ele e."], correta: 1, explicacao: "A recepção deve seguir normas internas, preservar segurança e comunicar o setor responsável.", categoria: "organizacao", dificuldade: 3 },
+      { id: "rs-03", pergunta: "Você não sabe informar o ramal de um setor. Qual resposta é mais adequada?", alternativas: ["Nao sei informar esse ramal; procure alguem daquele setor.", "O ramal deve estar no site ou em algum aviso da empresa.", "Vou verificar o ramal correto para direcionar voce.", "Esse numero muda bastante, entao nao consigo ajudar agora."], correta: 2, explicacao: "A melhor resposta reconhece a necessidade e assume uma ação concreta de verificação.", categoria: "postura", dificuldade: 1 },
+      { id: "rs-04", pergunta: "Duas pessoas chegam ao mesmo tempo: uma para reunião agendada e outra para entregar currículo. Como agir?", alternativas: ["Atender primeiro quem parecer mais apressado e simpatico.", "Acolher ambas, confirmar urgencia e organizar a ordem pelo fluxo.", "Mandar uma delas esperar fora ate que a recepcao esvazie.", "Ignorar a entrega de curriculo para cumprir apenas a agenda."], correta: 1, explicacao: "Organização envolve acolher, identificar demandas e respeitar agenda sem desconsiderar ninguém.", categoria: "organizacao", dificuldade: 2 },
+      { id: "rs-05", pergunta: "Um cliente pede dados pessoais de outro cliente. O que você responde?", alternativas: ["Passo os dados se ele explicar um motivo que pareca razoavel.", "Forneco apenas telefone, pois parece uma informacao simples.", "Informo que nao posso compartilhar dados e indico o canal adequado.", "Pergunto a outros colegas se alguem autoriza falar os dados."], correta: 2, explicacao: "Dados pessoais exigem autorização e regras internas. A resposta deve ser firme e cordial.", categoria: "sigilo", dificuldade: 2 },
+      { id: "rs-06", pergunta: "O telefone toca enquanto há uma fila pequena na recepção. Qual decisão é mais equilibrada?", alternativas: ["Nunca atender telefone quando houver qualquer pessoa na fila.", "Atender com identificacao, registrar ou orientar retorno e seguir a fila.", "Deixar o telefone tocar ate a fila terminar completamente.", "Pedir que um visitante atenda para ajudar a recepcao naquele momento."], correta: 1, explicacao: "A recepção administra múltiplos canais. O ideal é atender com objetividade e manter a fila informada.", categoria: "organizacao", dificuldade: 3 },
+      { id: "rs-07", pergunta: "Uma pessoa com deficiência visual chega à recepção. O que demonstra postura adequada?", alternativas: ["Falar apenas com o acompanhante para tornar o atendimento rapido.", "Oferecer ajuda, perguntar como prefere orientacao e respeitar a resposta.", "Pegar no braco da pessoa para conduzi-la com mais seguranca.", "Falar automaticamente mais alto para facilitar a comunicacao."], correta: 1, explicacao: "Atendimento inclusivo pergunta a preferência da pessoa e respeita autonomia.", categoria: "atendimento", dificuldade: 2 },
+      { id: "rs-08", pergunta: "Um colaborador pede para você avisar a todos que uma colega faltou por motivo médico. O que fazer?", alternativas: ["Avisar no grupo geral para que todos compreendam a ausencia.", "Divulgar apenas para quem perguntar diretamente o motivo.", "Evitar expor o motivo e encaminhar o necessario ao responsavel.", "Comentar que parece grave, mas sem citar muitos detalhes."], correta: 2, explicacao: "Informações de saúde são sensíveis. Só devem ser compartilhadas quando necessário e autorizado.", categoria: "sigilo", dificuldade: 3 },
+      { id: "rs-09", pergunta: "Um visitante não entendeu o caminho até o setor indicado. Qual é a melhor ação?", alternativas: ["Repetir a mesma orientacao mais rapido para ganhar tempo.", "Dizer que o local esta bem sinalizado e que ele deve observar.", "Explicar novamente com referencias claras e confirmar compreensao.", "Pedir que ele siga outra pessoa ate encontrar o setor correto."], correta: 2, explicacao: "Clareza e feedback reduzem ruídos e aumentam a qualidade do atendimento.", categoria: "comunicacao", dificuldade: 2 },
+      { id: "rs-10", pergunta: "Um fornecedor chega fora do horário combinado. Como agir?", alternativas: ["Recusar a entrega sem ouvir a justificativa ou conferir dados.", "Registrar a chegada, consultar Compras e orientar o fornecedor.", "Mandar descarregar mesmo sem confirmacao do setor responsavel.", "Dizer que a culpa e dele e pedir que volte em outro horario."], correta: 1, explicacao: "A solução profissional combina registro, consulta ao setor e orientação respeitosa.", categoria: "organizacao", dificuldade: 2 },
+      { id: "rs-11", pergunta: "Você percebe que passou uma orientação incompleta. Qual atitude é mais profissional?", alternativas: ["Esperar a pessoa reclamar antes de corrigir a informacao.", "Corrigir a informacao assim que possivel e reconhecer a falha.", "Fingir que nao percebeu para evitar constrangimento.", "Culpar outro setor pela orientacao incompleta que foi dada."], correta: 1, explicacao: "Responsabilidade e correção rápida preservam confiança.", categoria: "postura", dificuldade: 2 },
+      { id: "rs-12", pergunta: "Uma pessoa tenta furar a fila alegando pressa, sem prioridade aparente. O que fazer?", alternativas: ["Permitir a passagem para evitar conflito na recepcao.", "Explicar a ordem de atendimento e verificar se ha urgencia real.", "Responder com ironia para mostrar que a fila deve ser respeitada.", "Ignorar a pessoa ate que ela volte para o fim da fila."], correta: 1, explicacao: "A recepção precisa ser justa, acolhedora e organizada.", categoria: "decisao", dificuldade: 2 },
+      { id: "rs-13", pergunta: "Um cliente pergunta quando receberá retorno de uma solicitação. O que é melhor?", alternativas: ["Dizer que depende do setor e encerrar a conversa por enquanto.", "Prometer retorno imediato para tranquilizar o cliente no momento.", "Consultar prazo possivel, registrar a demanda e informar o retorno.", "Encaminhar ao setor responsavel sem anotar qualquer detalhe."], correta: 2, explicacao: "Promessas precisam ser realistas. Registro e prazo orientam o cliente e a equipe.", categoria: "organizacao", dificuldade: 3 },
+      { id: "rs-14", pergunta: "Um colega pede sua senha para acessar o sistema da recepção rapidamente. Qual é a atitude correta?", alternativas: ["Emprestar a senha se for um colega conhecido e confiavel.", "Digitar a senha e sair de perto para agilizar o atendimento.", "Nao compartilhar senha e orientar o procedimento correto.", "Anotar a senha em papel e pedir devolucao depois do uso."], correta: 2, explicacao: "Senha é individual. Compartilhar compromete segurança e responsabilidade.", categoria: "sigilo", dificuldade: 2 },
+      { id: "rs-15", pergunta: "A sala de espera está cheia e há atraso no atendimento. Como a recepção pode agir?", alternativas: ["Evitar contato visual para nao aumentar a cobranca das pessoas.", "Informar a situacao com cordialidade e atualizar previsao possivel.", "Dizer que todos terao que esperar sem explicar o motivo.", "Fechar a porta da recepcao para reduzir perguntas e pressao."], correta: 1, explicacao: "Comunicação transparente reduz ansiedade e demonstra respeito.", categoria: "atendimento", dificuldade: 3 }
     ],
 
     comunicacao: [
@@ -103,25 +103,25 @@
       { id: "com-12", pergunta: "Na frase 'comparecer ao setor responsável', o visitante pergunta: Qual setor? O que faltou?", alternativas: ["Clareza da mensagem", "Canal digital", "Receptor", "Tom de voz"], correta: 0, explicacao: "A mensagem não foi específica o suficiente para orientar a ação.", categoria: "comunicacao", dificuldade: 2 },
       { id: "com-13", pergunta: "A recepcionista percebe dúvida no rosto do visitante e pergunta se ele gostaria que ela repetisse. Isso demonstra:", alternativas: ["Escuta ativa", "Ruído", "Quebra de sigilo", "Canal inadequado"], correta: 0, explicacao: "Observar sinais e verificar compreensão faz parte da escuta ativa.", categoria: "escuta", dificuldade: 1 },
       { id: "com-14", pergunta: "Uma orientação é enviada por áudio longo em ambiente em que o receptor não pode ouvir som. O problema principal é:", alternativas: ["Canal inadequado ao contexto", "Falta de emissor", "Excesso de dados públicos", "Atendimento prioritário"], correta: 0, explicacao: "O canal precisa combinar com o contexto de quem recebe a mensagem.", categoria: "comunicacao", dificuldade: 3 },
-      { id: "com-15", pergunta: "A pessoa diz 'ok', mas segue para o setor errado. O que a recepção poderia ter feito?", alternativas: ["Confirmar o entendimento com uma pergunta objetiva", "Falar menos", "Evitar repetir informações", "Usar apenas gestos"], correta: 0, explicacao: "Feedback de compreensão deve ser mais do que um 'ok' quando a orientação é importante.", categoria: "comunicacao", dificuldade: 3 }
+      { id: "com-15", pergunta: "A pessoa diz 'ok', mas segue para o setor errado. O que a recepção poderia ter feito?", alternativas: ["Confirmar o entendimento com uma pergunta objetiva", "Falar menos para agilizar a fila naquele momento", "Evitar repetir informações mesmo percebendo dúvida", "Usar apenas gestos para indicar o caminho correto"], correta: 0, explicacao: "Feedback de compreensão deve ser mais do que um 'ok' quando a orientação é importante.", categoria: "comunicacao", dificuldade: 3 }
     ],
 
     palavra: [
-      { id: "pal-01", pergunta: "Escolha a versão mais profissional para: Não sei.", alternativas: ["Não sei mesmo.", "Vou verificar essa informação para você.", "Pergunte a outra pessoa.", "Não trabalho com isso."], correta: 1, explicacao: "A resposta mostra disposição para buscar informação sem inventar.", categoria: "postura", dificuldade: 1 },
-      { id: "pal-02", pergunta: "Escolha a versão mais profissional para: Isso não é comigo.", alternativas: ["Esse assunto é tratado por outro setor. Vou orientar o melhor contato.", "Não posso fazer nada.", "Procure alguém do setor.", "Volte depois."], correta: 0, explicacao: "A frase orienta sem abandonar a pessoa.", categoria: "atendimento", dificuldade: 1 },
-      { id: "pal-03", pergunta: "Escolha a versão mais profissional para: Calma aí.", alternativas: ["Aguarde um momento, por gentileza.", "Espere porque estou ocupado.", "Um minuto, tá?", "Pera."], correta: 0, explicacao: "A expressão mantém cordialidade e respeito.", categoria: "comunicacao", dificuldade: 1 },
-      { id: "pal-04", pergunta: "Escolha a versão mais profissional para: Você está errado.", alternativas: ["A informação que temos registrada é diferente. Vamos conferir juntos?", "Você entendeu tudo errado.", "Isso não procede.", "Impossível."], correta: 0, explicacao: "A resposta reduz confronto e abre caminho para verificação.", categoria: "decisao", dificuldade: 2 },
-      { id: "pal-05", pergunta: "Escolha a versão mais profissional para: Não posso passar isso.", alternativas: ["Essa informação é restrita. Posso orientar o canal autorizado.", "Não posso falar, pronto.", "É segredo.", "Pergunte para quem sabe."], correta: 0, explicacao: "A resposta protege sigilo e oferece orientação.", categoria: "sigilo", dificuldade: 2 },
-      { id: "pal-06", pergunta: "Escolha a versão mais profissional para: O sistema caiu.", alternativas: ["Estamos com instabilidade no sistema. Vou registrar sua solicitação e orientar o retorno.", "Não dá para fazer nada.", "O sistema vive caindo.", "Volte outro dia."], correta: 0, explicacao: "A resposta informa o problema sem descuidar do atendimento.", categoria: "atendimento", dificuldade: 2 },
-      { id: "pal-07", pergunta: "Escolha a versão mais profissional para: Fala logo.", alternativas: ["Pode me informar sua solicitação, por favor?", "Diga logo o que você quer.", "Vai falando.", "Estou sem tempo."], correta: 0, explicacao: "O tom profissional valoriza respeito mesmo em situações de pressa.", categoria: "comunicacao", dificuldade: 1 },
-      { id: "pal-08", pergunta: "Escolha a versão mais profissional para: Não tem ninguém aí.", alternativas: ["No momento a pessoa responsável não está disponível. Posso registrar um recado?", "Ela sumiu.", "Ninguém atende nesse setor.", "Tente depois."], correta: 0, explicacao: "A frase informa a indisponibilidade e oferece encaminhamento.", categoria: "organizacao", dificuldade: 2 },
-      { id: "pal-09", pergunta: "Escolha a versão mais profissional para: Você tem que esperar.", alternativas: ["Seu atendimento será realizado em instantes. Obrigado pela compreensão.", "Espere sentado.", "Tem gente na sua frente.", "Não adianta reclamar."], correta: 0, explicacao: "A comunicação respeitosa ajuda a administrar espera.", categoria: "atendimento", dificuldade: 1 },
-      { id: "pal-10", pergunta: "Escolha a versão mais profissional para: Não é aqui.", alternativas: ["Esse atendimento ocorre em outro setor. Vou indicar o caminho correto.", "Você veio no lugar errado.", "Pergunte na entrada.", "Não resolvemos isso."], correta: 0, explicacao: "Encaminhar corretamente faz parte do atendimento.", categoria: "encaminhamento", dificuldade: 1 },
-      { id: "pal-11", pergunta: "Escolha a versão mais profissional para: Manda mensagem depois.", alternativas: ["Você pode enviar a solicitação pelo canal oficial. Vou informar o contato correto.", "Me chama depois.", "Tenta por WhatsApp.", "Procura no grupo."], correta: 0, explicacao: "Canais oficiais preservam registro e organização.", categoria: "organizacao", dificuldade: 2 },
-      { id: "pal-12", pergunta: "Escolha a versão mais profissional para: Não posso prometer nada.", alternativas: ["Vou registrar sua solicitação e informar o prazo ou retorno possível.", "Não sei se alguém vai ver.", "Depende da boa vontade do setor.", "Talvez resolvam."], correta: 0, explicacao: "A resposta evita promessa indevida e indica próximo passo.", categoria: "postura", dificuldade: 2 },
-      { id: "pal-13", pergunta: "Escolha a versão mais profissional para: A culpa não é minha.", alternativas: ["Entendo sua situação. Vou verificar como podemos encaminhar a solução.", "Não tenho nada a ver com isso.", "Quem errou foi outro setor.", "Reclame com quem fez."], correta: 0, explicacao: "Acolher não significa assumir culpa; significa conduzir a demanda.", categoria: "decisao", dificuldade: 2 },
-      { id: "pal-14", pergunta: "Escolha a versão mais profissional para: Não interrompa.", alternativas: ["Vou concluir a informação e já ouço sua dúvida, tudo bem?", "Pare de falar.", "Agora sou eu.", "Espere sua vez."], correta: 0, explicacao: "A alternativa controla o fluxo sem desrespeitar a pessoa.", categoria: "comunicacao", dificuldade: 3 },
-      { id: "pal-15", pergunta: "Escolha a versão mais profissional para: Não posso te ajudar.", alternativas: ["Neste caso, o setor responsável poderá ajudar melhor. Vou orientar o contato.", "Não dá.", "Não é minha função.", "Você terá que se virar."], correta: 0, explicacao: "A resposta reconhece o limite da função, mas mantém compromisso com o encaminhamento.", categoria: "atendimento", dificuldade: 2 }
+      { id: "pal-01", pergunta: "Escolha a versão mais profissional para: Não sei.", alternativas: ["Nao sei; procure alguem que conheca melhor esse assunto.", "Vou verificar essa informacao para voce antes de orientar.", "Pergunte a outra pessoa que seja daquele setor responsavel.", "Nao trabalho com isso e nao posso ajudar nessa situacao."], correta: 1, explicacao: "A resposta mostra disposição para buscar informação sem inventar.", categoria: "postura", dificuldade: 1 },
+      { id: "pal-02", pergunta: "Escolha a versão mais profissional para: Isso não é comigo.", alternativas: ["Esse assunto e de outro setor. Vou orientar o melhor contato.", "Nao posso fazer nada porque essa demanda nao e da recepcao.", "Procure alguem do setor e explique novamente sua situacao.", "Volte depois quando encontrar alguem que trate desse assunto."], correta: 0, explicacao: "A frase orienta sem abandonar a pessoa.", categoria: "atendimento", dificuldade: 1 },
+      { id: "pal-03", pergunta: "Escolha a versão mais profissional para: Calma aí.", alternativas: ["Aguarde um momento, por gentileza, enquanto verifico.", "Espere porque estou ocupado com outra coisa agora.", "Um minuto, ta? Preciso terminar o que estou fazendo.", "Pera um pouco que eu vejo isso quando conseguir parar."], correta: 0, explicacao: "A expressão mantém cordialidade e respeito.", categoria: "comunicacao", dificuldade: 1 },
+      { id: "pal-04", pergunta: "Escolha a versão mais profissional para: Você está errado.", alternativas: ["A informacao registrada e diferente. Vamos conferir juntos?", "Voce entendeu tudo errado e precisa ouvir novamente.", "Isso nao procede pelo que aparece aqui no atendimento.", "Impossivel ser assim, porque o sistema mostra outra coisa."], correta: 0, explicacao: "A resposta reduz confronto e abre caminho para verificação.", categoria: "decisao", dificuldade: 2 },
+      { id: "pal-05", pergunta: "Escolha a versão mais profissional para: Não posso passar isso.", alternativas: ["Essa informacao e restrita. Posso orientar o canal autorizado.", "Nao posso falar, pronto, porque isso nao deve ser comentado.", "E segredo da empresa e voce nao deveria perguntar isso.", "Pergunte para quem sabe e pode assumir essa responsabilidade."], correta: 0, explicacao: "A resposta protege sigilo e oferece orientação.", categoria: "sigilo", dificuldade: 2 },
+      { id: "pal-06", pergunta: "Escolha a versão mais profissional para: O sistema caiu.", alternativas: ["Estamos com instabilidade. Vou registrar a solicitacao e orientar o retorno.", "Nao da para fazer nada enquanto o sistema estiver fora do ar.", "O sistema vive caindo e atrapalhando todo atendimento da empresa.", "Volte outro dia, porque hoje talvez ninguem consiga resolver."], correta: 0, explicacao: "A resposta informa o problema sem descuidar do atendimento.", categoria: "atendimento", dificuldade: 2 },
+      { id: "pal-07", pergunta: "Escolha a versão mais profissional para: Fala logo.", alternativas: ["Pode me informar sua solicitacao, por favor?", "Diga logo o que voce quer para eu tentar ajudar.", "Vai falando, mas seja breve porque ha outras pessoas.", "Estou sem tempo; explique apenas o essencial do caso."], correta: 0, explicacao: "O tom profissional valoriza respeito mesmo em situações de pressa.", categoria: "comunicacao", dificuldade: 1 },
+      { id: "pal-08", pergunta: "Escolha a versão mais profissional para: Não tem ninguém aí.", alternativas: ["No momento a pessoa responsavel nao esta disponivel. Posso registrar recado?", "Ela sumiu e ninguem sabe exatamente quando vai voltar ao setor.", "Ninguem atende nesse setor quando esta tudo muito cheio agora.", "Tente depois, talvez alguem esteja disponivel em outro horario."], correta: 0, explicacao: "A frase informa a indisponibilidade e oferece encaminhamento.", categoria: "organizacao", dificuldade: 2 },
+      { id: "pal-09", pergunta: "Escolha a versão mais profissional para: Você tem que esperar.", alternativas: ["Seu atendimento sera realizado em instantes. Obrigado pela compreensao.", "Espere sentado ate alguem chamar quando chegar sua vez na fila.", "Tem gente na sua frente e todos tambem precisam esperar.", "Nao adianta reclamar, porque a ordem da fila sera mantida."], correta: 0, explicacao: "A comunicação respeitosa ajuda a administrar espera.", categoria: "atendimento", dificuldade: 1 },
+      { id: "pal-10", pergunta: "Escolha a versão mais profissional para: Não é aqui.", alternativas: ["Esse atendimento ocorre em outro setor. Vou indicar o caminho correto.", "Voce veio no lugar errado e precisa procurar outro setor agora.", "Pergunte na entrada para descobrir onde resolvem isso corretamente.", "Nao resolvemos isso aqui, entao voce deve seguir adiante."], correta: 0, explicacao: "Encaminhar corretamente faz parte do atendimento.", categoria: "encaminhamento", dificuldade: 1 },
+      { id: "pal-11", pergunta: "Escolha a versão mais profissional para: Manda mensagem depois.", alternativas: ["Voce pode enviar a solicitacao pelo canal oficial. Vou informar o contato.", "Me chama depois em algum canal para eu ver se consigo ajudar.", "Tenta por WhatsApp, porque costuma ser mais rapido assim para todos.", "Procura no grupo da empresa e ve se alguem responde la depois."], correta: 0, explicacao: "Canais oficiais preservam registro e organização.", categoria: "organizacao", dificuldade: 2 },
+      { id: "pal-12", pergunta: "Escolha a versão mais profissional para: Não posso prometer nada.", alternativas: ["Vou registrar sua solicitacao e informar o prazo ou retorno possivel.", "Nao sei se alguem vai ver isso ainda hoje ou nesta semana.", "Depende da boa vontade do setor resolver quando puder.", "Talvez resolvam, mas nao tenho como garantir muita coisa."], correta: 0, explicacao: "A resposta evita promessa indevida e indica próximo passo.", categoria: "postura", dificuldade: 2 },
+      { id: "pal-13", pergunta: "Escolha a versão mais profissional para: A culpa não é minha.", alternativas: ["Entendo sua situacao. Vou verificar como encaminhar a solucao.", "Nao tenho nada a ver com isso e nao participei do erro.", "Quem errou foi outro setor, entao fale diretamente com eles.", "Reclame com quem fez, porque a recepcao nao causou isso."], correta: 0, explicacao: "Acolher não significa assumir culpa; significa conduzir a demanda.", categoria: "decisao", dificuldade: 2 },
+      { id: "pal-14", pergunta: "Escolha a versão mais profissional para: Não interrompa.", alternativas: ["Vou concluir a informacao e ja ouco sua duvida, tudo bem?", "Pare de falar ate eu terminar toda a minha explicacao.", "Agora sou eu que preciso falar para voce entender direito.", "Espere sua vez de falar, porque ainda nao conclui."], correta: 0, explicacao: "A alternativa controla o fluxo sem desrespeitar a pessoa.", categoria: "comunicacao", dificuldade: 3 },
+      { id: "pal-15", pergunta: "Escolha a versão mais profissional para: Não posso te ajudar.", alternativas: ["Neste caso, o setor responsavel pode ajudar melhor. Vou orientar o contato.", "Nao da para resolver isso aqui, porque nao e minha funcao agora.", "Nao e minha funcao tratar esse assunto com visitantes agora.", "Voce tera que se virar com outro setor para resolver isso depois."], correta: 0, explicacao: "A resposta reconhece o limite da função, mas mantém compromisso com o encaminhamento.", categoria: "atendimento", dificuldade: 2 }
     ],
 
     sigilo: [
@@ -143,26 +143,365 @@
     ],
 
     quizPrimeiroDia: [
-      { id: "qpd-01", pergunta: "Qual é o foco da UC1 — Recepcionar e atender pessoas?", alternativas: ["Controlar estoque industrial", "Desenvolver práticas de recepção, comunicação e atendimento", "Elaborar folha de pagamento completa", "Fazer vendas externas"], correta: 1, explicacao: "A UC trabalha competências de recepção, atendimento, comunicação, encaminhamento e postura profissional.", categoria: "atendimento", dificuldade: 1 },
-      { id: "qpd-02", pergunta: "Na recepção, identificar a necessidade da pessoa serve principalmente para:", alternativas: ["Reduzir a responsabilidade da empresa", "Encaminhar corretamente e evitar perda de tempo", "Criar barreiras de atendimento", "Substituir todos os setores"], correta: 1, explicacao: "A identificação orienta o fluxo e evita encaminhamentos incorretos.", categoria: "encaminhamento", dificuldade: 1 },
-      { id: "qpd-03", pergunta: "Qual atitude combina com cordialidade profissional?", alternativas: ["Cumprimentar, ouvir e orientar com respeito", "Usar intimidade com qualquer visitante", "Responder rápido sem confirmar entendimento", "Prometer qualquer solução"], correta: 0, explicacao: "Cordialidade envolve respeito, escuta e clareza.", categoria: "atendimento", dificuldade: 1 },
-      { id: "qpd-04", pergunta: "O que melhor representa proatividade na recepção?", alternativas: ["Esperar o problema crescer", "Antecipar uma orientação necessária dentro do seu papel", "Fazer tarefas sem seguir regras", "Assumir decisões de outro setor"], correta: 1, explicacao: "Proatividade é agir de forma responsável para facilitar o atendimento.", categoria: "postura", dificuldade: 2 },
-      { id: "qpd-05", pergunta: "O setor de Recursos Humanos costuma tratar de:", alternativas: ["Seleção, documentos de colaboradores e assuntos de pessoal", "Cobranças de clientes", "Compra de equipamentos", "Negociação de contratos comerciais"], correta: 0, explicacao: "RH lida com pessoas, seleção, documentação e rotinas relacionadas a colaboradores.", categoria: "encaminhamento", dificuldade: 1 },
-      { id: "qpd-06", pergunta: "Um assistente administrativo pode apoiar a empresa principalmente com:", alternativas: ["Somente atendimento telefônico", "Organização de documentos, registros, comunicação e rotinas administrativas", "Somente manutenção predial", "Somente negociação jurídica"], correta: 1, explicacao: "A função administrativa envolve organização, registros, comunicação e apoio a processos.", categoria: "organizacao", dificuldade: 1 },
-      { id: "qpd-07", pergunta: "Qual é uma boa prática ao receber uma reclamação?", alternativas: ["Escutar, registrar e encaminhar corretamente", "Responder com irritação", "Expor o cliente aos demais", "Ignorar se não for seu setor"], correta: 0, explicacao: "Reclamações precisam de acolhimento, registro e encaminhamento.", categoria: "escuta", dificuldade: 1 },
-      { id: "qpd-08", pergunta: "Sigilo na recepção significa:", alternativas: ["Nunca falar com ninguém", "Tratar informações pessoais e internas com discrição e autorização", "Guardar todas as informações apenas na memória", "Falar baixo mesmo com dados públicos"], correta: 1, explicacao: "Sigilo protege dados e informações conforme regras da organização.", categoria: "sigilo", dificuldade: 1 },
-      { id: "qpd-09", pergunta: "Em comunicação, feedback é:", alternativas: ["Confirmação ou retorno sobre a mensagem recebida", "Barulho no ambiente", "O aparelho usado para comunicar", "A pessoa que envia a mensagem"], correta: 0, explicacao: "Feedback fecha o ciclo de comunicação e confirma entendimento.", categoria: "comunicacao", dificuldade: 1 },
-      { id: "qpd-10", pergunta: "Ruído de comunicação é:", alternativas: ["Qualquer interferência que prejudique a compreensão da mensagem", "A resposta correta ao cliente", "O setor responsável por atendimento", "A sala de espera organizada"], correta: 0, explicacao: "Ruído pode ser barulho, linguagem confusa, canal inadequado ou informação incompleta.", categoria: "comunicacao", dificuldade: 1 },
-      { id: "qpd-11", pergunta: "Quando uma pessoa possui atendimento prioritário, a recepção deve:", alternativas: ["Ignorar a fila sem explicar nada", "Acolher, organizar o fluxo e comunicar com respeito", "Pedir que volte em outro horário", "Atender só se ela reclamar"], correta: 1, explicacao: "Prioridade deve ser aplicada com organização e respeito às demais pessoas.", categoria: "organizacao", dificuldade: 2 },
-      { id: "qpd-12", pergunta: "Qual alternativa melhor descreve empatia no atendimento?", alternativas: ["Concordar com tudo", "Compreender a situação da pessoa e responder com respeito", "Resolver tudo sozinho", "Evitar contato com reclamações"], correta: 1, explicacao: "Empatia é reconhecer a situação do outro sem perder a postura profissional.", categoria: "atendimento", dificuldade: 1 },
-      { id: "qpd-13", pergunta: "Um bom encaminhamento exige:", alternativas: ["Apenas apontar para qualquer corredor", "Entender a demanda, indicar o setor correto e orientar o próximo passo", "Enviar todos para a diretoria", "Evitar registros"], correta: 1, explicacao: "Encaminhar bem depende de identificar, orientar e registrar quando necessário.", categoria: "encaminhamento", dificuldade: 1 },
-      { id: "qpd-14", pergunta: "Qual conduta fortalece o trabalho em equipe?", alternativas: ["Registrar informações úteis para o setor responsável", "Guardar recados para si", "Culpar colegas diante do cliente", "Mudar procedimentos sem avisar"], correta: 0, explicacao: "Registros claros ajudam a equipe a dar continuidade ao atendimento.", categoria: "organizacao", dificuldade: 2 },
-      { id: "qpd-15", pergunta: "Ao atender telefone profissionalmente, o início mais adequado é:", alternativas: ["Alô?", "Quem fala?", "Conecta Serviços, bom dia. Como posso ajudar?", "Fala rápido."], correta: 2, explicacao: "Identificar a empresa e acolher a demanda transmite profissionalismo.", categoria: "comunicacao", dificuldade: 1 },
-      { id: "qpd-16", pergunta: "Ética no atendimento envolve:", alternativas: ["Agir com respeito, responsabilidade, sigilo e justiça", "Fazer favores para conhecidos", "Divulgar bastidores da empresa", "Escolher quem merece atendimento"], correta: 0, explicacao: "Ética orienta decisões responsáveis e respeitosas no ambiente profissional.", categoria: "postura", dificuldade: 2 },
-      { id: "qpd-17", pergunta: "Quando não há resposta imediata para o cliente, o melhor caminho é:", alternativas: ["Inventar uma previsão", "Registrar a solicitação e informar como ocorrerá o retorno", "Encerrar o atendimento", "Dizer que ninguém sabe"], correta: 1, explicacao: "Registro e retorno possível mantêm transparência e organização.", categoria: "organizacao", dificuldade: 2 },
-      { id: "qpd-18", pergunta: "Qual é uma característica de comunicação assertiva?", alternativas: ["Clareza com respeito", "Agressividade para impor opinião", "Silêncio diante de dúvidas", "Uso de termos confusos"], correta: 0, explicacao: "Assertividade comunica com clareza, respeito e objetividade.", categoria: "comunicacao", dificuldade: 1 },
-      { id: "qpd-19", pergunta: "Na Conecta Serviços, o primeiro contato deve representar:", alternativas: ["A pressa da empresa", "A imagem profissional e acolhedora da organização", "A opinião pessoal do atendente", "A autoridade de um único setor"], correta: 1, explicacao: "A recepção influencia a primeira impressão e a experiência do cliente.", categoria: "atendimento", dificuldade: 2 },
-      { id: "qpd-20", pergunta: "Qual ação ajuda a evitar perda de informações?", alternativas: ["Registrar recados completos e confirmar dados essenciais", "Confiar apenas na memória", "Pedir que a pessoa repita para outro setor", "Anotar sem nome ou contato"], correta: 0, explicacao: "Registros completos facilitam continuidade, retorno e trabalho em equipe.", categoria: "organizacao", dificuldade: 1 }
+      { id: "qpd-01", pergunta: "Qual é o foco da UC1 — Recepcionar e atender pessoas?", alternativas: ["Controlar estoque e movimentacao de materiais da empresa", "Desenvolver recepcao, comunicacao e atendimento profissional", "Elaborar folha de pagamento e calculos trabalhistas completos", "Fazer vendas externas e visitas comerciais fora da empresa"], correta: 1, explicacao: "A UC trabalha competências de recepção, atendimento, comunicação, encaminhamento e postura profissional.", categoria: "atendimento", dificuldade: 1 },
+      { id: "qpd-02", pergunta: "Na recepção, identificar a necessidade da pessoa serve principalmente para:", alternativas: ["Reduzir a responsabilidade da empresa no atendimento", "Encaminhar corretamente e evitar perda de tempo", "Criar barreiras para diminuir a procura pelos setores", "Substituir o trabalho dos setores internos da empresa"], correta: 1, explicacao: "A identificação orienta o fluxo e evita encaminhamentos incorretos.", categoria: "encaminhamento", dificuldade: 1 },
+      { id: "qpd-03", pergunta: "Qual atitude combina com cordialidade profissional?", alternativas: ["Cumprimentar, ouvir e orientar com respeito", "Usar intimidade com qualquer visitante atendido", "Responder rapido sem confirmar entendimento", "Prometer solucao mesmo sem verificar o caso"], correta: 0, explicacao: "Cordialidade envolve respeito, escuta e clareza.", categoria: "atendimento", dificuldade: 1 },
+      { id: "qpd-04", pergunta: "O que melhor representa proatividade na recepção?", alternativas: ["Esperar o problema crescer para depois comunicar alguem", "Antecipar orientacao necessaria dentro do proprio papel", "Fazer tarefas sem seguir regras ou procedimentos internos", "Assumir decisoes que pertencem a outro setor da empresa"], correta: 1, explicacao: "Proatividade é agir de forma responsável para facilitar o atendimento.", categoria: "postura", dificuldade: 2 },
+      { id: "qpd-05", pergunta: "O setor de Recursos Humanos costuma tratar de:", alternativas: ["Selecao, documentos de colaboradores e assuntos de pessoal", "Cobrancas de clientes e negociacao de valores pendentes", "Compra de equipamentos, materiais e servicos de apoio", "Negociacao de contratos comerciais com clientes externos"], correta: 0, explicacao: "RH lida com pessoas, seleção, documentação e rotinas relacionadas a colaboradores.", categoria: "encaminhamento", dificuldade: 1 },
+      { id: "qpd-06", pergunta: "Um assistente administrativo pode apoiar a empresa principalmente com:", alternativas: ["Somente atendimento telefonico e repasse de ligacoes", "Organizacao de documentos, registros e rotinas administrativas", "Somente manutencao predial e pequenos reparos internos", "Somente negociacao juridica e representacao da empresa"], correta: 1, explicacao: "A função administrativa envolve organização, registros, comunicação e apoio a processos.", categoria: "organizacao", dificuldade: 1 },
+      { id: "qpd-07", pergunta: "Qual é uma boa prática ao receber uma reclamação?", alternativas: ["Escutar, registrar e encaminhar corretamente", "Responder com irritacao para encerrar o assunto", "Expor o cliente aos demais para ganhar apoio", "Ignorar a demanda quando nao for seu setor"], correta: 0, explicacao: "Reclamações precisam de acolhimento, registro e encaminhamento.", categoria: "escuta", dificuldade: 1 },
+      { id: "qpd-08", pergunta: "Sigilo na recepção significa:", alternativas: ["Nunca falar com ninguem durante o atendimento presencial", "Tratar informacoes pessoais e internas com discricao", "Guardar todas as informacoes apenas na memoria", "Falar baixo mesmo quando a informacao e publica"], correta: 1, explicacao: "Sigilo protege dados e informações conforme regras da organização.", categoria: "sigilo", dificuldade: 1 },
+      { id: "qpd-09", pergunta: "Em comunicação, feedback é:", alternativas: ["Confirmacao ou retorno sobre a mensagem recebida", "Barulho no ambiente que atrapalha a compreensao", "O aparelho ou aplicativo usado para comunicar", "A pessoa que envia a mensagem para outra pessoa"], correta: 0, explicacao: "Feedback fecha o ciclo de comunicação e confirma entendimento.", categoria: "comunicacao", dificuldade: 1 },
+      { id: "qpd-10", pergunta: "Ruído de comunicação é:", alternativas: ["Interferencia que prejudica a compreensao da mensagem", "A resposta correta dada ao cliente no atendimento", "O setor responsavel por atender a solicitacao", "A sala de espera organizada para receber pessoas"], correta: 0, explicacao: "Ruído pode ser barulho, linguagem confusa, canal inadequado ou informação incompleta.", categoria: "comunicacao", dificuldade: 1 },
+      { id: "qpd-11", pergunta: "Quando uma pessoa possui atendimento prioritário, a recepção deve:", alternativas: ["Ignorar a fila sem explicar nada para as outras pessoas", "Acolher, organizar o fluxo e comunicar com respeito", "Pedir que volte em outro horario com menos movimento", "Atender somente se a pessoa reclamar da demora"], correta: 1, explicacao: "Prioridade deve ser aplicada com organização e respeito às demais pessoas.", categoria: "organizacao", dificuldade: 2 },
+      { id: "qpd-12", pergunta: "Qual alternativa melhor descreve empatia no atendimento?", alternativas: ["Concordar com tudo que a pessoa disser durante o contato", "Compreender a situacao e responder com respeito", "Resolver tudo sozinho sem envolver o setor responsavel", "Evitar contato com reclamacoes para nao criar conflito"], correta: 1, explicacao: "Empatia é reconhecer a situação do outro sem perder a postura profissional.", categoria: "atendimento", dificuldade: 1 },
+      { id: "qpd-13", pergunta: "Um bom encaminhamento exige:", alternativas: ["Apenas apontar para qualquer corredor proximo da recepcao", "Entender a demanda, indicar setor e orientar o proximo passo", "Enviar todos para a diretoria quando houver duvida", "Evitar registros para acelerar a movimentacao da fila"], correta: 1, explicacao: "Encaminhar bem depende de identificar, orientar e registrar quando necessário.", categoria: "encaminhamento", dificuldade: 1 },
+      { id: "qpd-14", pergunta: "Qual conduta fortalece o trabalho em equipe?", alternativas: ["Registrar informacoes uteis para o setor responsavel", "Guardar recados para si e avisar apenas se lembrar", "Culpar colegas diante do cliente durante o atendimento", "Mudar procedimentos sem avisar as outras pessoas"], correta: 0, explicacao: "Registros claros ajudam a equipe a dar continuidade ao atendimento.", categoria: "organizacao", dificuldade: 2 },
+      { id: "qpd-15", pergunta: "Ao atender telefone profissionalmente, o início mais adequado é:", alternativas: ["Atender dizendo apenas alo, sem identificar a empresa", "Perguntar quem fala antes de apresentar a recepcao", "Identificar a Conecta Servicos e oferecer ajuda", "Pedir que a pessoa fale rapido por causa da fila"], correta: 2, explicacao: "Identificar a empresa e acolher a demanda transmite profissionalismo.", categoria: "comunicacao", dificuldade: 1 },
+      { id: "qpd-16", pergunta: "Ética no atendimento envolve:", alternativas: ["Agir com respeito, responsabilidade, sigilo e justica", "Fazer favores para conhecidos quando parecer simples", "Divulgar bastidores da empresa em conversas informais", "Escolher quem merece atendimento conforme aparencia"], correta: 0, explicacao: "Ética orienta decisões responsáveis e respeitosas no ambiente profissional.", categoria: "postura", dificuldade: 2 },
+      { id: "qpd-17", pergunta: "Quando não há resposta imediata para o cliente, o melhor caminho é:", alternativas: ["Inventar uma previsao para reduzir a ansiedade do cliente", "Registrar a solicitacao e informar como ocorrera o retorno", "Encerrar o atendimento dizendo que nao ha resposta", "Dizer que ninguem sabe e pedir que tente outro dia"], correta: 1, explicacao: "Registro e retorno possível mantêm transparência e organização.", categoria: "organizacao", dificuldade: 2 },
+      { id: "qpd-18", pergunta: "Qual é uma característica de comunicação assertiva?", alternativas: ["Clareza com respeito", "Agressividade para impor opiniao", "Silencio diante de duvidas", "Uso de termos confusos"], correta: 0, explicacao: "Assertividade comunica com clareza, respeito e objetividade.", categoria: "comunicacao", dificuldade: 1 },
+      { id: "qpd-19", pergunta: "Na Conecta Serviços, o primeiro contato deve representar:", alternativas: ["A pressa da empresa para finalizar atendimentos", "A imagem profissional e acolhedora da organizacao", "A opiniao pessoal do atendente sobre cada caso", "A autoridade de um unico setor sobre os demais"], correta: 1, explicacao: "A recepção influencia a primeira impressão e a experiência do cliente.", categoria: "atendimento", dificuldade: 2 },
+      { id: "qpd-20", pergunta: "Qual ação ajuda a evitar perda de informações?", alternativas: ["Registrar recados completos e confirmar dados essenciais", "Confiar apenas na memoria quando a fila estiver cheia", "Pedir que a pessoa repita tudo para outro setor", "Anotar sem nome ou contato para ganhar mais tempo"], correta: 0, explicacao: "Registros completos facilitam continuidade, retorno e trabalho em equipe.", categoria: "organizacao", dificuldade: 1 }
+    ],
+
+    dilemasDia2: [
+      {
+        id: "d2-01",
+        pergunta: "Um cliente chega irritado e diz: 'Ja e a terceira vez que venho aqui e ninguem resolve meu problema.' Voce nao participou dos atendimentos anteriores. Qual e a postura mais profissional?",
+        alternativas: [
+          "Explicar imediatamente que voce nao tem responsabilidade pelos atendimentos anteriores.",
+          "Ouvir o historico, reconhecer a frustracao e verificar como a demanda pode ser encaminhada agora.",
+          "Pedir que o cliente procure diretamente quem o atendeu das outras vezes anteriores.",
+          "Defender a empresa antes de descobrir exatamente o que aconteceu no atendimento naquele momento."
+        ],
+        correta: 1,
+        explicacao: "Nao e necessario assumir culpa por um problema que voce nao causou. Porem, o profissional pode acolher a frustracao e buscar um encaminhamento.",
+        categoria: "conflito",
+        dificuldade: 3
+      },
+      {
+        id: "d2-02",
+        pergunta: "Durante uma reclamacao, o cliente diz: 'Essa empresa nao respeita ninguem.' Qual interpretacao ajuda mais o profissional a conduzir a situacao?",
+        alternativas: [
+          "Considerar a frase um ataque pessoal e responder em defesa propria imediatamente tambem.",
+          "Ignorar completamente o que foi dito porque o cliente esta nervoso naquele momento da conversa.",
+          "Entender que a fala pode expressar frustracao acumulada e descobrir qual fato originou a reclamacao.",
+          "Concordar com tudo para encerrar rapidamente a discussao e reduzir o conflito com o cliente."
+        ],
+        correta: 2,
+        explicacao: "O profissional precisa separar a emocao do cliente do problema que precisa ser identificado e encaminhado.",
+        categoria: "conflito",
+        dificuldade: 3
+      },
+      {
+        id: "d2-03",
+        pergunta: "Um visitante pergunta onde fica uma sala. O recepcionista apenas aponta um corredor. Alguns minutos depois, a pessoa volta porque nao encontrou. O que faltou?",
+        alternativas: [
+          "Uma orientacao suficientemente clara para que a pessoa conseguisse chegar ao destino.",
+          "Solicitar um documento antes de fornecer qualquer orientacao sobre o local.",
+          "Encaminhar o visitante diretamente a diretoria para obter ajuda naquele momento.",
+          "Pedir que outro cliente mostrasse o caminho ate a sala indicada no predio."
+        ],
+        correta: 0,
+        explicacao: "Informar uma direcao nao significa necessariamente orientar. O atendimento precisa permitir que a pessoa compreenda o proximo passo.",
+        categoria: "atendimento",
+        dificuldade: 2
+      },
+      {
+        id: "d2-04",
+        pergunta: "Depois de explicar como chegar a um setor, qual atitude demonstra maior compromisso com a continuidade do atendimento?",
+        alternativas: [
+          "Encerrar imediatamente a conversa depois de apontar o corredor indicado.",
+          "Informar que, se nao encontrar o responsavel, a pessoa pode retornar a recepcao.",
+          "Explicar que o problema agora pertence somente ao outro setor responsavel.",
+          "Pedir que procure qualquer funcionario no corredor caso se perca novamente."
+        ],
+        correta: 1,
+        explicacao: "O atendimento nao precisa terminar no momento em que uma orientacao e dada. Garantir um proximo passo evita abandono da demanda.",
+        categoria: "atendimento",
+        dificuldade: 2
+      },
+      {
+        id: "d2-05",
+        pergunta: "Um visitante afirma conhecer pessoalmente o gerente e pede para entrar sem autorizacao: 'E so dois minutos, ele me conhece.' O que fazer?",
+        alternativas: [
+          "Liberar porque ele afirma conhecer o gerente pessoalmente e parece seguro.",
+          "Negar de forma seca para mostrar autoridade na recepcao diante da fila.",
+          "Explicar que e necessario confirmar autorizacao e disponibilidade antes da entrada.",
+          "Permitir discretamente para evitar discussao com o visitante conhecido."
+        ],
+        correta: 2,
+        explicacao: "Atendimento profissional tambem envolve respeitar procedimentos e limites da organizacao.",
+        categoria: "decisao",
+        dificuldade: 3
+      },
+      {
+        id: "d2-06",
+        pergunta: "Um amigo do recepcionista chega e pede: 'Me coloca na frente, e rapidinho.' Nao existe prioridade ou urgencia. Qual e a melhor decisao?",
+        alternativas: [
+          "Permitir porque sera rapido e nao deve atrapalhar muito a rotina da recepcao.",
+          "Manter a ordem de atendimento e explicar que o procedimento vale para todos.",
+          "Perguntar aos demais clientes se eles deixam a pessoa passar.",
+          "Atender discretamente para ninguem perceber o favorecimento."
+        ],
+        correta: 1,
+        explicacao: "Relacoes pessoais nao devem justificar favorecimento no ambiente profissional.",
+        categoria: "postura",
+        dificuldade: 3
+      },
+      {
+        id: "d2-07",
+        pergunta: "Um funcionario comenta perto da recepcao: 'Acho que a gerente vai sair da empresa.' Mais tarde, um visitante pergunta se isso e verdade. Qual e a melhor resposta?",
+        alternativas: [
+          "Dizer que ouviu a mesma coisa em conversa perto da recepcao.",
+          "Confirmar porque a informacao veio de um funcionario.",
+          "Informar que nao possui uma comunicacao oficial sobre o assunto.",
+          "Perguntar aos colegas e depois responder ao visitante."
+        ],
+        correta: 2,
+        explicacao: "Ouvir uma informacao nao significa estar autorizado a divulga-la. Rumor e informacao oficial sao coisas diferentes.",
+        categoria: "sigilo",
+        dificuldade: 3
+      },
+      {
+        id: "d2-08",
+        pergunta: "Por que repetir uma informacao interna nao confirmada pode gerar problemas mesmo quando outras pessoas ja estao comentando?",
+        alternativas: [
+          "Porque qualquer conversa entre funcionarios e proibida no trabalho.",
+          "Porque o profissional pode ampliar um rumor e gerar conflitos ou constrangimentos.",
+          "Porque somente informacoes positivas podem ser divulgadas ao publico.",
+          "Porque a recepcao nao pode conversar com visitantes sobre nada da empresa."
+        ],
+        correta: 1,
+        explicacao: "Quanto mais uma informacao nao confirmada circula, maior pode ser seu impacto e mais dificil pode ser corrigir seus efeitos.",
+        categoria: "sigilo",
+        dificuldade: 2
+      },
+      {
+        id: "d2-09",
+        pergunta: "Uma senhora diz: 'Meu filho falou que eu precisava vir aqui resolver um negocio, mas eu nao sei direito o que e.' Qual abordagem e mais adequada?",
+        alternativas: [
+          "Utilizar termos tecnicos para demonstrar conhecimento profissional durante o atendimento.",
+          "Perguntar com calma o que ela recebeu ou foi orientada a trazer e ajuda-la a identificar a necessidade.",
+          "Pedir que ela ligue para o filho antes de ser atendida pela empresa e aguarde retorno ali.",
+          "Encaminha-la para qualquer setor que pareca relacionado ao caso apresentado, sem confirmar."
+        ],
+        correta: 1,
+        explicacao: "A comunicacao deve se adaptar a pessoa. Linguagem profissional precisa ser clara, nao complicada.",
+        categoria: "comunicacao",
+        dificuldade: 2
+      },
+      {
+        id: "d2-10",
+        pergunta: "Um jovem chega e pergunta: 'Mano, onde eu deixo meu curriculo?' Qual postura e mais profissional?",
+        alternativas: [
+          "Corrigir a forma de falar antes de responder sobre o curriculo.",
+          "Responder com a mesma informalidade para criar proximidade com o jovem.",
+          "Manter uma comunicacao respeitosa e orientar normalmente sobre o procedimento.",
+          "Apenas apontar para o setor responsavel sem explicar o processo."
+        ],
+        correta: 2,
+        explicacao: "O profissional pode manter uma linguagem adequada sem constranger a pessoa pela maneira como ela se comunica.",
+        categoria: "comunicacao",
+        dificuldade: 2
+      },
+      {
+        id: "d2-11",
+        pergunta: "Duas pessoas chegam para solicitar o mesmo servico. Uma usa roupa social e outra esta vestida de forma muito simples. Qual principio deve orientar o atendimento?",
+        alternativas: [
+          "Dar mais atencao a quem aparenta maior poder de decisao no atendimento.",
+          "Priorizar quem aparenta ter maior poder aquisitivo naquele atendimento.",
+          "Manter respeito e qualidade de atendimento independentemente da aparencia.",
+          "Adaptar a cordialidade ao tipo de roupa apresentada pela pessoa."
+        ],
+        correta: 2,
+        explicacao: "A aparencia nao deve determinar a qualidade do atendimento.",
+        categoria: "postura",
+        dificuldade: 2
+      },
+      {
+        id: "d2-12",
+        pergunta: "Um cliente vestido de forma simples pergunta sobre um servico de alto valor. O atendente acredita que ele provavelmente nao podera contratar. O que deve fazer?",
+        alternativas: [
+          "Explicar normalmente o servico sem presumir a capacidade financeira da pessoa.",
+          "Apresentar apenas opcoes baratas para evitar constrangimento financeiro.",
+          "Perguntar primeiro se a pessoa realmente pode pagar pelo servico.",
+          "Encaminhar para alguem avaliar o perfil do cliente antes de informar valores."
+        ],
+        correta: 0,
+        explicacao: "Julgar capacidade financeira pela aparencia e um estereotipo que pode gerar tratamento desigual.",
+        categoria: "postura",
+        dificuldade: 3
+      },
+      {
+        id: "d2-13",
+        pergunta: "Uma pessoa com deficiencia visual chega acompanhada. O recepcionista pergunta ao acompanhante: 'O que ele veio fazer?' Qual seria uma abordagem melhor?",
+        alternativas: [
+          "Falar diretamente com a pessoa e perguntar como pode ajuda-la.",
+          "Continuar falando com o acompanhante durante todo o atendimento presencial.",
+          "Perguntar ao acompanhante se a pessoa consegue responder.",
+          "Evitar fazer perguntas para nao gerar constrangimento."
+        ],
+        correta: 0,
+        explicacao: "A presenca de acompanhante nao elimina a autonomia da pessoa que esta sendo atendida.",
+        categoria: "atendimento",
+        dificuldade: 2
+      },
+      {
+        id: "d2-14",
+        pergunta: "Uma pessoa com deficiencia visual precisa se deslocar ate outra sala. Qual e a melhor atitude?",
+        alternativas: [
+          "Segurar imediatamente no braco da pessoa para conduzi-la.",
+          "Pedir ao acompanhante que faca tudo durante o deslocamento.",
+          "Oferecer ajuda e perguntar de que forma ela prefere ser auxiliada.",
+          "Falar mais alto para facilitar a orientacao ate a sala indicada."
+        ],
+        correta: 2,
+        explicacao: "Ajuda deve ser oferecida e nao imposta. Perguntar respeita a autonomia da pessoa.",
+        categoria: "atendimento",
+        dificuldade: 2
+      },
+      {
+        id: "d2-15",
+        pergunta: "Um cliente afirma que recebeu prazo ate sexta-feira, mas o sistema registra quarta-feira. Qual resposta tende a reduzir o confronto?",
+        alternativas: [
+          "O senhor esta errado. Aqui mostra quarta-feira no sistema interno da empresa agora mesmo.",
+          "No sistema consta quarta-feira. Vamos conferir juntos para entender de onde veio a outra informacao.",
+          "Se o sistema mostra quarta, nao ha mais nada para discutir sobre isso agora no atendimento.",
+          "Tudo bem, vou considerar sexta-feira mesmo sem confirmar no registro interno da empresa."
+        ],
+        correta: 1,
+        explicacao: "E possivel manter firmeza e, ao mesmo tempo, verificar a divergencia sem transformar a conversa em confronto.",
+        categoria: "conflito",
+        dificuldade: 3
+      },
+      {
+        id: "d2-16",
+        pergunta: "Quando existe divergencia entre o que o cliente afirma e o que esta registrado, qual deve ser a primeira atitude?",
+        alternativas: [
+          "Descobrir quem esta mentindo antes de continuar o atendimento.",
+          "Defender imediatamente o sistema como fonte correta da informacao.",
+          "Verificar as informacoes disponiveis e compreender a origem da divergencia.",
+          "Aceitar a versao do cliente sem consultar nenhum registro disponivel."
+        ],
+        correta: 2,
+        explicacao: "A decisao profissional deve ser baseada em verificacao antes de confronto ou concordancia.",
+        categoria: "decisao",
+        dificuldade: 3
+      },
+      {
+        id: "d2-17",
+        pergunta: "Um visitante pergunta: 'O gerente esta?' O gerente esta no predio, mas informou que nao pode receber ninguem naquele momento. Qual resposta e mais adequada?",
+        alternativas: [
+          "Ele esta, mas nao quer falar com ninguem neste momento da agenda interna.",
+          "Ele nao esta disponivel e nao ha nada que possa ser feito agora pela recepcao.",
+          "No momento ele nao esta disponivel para atendimento. Posso registrar sua solicitacao?",
+          "Ele esta ocupado. Tente entrar para ver se consegue falar diretamente."
+        ],
+        correta: 2,
+        explicacao: "A resposta permanece verdadeira, preserva informacoes desnecessarias e oferece um proximo passo.",
+        categoria: "comunicacao",
+        dificuldade: 3
+      },
+      {
+        id: "d2-18",
+        pergunta: "Por que dizer 'O gerente esta ali dentro, mas nao quer falar com ninguem' pode ser inadequado mesmo sendo verdadeiro?",
+        alternativas: [
+          "Porque nunca se pode informar se alguem esta na empresa em horario de trabalho.",
+          "Porque expoe uma situacao interna desnecessariamente e pode gerar interpretacao negativa.",
+          "Porque qualquer visitante pode falar com o gerente quando quiser durante o expediente.",
+          "Porque apenas a diretoria pode fornecer informacoes sobre agenda interna da gerencia."
+        ],
+        correta: 1,
+        explicacao: "Profissionalismo tambem envolve selecionar quais informacoes sao realmente necessarias para atender a pessoa.",
+        categoria: "postura",
+        dificuldade: 3
+      },
+      {
+        id: "d2-19",
+        pergunta: "A recepcao esta cheia. Para ser rapido, o atendente pergunta apenas 'Qual setor?' e encaminha cada pessoa imediatamente. Qual e o maior risco?",
+        alternativas: [
+          "O atendimento ficar formal demais para uma recepcao cheia e movimentada.",
+          "As pessoas conversarem pouco enquanto aguardam na fila da recepcao lotada.",
+          "Demandas serem mal compreendidas e encaminhadas incorretamente, gerando retrabalho.",
+          "Os setores receberem poucas pessoas durante o expediente da empresa."
+        ],
+        correta: 2,
+        explicacao: "Rapidez sem compreensao pode aumentar erros, retorno de pessoas e retrabalho.",
+        categoria: "organizacao",
+        dificuldade: 2
+      },
+      {
+        id: "d2-20",
+        pergunta: "Qual situacao representa melhor eficiencia no atendimento?",
+        alternativas: [
+          "Finalizar a conversa no menor tempo possivel para reduzir fila rapidamente.",
+          "Resolver corretamente a necessidade utilizando tempo e recursos de maneira adequada.",
+          "Encaminhar rapidamente qualquer problema para outro setor sem entender.",
+          "Atender poucas pessoas para evitar erros durante o dia de trabalho na recepcao."
+        ],
+        correta: 1,
+        explicacao: "Eficiencia nao e simplesmente velocidade. Um atendimento rapido que gera retrabalho nao foi eficiente.",
+        categoria: "organizacao",
+        dificuldade: 2
+      },
+      {
+        id: "d2-21",
+        pergunta: "Enquanto o cliente explica um problema, o atendente continua olhando para o celular e ao final responde apenas 'Ta'. O que essa postura pode comunicar?",
+        alternativas: [
+          "Eficiencia durante um atendimento com muitas tarefas.",
+          "Neutralidade profissional diante da fala do cliente.",
+          "Desinteresse ou falta de atencao.",
+          "Formalidade adequada para manter distancia profissional."
+        ],
+        correta: 2,
+        explicacao: "Postura, olhar, expressao e atencao tambem fazem parte da comunicacao.",
+        categoria: "comunicacao",
+        dificuldade: 2
+      },
+      {
+        id: "d2-22",
+        pergunta: "Qual atitude demonstra melhor presenca durante a fala de um cliente?",
+        alternativas: [
+          "Interromper rapidamente quando achar que ja entendeu a situacao.",
+          "Manter atencao, observar a pessoa e demonstrar que acompanha a explicacao.",
+          "Continuar outras tarefas ao mesmo tempo para ganhar tempo na rotina.",
+          "Evitar qualquer reacao durante toda a explicacao apresentada pelo cliente."
+        ],
+        correta: 1,
+        explicacao: "Demonstrar atencao ajuda o profissional a compreender a situacao e tambem influencia a percepcao de quem esta sendo atendido.",
+        categoria: "escuta",
+        dificuldade: 2
+      },
+      {
+        id: "d2-23",
+        pergunta: "Um cliente pressiona: 'So me diga que estara resolvido hoje.' Voce nao possui confirmacao de prazo. O que fazer?",
+        alternativas: [
+          "Prometer para tranquilizar o cliente durante a reclamacao e reduzir a pressao daquele momento.",
+          "Dizer apenas que nao sabe e encerrar o atendimento sem registro formal do caso apresentado.",
+          "Explicar que nao pode confirmar aquele prazo, registrar a urgencia e informar como ocorrera o retorno.",
+          "Dar um prazo aproximado mesmo sem verificar com o setor responsavel pelo caso apresentado."
+        ],
+        correta: 2,
+        explicacao: "Promessas nao confirmadas podem transformar um problema em dois. Transparencia e registro sao mais profissionais.",
+        categoria: "decisao",
+        dificuldade: 3
+      },
+      {
+        id: "d2-24",
+        pergunta: "Antes de tomar uma decisao em uma situacao de atendimento pouco clara, qual conjunto de perguntas funciona como um bom filtro profissional?",
+        alternativas: [
+          "E rapido? E facil? O cliente vai gostar? Eu termino logo mesmo sem confirmar nada antes?",
+          "Posso fazer isso? Tenho certeza da informacao? Preciso confirmar algo? Qual pode ser a consequencia?",
+          "Quem vai descobrir? Posso evitar o registro? Conheco essa pessoa? Ela parece confiavel?",
+          "E problema meu? Posso passar para alguem? Quem esta menos ocupado? Posso encerrar agora?"
+        ],
+        correta: 1,
+        explicacao: "Verificar autorizacao, certeza da informacao, necessidade de confirmacao e consequencias ajuda a evitar decisoes impulsivas.",
+        categoria: "decisao",
+        dificuldade: 3
+      }
     ]
   };
 
@@ -175,28 +514,28 @@
         {
           fala: "TRIMMMMM... A ligação começou.",
           opcoes: [
-            { texto: "Alô?", correta: false, feedback: "Atendimento telefônico profissional começa com identificação da empresa.", pontos: -5 },
-            { texto: "Conecta Serviços, bom dia. Ana falando. Como posso ajudar?", correta: true, feedback: "Boa decisão. Você identificou a empresa, cumprimentou e abriu espaço para a demanda.", pontos: 15 },
-            { texto: "Quem é?", correta: false, feedback: "A pergunta direta demais pode soar pouco acolhedora.", pontos: -4 },
-            { texto: "Fala.", correta: false, feedback: "O tom é informal e inadequado para atendimento profissional.", pontos: -6 }
+            { texto: "Alo? Diga rapidamente o motivo da sua ligacao agora.", correta: false, feedback: "Atendimento telefônico profissional começa com identificação da empresa.", pontos: -5 },
+            { texto: "Conecta Servicos, bom dia. Ana falando. Como posso ajudar?", correta: true, feedback: "Boa decisão. Você identificou a empresa, cumprimentou e abriu espaço para a demanda.", pontos: 15 },
+            { texto: "Quem e voce e com quem deseja falar agora na empresa?", correta: false, feedback: "A pergunta direta demais pode soar pouco acolhedora.", pontos: -4 },
+            { texto: "Fala, mas seja breve porque a recepcao esta cheia.", correta: false, feedback: "O tom é informal e inadequado para atendimento profissional.", pontos: -6 }
           ]
         },
         {
           fala: "Pessoa: Gostaria de saber o horário de funcionamento.",
           opcoes: [
-            { texto: "Atendemos de segunda a sexta, das 8h às 18h. Posso ajudar em mais alguma informação?", correta: true, feedback: "Resposta clara e com abertura para continuidade.", pontos: 15 },
-            { texto: "Está no site.", correta: false, feedback: "A informação poderia ser prestada de forma direta e cordial.", pontos: -3 },
-            { texto: "Acho que é horário comercial.", correta: false, feedback: "Informação imprecisa gera ruído.", pontos: -4 },
-            { texto: "Não sei informar.", correta: false, feedback: "Se a informação é básica e pública, a recepção deve saber ou verificar.", pontos: -4 }
+            { texto: "Atendemos de segunda a sexta, das 8h as 18h. Posso ajudar em mais algo?", correta: true, feedback: "Resposta clara e com abertura para continuidade.", pontos: 15 },
+            { texto: "Esta no site da empresa; consulte por la quando puder verificar.", correta: false, feedback: "A informação poderia ser prestada de forma direta e cordial.", pontos: -3 },
+            { texto: "Acho que e horario comercial, mas nao tenho certeza agora.", correta: false, feedback: "Informação imprecisa gera ruído.", pontos: -4 },
+            { texto: "Nao sei informar esse horario no momento da ligacao para voce.", correta: false, feedback: "Se a informação é básica e pública, a recepção deve saber ou verificar.", pontos: -4 }
           ]
         },
         {
           fala: "Pessoa: Obrigada.",
           opcoes: [
-            { texto: "Nós que agradecemos. Tenha um bom dia.", correta: true, feedback: "Encerramento cordial fortalece a experiência de atendimento.", pontos: 10, fim: true },
-            { texto: "Tá.", correta: false, feedback: "Encerramento muito informal enfraquece a postura profissional.", pontos: -2, fim: true },
-            { texto: "Próximo.", correta: false, feedback: "A pessoa ao telefone merece fechamento respeitoso.", pontos: -4, fim: true },
-            { texto: "Desligar sem responder.", correta: false, feedback: "Encerrar sem despedida prejudica a percepção de atendimento.", pontos: -5, fim: true }
+            { texto: "Nos que agradecemos. Tenha um bom dia.", correta: true, feedback: "Encerramento cordial fortalece a experiência de atendimento.", pontos: 10, fim: true },
+            { texto: "Ta bom, encerrando a ligacao agora.", correta: false, feedback: "Encerramento muito informal enfraquece a postura profissional.", pontos: -2, fim: true },
+            { texto: "Proximo atendimento, a ligacao terminou.", correta: false, feedback: "A pessoa ao telefone merece fechamento respeitoso.", pontos: -4, fim: true },
+            { texto: "Desligar sem responder a despedida da pessoa.", correta: false, feedback: "Encerrar sem despedida prejudica a percepção de atendimento.", pontos: -5, fim: true }
           ]
         }
       ]
@@ -209,28 +548,28 @@
         {
           fala: "TRIMMMMM... A ligação começou.",
           opcoes: [
-            { texto: "Conecta Serviços, boa tarde. Pedro falando. Como posso ajudar?", correta: true, feedback: "Abertura completa e profissional.", pontos: 15 },
-            { texto: "Financeiro não atende agora.", correta: false, feedback: "Você ainda não identificou a demanda da pessoa.", pontos: -5 },
-            { texto: "Diga.", correta: false, feedback: "A abertura é curta e pouco acolhedora.", pontos: -3 },
-            { texto: "Alô, rápido.", correta: false, feedback: "Pressa no tom prejudica a cordialidade.", pontos: -5 }
+            { texto: "Conecta Servicos, boa tarde. Pedro falando. Como posso ajudar?", correta: true, feedback: "Abertura completa e profissional.", pontos: 15 },
+            { texto: "Financeiro nao atende agora; tente novamente depois.", correta: false, feedback: "Você ainda não identificou a demanda da pessoa.", pontos: -5 },
+            { texto: "Diga o que voce precisa antes que a linha fique ocupada.", correta: false, feedback: "A abertura é curta e pouco acolhedora.", pontos: -3 },
+            { texto: "Alo, rapido, porque ha outras pessoas aguardando.", correta: false, feedback: "Pressa no tom prejudica a cordialidade.", pontos: -5 }
           ]
         },
         {
           fala: "Pessoa: Preciso falar com a responsável por cobranças.",
           opcoes: [
-            { texto: "No momento ela está em atendimento. Posso registrar um recado com seu nome, telefone e assunto?", correta: true, feedback: "Você informa a indisponibilidade e oferece registro de recado.", pontos: 15 },
-            { texto: "Liga depois.", correta: false, feedback: "Falta acolhimento e não há registro da necessidade.", pontos: -5 },
-            { texto: "Ela nunca está.", correta: false, feedback: "Comentário inadequado expõe a equipe e não ajuda.", pontos: -7 },
-            { texto: "Não posso fazer nada.", correta: false, feedback: "A recepção pode registrar e orientar o retorno.", pontos: -5 }
+            { texto: "No momento ela esta em atendimento. Posso registrar nome, contato e assunto?", correta: true, feedback: "Você informa a indisponibilidade e oferece registro de recado.", pontos: 15 },
+            { texto: "Liga depois, porque agora o setor nao consegue receber chamadas.", correta: false, feedback: "Falta acolhimento e não há registro da necessidade.", pontos: -5 },
+            { texto: "Ela nunca esta disponivel quando alguem liga para cobrancas da empresa.", correta: false, feedback: "Comentário inadequado expõe a equipe e não ajuda.", pontos: -7 },
+            { texto: "Nao posso fazer nada alem de pedir que tente outro horario depois.", correta: false, feedback: "A recepção pode registrar e orientar o retorno.", pontos: -5 }
           ]
         },
         {
           fala: "Pessoa: Pode anotar, por favor?",
           opcoes: [
-            { texto: "Registrar nome, telefone, empresa, assunto e melhor horário para retorno.", correta: true, feedback: "Recado completo facilita retorno e continuidade do atendimento.", pontos: 15, fim: true },
-            { texto: "Anotar apenas o primeiro nome.", correta: false, feedback: "Informação incompleta pode impedir retorno.", pontos: -4, fim: true },
-            { texto: "Pedir para mandar mensagem em qualquer número.", correta: false, feedback: "Canais oficiais preservam organização e registro.", pontos: -4, fim: true },
-            { texto: "Guardar mentalmente para avisar depois.", correta: false, feedback: "Memória não substitui registro profissional.", pontos: -6, fim: true }
+            { texto: "Registrar nome, telefone, empresa, assunto e melhor horario de retorno.", correta: true, feedback: "Recado completo facilita retorno e continuidade do atendimento.", pontos: 15, fim: true },
+            { texto: "Anotar apenas o primeiro nome e avisar quando lembrar depois.", correta: false, feedback: "Informação incompleta pode impedir retorno.", pontos: -4, fim: true },
+            { texto: "Pedir para mandar mensagem por qualquer numero disponivel.", correta: false, feedback: "Canais oficiais preservam organização e registro.", pontos: -4, fim: true },
+            { texto: "Guardar mentalmente o recado para transmitir depois ao setor.", correta: false, feedback: "Memória não substitui registro profissional.", pontos: -6, fim: true }
           ]
         }
       ]
@@ -243,28 +582,28 @@
         {
           fala: "TRIMMMMM... A ligação começou.",
           opcoes: [
-            { texto: "Conecta Serviços, bom dia. Carla falando. Como posso ajudar?", correta: true, feedback: "Abertura adequada para acolher a demanda.", pontos: 15 },
-            { texto: "Qual o problema agora?", correta: false, feedback: "A frase antecipa julgamento e pode ampliar o conflito.", pontos: -7 },
-            { texto: "Alô?", correta: false, feedback: "Falta identificação profissional.", pontos: -3 },
-            { texto: "Setor errado.", correta: false, feedback: "Você ainda não ouviu a solicitação.", pontos: -5 }
+            { texto: "Conecta Servicos, bom dia. Carla falando. Como posso ajudar?", correta: true, feedback: "Abertura adequada para acolher a demanda.", pontos: 15 },
+            { texto: "Qual e o problema agora para eu saber se consigo ajudar?", correta: false, feedback: "A frase antecipa julgamento e pode ampliar o conflito.", pontos: -7 },
+            { texto: "Alo? Diga com quem voce precisa falar neste momento.", correta: false, feedback: "Falta identificação profissional.", pontos: -3 },
+            { texto: "Setor errado, mas fale logo qual assunto voce quer tratar.", correta: false, feedback: "Você ainda não ouviu a solicitação.", pontos: -5 }
           ]
         },
         {
           fala: "Cliente: Recebi uma cobrança que não reconheço.",
           opcoes: [
-            { texto: "Entendo. Vou registrar sua solicitação e encaminhar ao Financeiro para análise.", correta: true, feedback: "Acolhe, registra e encaminha ao setor adequado.", pontos: 18 },
-            { texto: "Se chegou, deve estar certa.", correta: false, feedback: "A resposta invalida o cliente e não verifica a situação.", pontos: -8 },
-            { texto: "Isso não é comigo.", correta: false, feedback: "Mesmo que seja outro setor, a recepção orienta o caminho.", pontos: -5 },
-            { texto: "Pague primeiro e reclame depois.", correta: false, feedback: "A fala é inadequada e pode agravar o problema.", pontos: -10 }
+            { texto: "Entendo. Vou registrar a solicitacao e encaminhar ao Financeiro para analise.", correta: true, feedback: "Acolhe, registra e encaminha ao setor adequado.", pontos: 18 },
+            { texto: "Se a cobranca chegou, provavelmente esta correta no sistema financeiro.", correta: false, feedback: "A resposta invalida o cliente e não verifica a situação.", pontos: -8 },
+            { texto: "Isso nao e comigo, mas talvez alguem do setor resolva depois da analise.", correta: false, feedback: "Mesmo que seja outro setor, a recepção orienta o caminho.", pontos: -5 },
+            { texto: "Pague primeiro e reclame depois se ainda discordar da cobranca.", correta: false, feedback: "A fala é inadequada e pode agravar o problema.", pontos: -10 }
           ]
         },
         {
           fala: "Cliente: Preciso de retorno ainda hoje.",
           opcoes: [
-            { texto: "Vou informar a urgência no registro e orientar o canal de retorno, sem prometer prazo que não posso garantir.", correta: true, feedback: "Boa decisão. Você registra urgência sem criar promessa indevida.", pontos: 17, fim: true },
-            { texto: "Prometo que resolvem em dez minutos.", correta: false, feedback: "Prometer prazo sem confirmação pode gerar nova frustração.", pontos: -6, fim: true },
-            { texto: "Não tenho como saber.", correta: false, feedback: "A resposta é verdadeira, mas falta encaminhamento.", pontos: -3, fim: true },
-            { texto: "Vou passar seu telefone para qualquer pessoa do setor.", correta: false, feedback: "O retorno precisa de registro organizado e responsável.", pontos: -4, fim: true }
+            { texto: "Vou registrar a urgencia e orientar o retorno sem prometer prazo nao confirmado.", correta: true, feedback: "Boa decisão. Você registra urgência sem criar promessa indevida.", pontos: 17, fim: true },
+            { texto: "Prometo que resolvem em dez minutos para tranquilizar voce agora.", correta: false, feedback: "Prometer prazo sem confirmação pode gerar nova frustração.", pontos: -6, fim: true },
+            { texto: "Nao tenho como saber, entao aguarde alguem do setor ligar depois.", correta: false, feedback: "A resposta é verdadeira, mas falta encaminhamento.", pontos: -3, fim: true },
+            { texto: "Vou passar seu telefone para qualquer pessoa do setor responsavel.", correta: false, feedback: "O retorno precisa de registro organizado e responsável.", pontos: -4, fim: true }
           ]
         }
       ]
@@ -341,7 +680,8 @@
     { id: "palavra", numero: "07", titulo: "Palavra profissional", descricao: "Transforme frases informais em linguagem profissional.", tipo: "perguntas", dados: banco.palavra, quantidade: 8, dificuldade: "Fácil/Médio" },
     { id: "sigilo", numero: "08", titulo: "Sigilo ou não?", descricao: "Decida quando uma informação pode ou não ser compartilhada.", tipo: "perguntas", dados: banco.sigilo, quantidade: 8, dificuldade: "Médio" },
     { id: "primeiro-dia", numero: "09", titulo: "Missão especial — Primeiro dia", descricao: "Enfrente a chegada simultânea de demandas às 08h10.", tipo: "especial", dificuldade: "Difícil" },
-    { id: "quiz-primeiro-dia", numero: "10", titulo: "Quiz do primeiro dia", descricao: "Responda 10 questões sobre os conteúdos iniciais da UC1.", tipo: "perguntas", dados: banco.quizPrimeiroDia, quantidade: 10, dificuldade: "Fácil/Médio" }
+    { id: "quiz-primeiro-dia", numero: "10", titulo: "Quiz do primeiro dia", descricao: "Responda 10 questões sobre os conteúdos iniciais da UC1.", tipo: "perguntas", dados: banco.quizPrimeiroDia, quantidade: 10, dificuldade: "Fácil/Médio" },
+    { id: "dilemas-dia2", numero: "11", titulo: "Dilemas profissionais — Dia 2", descricao: "Analise situações de atendimento e escolha a decisão profissional mais adequada.", tipo: "perguntas", dados: banco.dilemasDia2, quantidade: 10, dificuldade: "Médio/Difícil" }
   ];
 
   const estado = {
