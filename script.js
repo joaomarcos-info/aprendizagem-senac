@@ -502,6 +502,429 @@
         categoria: "decisao",
         dificuldade: 3
       }
+    ],
+
+    direitosDia3: [
+      {
+        id: "d3-01",
+        pergunta: "No contrato de aprendizagem, qual situação representa um dever do aprendiz?",
+        alternativas: [
+          "Receber formação e remuneração pelo período contratado.",
+          "Cumprir a jornada e participar da formação com zelo.",
+          "Ter férias e registro conforme o contrato firmado.",
+          "Pedir apoio ao responsável diante de uma tarefa nova."
+        ],
+        correta: 1,
+        explicacao: "Cumprir a jornada e participar da formação são deveres. Formação, remuneração e férias são direitos; pedir apoio ajuda a exercer o trabalho com cuidado.",
+        categoria: "postura",
+        dificuldade: 1
+      },
+      {
+        id: "d3-02",
+        pergunta: "Ao dizer 'eu tenho direito', qual pergunta ajuda a analisar a situação por inteiro?",
+        alternativas: [
+          "Quem mais está envolvido e quais direitos também possui?",
+          "Quem concorda comigo e pode confirmar minha versão?",
+          "Qual colega pode decidir rapidamente no meu lugar?",
+          "Que regra interna posso deixar para discutir depois?"
+        ],
+        correta: 0,
+        explicacao: "A aula propõe examinar o direito, o contexto, seus limites e os direitos de outras pessoas na mesma cena.",
+        categoria: "decisao",
+        dificuldade: 2
+      },
+      {
+        id: "d3-03",
+        pergunta: "Um aprendiz quer postar uma foto do balcão e um cliente aparece ao fundo. Qual cuidado deve tomar?",
+        alternativas: [
+          "Publicar, pois a foto foi feita durante o próprio expediente.",
+          "Publicar se ocultar apenas o nome da empresa na legenda.",
+          "Verificar autorização e evitar expor imagem ou dados alheios.",
+          "Publicar primeiro e retirar a foto caso alguém reclame."
+        ],
+        correta: 2,
+        explicacao: "Liberdade de expressão convive com imagem, privacidade e sigilo de clientes e colegas; registrar não autoriza publicar.",
+        categoria: "sigilo",
+        dificuldade: 2
+      },
+      {
+        id: "d3-04",
+        pergunta: "Um aluno discorda de uma avaliação. Que atitude respeita seu direito de questionar?",
+        alternativas: [
+          "Exigir nova nota sem conhecer os critérios utilizados.",
+          "Expor o professor publicamente antes de conversar.",
+          "Deixar a dúvida de lado para não parecer desobediente.",
+          "Pedir os critérios e usar os canais previstos pela escola."
+        ],
+        correta: 3,
+        explicacao: "Questionar critérios é um direito apresentado na aula; a forma de conversar e o canal escolhido continuam importando.",
+        categoria: "comunicacao",
+        dificuldade: 2
+      },
+      {
+        id: "d3-05",
+        pergunta: "A turma combinou avisar antes de sair da sala. Como classificar esse combinado?",
+        alternativas: [
+          "Uma obrigação legal idêntica para todas as empresas.",
+          "Uma norma de convivência que organiza aquela turma.",
+          "Uma condição que substitui o contrato de aprendizagem.",
+          "Um direito individual que dispensa outras regras."
+        ],
+        correta: 1,
+        explicacao: "A aula distingue lei, contrato, regimento e combinados de convivência. Nem toda regra cotidiana é uma obrigação legal.",
+        categoria: "postura",
+        dificuldade: 2
+      },
+      {
+        id: "d3-06",
+        pergunta: "A empresa chama a aula teórica de 'folga' e pede ao aprendiz que cubra a recepção. O que fazer?",
+        alternativas: [
+          "Aceitar, pois somente a prática integra o programa.",
+          "Faltar à aula e compensar o conteúdo quando puder.",
+          "Explicar que a teoria integra o programa e pedir orientação.",
+          "Trocar a aula por mais horas de prática sem consultar ninguém."
+        ],
+        correta: 2,
+        explicacao: "Formação teórica e experiência prática compõem o programa de aprendizagem. Uma mudança deve ser esclarecida com quem acompanha o contrato.",
+        categoria: "decisao",
+        dificuldade: 3
+      },
+      {
+        id: "d3-07",
+        pergunta: "Qual descrição corresponde ao contrato de aprendizagem abordado na aula?",
+        alternativas: [
+          "Contrato especial escrito que combina formação e prática.",
+          "Acordo verbal para ajudar o setor nos horários livres.",
+          "Estágio informal ajustado diretamente com a chefia.",
+          "Trabalho comum sem previsão de formação orientada."
+        ],
+        correta: 0,
+        explicacao: "O contrato de aprendizagem é especial, escrito e ligado à formação profissional, com atividades práticas previstas no programa.",
+        categoria: "organizacao",
+        dificuldade: 1
+      },
+      {
+        id: "d3-08",
+        pergunta: "A chefia pede horas extras ao aprendiz para fechar a recepção. Qual resposta está alinhada à aula?",
+        alternativas: [
+          "Aceitar e compensar as horas em outra semana.",
+          "Aceitar se os clientes ainda estiverem aguardando.",
+          "Aceitar se a chefia prometer folga posteriormente.",
+          "Informar o limite da jornada e pedir encaminhamento."
+        ],
+        correta: 3,
+        explicacao: "A jornada do aprendiz tem regras próprias; a CLT veda prorrogação e compensação de jornada. Peça orientação ao responsável pelo programa.",
+        categoria: "decisao",
+        dificuldade: 3
+      },
+      {
+        id: "d3-09",
+        pergunta: "Em que condição a jornada do aprendiz pode chegar a oito horas diárias?",
+        alternativas: [
+          "Quando faltar pessoal e a empresa registrar a necessidade.",
+          "Quando houver acordo verbal para compensar outras horas.",
+          "Após concluir o ensino fundamental, incluindo horas teóricas.",
+          "Sempre que a recepção tiver atendimento após o expediente."
+        ],
+        correta: 2,
+        explicacao: "A regra geral é até seis horas; a exceção de até oito exige ensino fundamental concluído e inclusão das horas de aprendizagem teórica.",
+        categoria: "organizacao",
+        dificuldade: 2
+      },
+      {
+        id: "d3-10",
+        pergunta: "Um aprendiz menor de 18 anos recebe tarefa em ambiente com risco à saúde. Como agir?",
+        alternativas: [
+          "Fazer a tarefa com atenção redobrada e terminar logo.",
+          "Não executar a tarefa de risco e comunicar o responsável.",
+          "Pedir a um colega que assuma o risco sem registrar nada.",
+          "Aguardar o fim do turno para relatar a situação."
+        ],
+        correta: 1,
+        explicacao: "A proteção ao menor impede trabalho perigoso ou insalubre. Diante de risco, interrompa a exposição e peça orientação imediatamente.",
+        categoria: "decisao",
+        dificuldade: 3
+      },
+      {
+        id: "d3-11",
+        pergunta: "Pedem ao aprendiz que faça uma tarefa sem relação com sua formação. Qual é o primeiro passo?",
+        alternativas: [
+          "Cumprir a ordem porque qualquer pedido da chefia vale.",
+          "Sair do posto sem avisar para não assumir a tarefa.",
+          "Pedir a outro aprendiz que execute a tarefa no lugar.",
+          "Perguntar sobre o programa e consultar quem o acompanha."
+        ],
+        correta: 3,
+        explicacao: "A atividade deve ter relação com o programa. Registre a dúvida e consulte o responsável na empresa ou na instituição formadora.",
+        categoria: "postura",
+        dificuldade: 3
+      },
+      {
+        id: "d3-12",
+        pergunta: "Qual par combina um direito do aprendiz com um dever dele?",
+        alternativas: [
+          "Formação acompanhada e execução das tarefas com zelo.",
+          "Horas extras livres e recusa de toda tarefa difícil.",
+          "Salário fixo integral e escolha livre da própria jornada.",
+          "Acesso a todo cadastro e sigilo somente quando solicitado."
+        ],
+        correta: 0,
+        explicacao: "O programa assegura formação; o aprendiz deve participar e executar as atividades previstas com zelo e diligência.",
+        categoria: "postura",
+        dificuldade: 2
+      },
+      {
+        id: "d3-13",
+        pergunta: "O cliente pergunta o preço final e os riscos de um serviço. Como atender?",
+        alternativas: [
+          "Falar apenas do benefício e omitir pontos desfavoráveis.",
+          "Remeter tudo ao contrato sem verificar a compreensão.",
+          "Informar com clareza o que estiver confirmado e orientar dúvidas.",
+          "Estimar valores e corrigir mais tarde, caso seja necessário."
+        ],
+        correta: 2,
+        explicacao: "Informação adequada e clara ajuda o consumidor a decidir. Se algo não estiver confirmado, consulte o setor responsável.",
+        categoria: "comunicacao",
+        dificuldade: 2
+      },
+      {
+        id: "d3-14",
+        pergunta: "Um atendente pensa em prometer devolução em 30 dias sem conhecer a política. Qual decisão é melhor?",
+        alternativas: [
+          "Prometer o prazo e perguntar ao setor após a venda.",
+          "Verificar a regra aplicável antes de afirmar o prazo.",
+          "Repetir o prazo que ouviu de outro cliente da fila.",
+          "Evitar a venda sem explicar o motivo ao cliente."
+        ],
+        correta: 1,
+        explicacao: "Informação ou oferta suficientemente precisa pode gerar compromisso para a empresa. Não prometa um prazo sem base confirmada.",
+        categoria: "decisao",
+        dificuldade: 3
+      },
+      {
+        id: "d3-15",
+        pergunta: "O cliente afirma: 'Tenho razão porque sempre tenho razão'. Como seguir o atendimento?",
+        alternativas: [
+          "Concordar com o pedido antes de verificar os fatos.",
+          "Encerrar a conversa porque a frase não é uma lei.",
+          "Contestar o cliente para defender a equipe de imediato.",
+          "Ouvir, conferir registros e explicar o que se aplica."
+        ],
+        correta: 3,
+        explicacao: "Respeitar o consumidor não significa aceitar toda exigência. A resposta profissional combina escuta, verificação e informação clara.",
+        categoria: "conflito",
+        dificuldade: 2
+      },
+      {
+        id: "d3-16",
+        pergunta: "Para localizar uma compra contestada, que informação pode ser pedida ao cliente?",
+        alternativas: [
+          "Os dados pertinentes para identificar o pedido com segurança.",
+          "O histórico de saúde, para completar o cadastro geral.",
+          "A senha pessoal, para acelerar a consulta no sistema.",
+          "Todos os documentos disponíveis, sem explicar a finalidade."
+        ],
+        correta: 0,
+        explicacao: "A empresa pode pedir elementos necessários para encontrar a transação; isso não autoriza coletar dados sem finalidade.",
+        categoria: "sigilo",
+        dificuldade: 2
+      },
+      {
+        id: "d3-17",
+        pergunta: "Uma reclamação não foi resolvida no primeiro contato. Qual encaminhamento inicial é mais útil?",
+        alternativas: [
+          "Dizer ao cliente que comece todo o relato em outro lugar.",
+          "Prometer solução imediata, mesmo sem confirmação.",
+          "Registrar protocolo, tratativa e forma de retorno.",
+          "Apagar o primeiro registro e abrir um pedido diferente."
+        ],
+        correta: 2,
+        explicacao: "O registro e o retorno dão continuidade ao atendimento e documentam a tentativa de solução antes de outros canais.",
+        categoria: "organizacao",
+        dificuldade: 2
+      },
+      {
+        id: "d3-18",
+        pergunta: "No atendimento de um órgão público, o aviso usa siglas que o usuário não conhece. O que fazer?",
+        alternativas: [
+          "Manter as siglas e pedir que procure o significado online.",
+          "Explicar o procedimento em linguagem simples e precisa.",
+          "Ler o aviso mais alto, preservando os mesmos termos.",
+          "Enviar o usuário a outro guichê sem explicar o motivo."
+        ],
+        correta: 1,
+        explicacao: "A aula relaciona a Lei nº 13.460/2017 à linguagem compreensível no serviço público, evitando siglas e jargões desnecessários.",
+        categoria: "comunicacao",
+        dificuldade: 2
+      },
+      {
+        id: "d3-19",
+        pergunta: "Um órgão exige documento que não constava nas orientações ao público. Qual atitude cabe à recepção?",
+        alternativas: [
+          "Insistir na exigência sem consultar a informação publicada.",
+          "Prometer dispensa definitiva do documento naquele caso.",
+          "Orientar o usuário a adivinhar a nova lista de documentos.",
+          "Conferir a Carta de Serviços e buscar correção da orientação."
+        ],
+        correta: 3,
+        explicacao: "A Carta de Serviços informa requisitos e etapas. Divergências devem ser verificadas e encaminhadas para evitar retrabalho.",
+        categoria: "encaminhamento",
+        dificuldade: 3
+      },
+      {
+        id: "d3-20",
+        pergunta: "Um cliente grita e humilha a atendente. O que preserva direitos e deveres de ambos?",
+        alternativas: [
+          "Manter a calma, estabelecer limites e pedir apoio à chefia.",
+          "Aceitar as ofensas, pois reclamar dá esse direito ao cliente.",
+          "Responder no mesmo tom para encerrar o confronto logo.",
+          "Divulgar a discussão para obter apoio dos outros clientes."
+        ],
+        correta: 0,
+        explicacao: "O cliente pode reclamar, mas isso não autoriza humilhação. A atendente mantém respeito, registra o ocorrido e procura apoio.",
+        categoria: "conflito",
+        dificuldade: 3
+      },
+      {
+        id: "d3-21",
+        pergunta: "Uma pessoa com prioridade legal é chamada antes. Como explicar à fila sem expô-la?",
+        alternativas: [
+          "Detalhar a condição de saúde para convencer os demais.",
+          "Dizer que conhece a pessoa e decidiu fazer uma exceção.",
+          "Informar que a ordem considera as prioridades previstas.",
+          "Evitar qualquer explicação, mesmo diante de uma dúvida."
+        ],
+        correta: 2,
+        explicacao: "Prioridade prevista em lei não é favor pessoal. Explique a regra geral com discrição, sem revelar dados da pessoa atendida.",
+        categoria: "atendimento",
+        dificuldade: 2
+      },
+      {
+        id: "d3-22",
+        pergunta: "Um conhecido pede para passar à frente sem urgência ou prioridade. Que critério usar?",
+        alternativas: [
+          "A amizade, desde que os outros clientes não percebam.",
+          "As regras de fila e as prioridades aplicáveis a todos.",
+          "A promessa de atender rapidamente e compensar depois.",
+          "A opinião do colega que estiver mais próximo da fila."
+        ],
+        correta: 1,
+        explicacao: "Favor pessoal depende de quem atende; prioridade legal é um critério aplicável a todos na mesma condição.",
+        categoria: "postura",
+        dificuldade: 2
+      },
+      {
+        id: "d3-23",
+        pergunta: "Uma pessoa com deficiência chega acompanhada e quer explicar seu pedido. O que fazer?",
+        alternativas: [
+          "Ouvir somente o acompanhante para reduzir o tempo de espera.",
+          "Pedir ao acompanhante que decida todas as etapas do pedido.",
+          "Evitar perguntas para não constranger quem está presente.",
+          "Falar com a própria pessoa e oferecer apoio se ela quiser."
+        ],
+        correta: 3,
+        explicacao: "Acessibilidade inclui atitude e comunicação. Fale diretamente com a pessoa e respeite sua autonomia.",
+        categoria: "atendimento",
+        dificuldade: 2
+      },
+      {
+        id: "d3-24",
+        pergunta: "O site de agendamentos não funciona com leitor de tela. Que barreira aparece?",
+        alternativas: [
+          "Barreira tecnológica que dificulta o acesso ao serviço.",
+          "Apenas uma preferência pessoal sobre o uso do site.",
+          "Somente um problema de ordem de chegada na fila.",
+          "Um favor que a recepção pode conceder ou negar."
+        ],
+        correta: 0,
+        explicacao: "A aula apresenta barreiras tecnológicas, comunicacionais, arquitetônicas e atitudinais. Acessibilidade vai além de uma rampa.",
+        categoria: "atendimento",
+        dificuldade: 2
+      },
+      {
+        id: "d3-25",
+        pergunta: "Um cliente relata um problema de saúde para explicar sua urgência. O que registrar?",
+        alternativas: [
+          "Todo o relato, pois a conversa aconteceu na recepção.",
+          "O diagnóstico completo, ainda que não ajude no pedido.",
+          "Somente o necessário, conforme a finalidade do atendimento.",
+          "Os detalhes em um grupo de mensagens da equipe inteira."
+        ],
+        correta: 2,
+        explicacao: "Informações de saúde são sensíveis. A LGPD orienta finalidade e necessidade; o que não é necessário ao atendimento não deve ser registrado.",
+        categoria: "sigilo",
+        dificuldade: 3
+      },
+      {
+        id: "d3-26",
+        pergunta: "Uma pessoa pede correção de dados do próprio cadastro durante o atendimento. Qual caminho seguir?",
+        alternativas: [
+          "Alterar qualquer campo sem verificar a identidade dela.",
+          "Registrar o pedido e encaminhar ao canal responsável.",
+          "Negar a solicitação por ter sido feita pessoalmente.",
+          "Mostrar outros cadastros para confirmar a informação."
+        ],
+        correta: 1,
+        explicacao: "A pessoa pode pedir correção de dados. Na recepção, confirme o procedimento e encaminhe o pedido sem improvisar acesso ou resposta.",
+        categoria: "encaminhamento",
+        dificuldade: 2
+      },
+      {
+        id: "d3-27",
+        pergunta: "O atendente tem acesso ao sistema e abre o cadastro de um conhecido por curiosidade. O que faltou?",
+        alternativas: [
+          "Uma justificativa pessoal para consultar mais campos.",
+          "A permissão informal de um colega da recepção.",
+          "Um horário menos movimentado para abrir o cadastro.",
+          "Uma finalidade de trabalho para acessar aqueles dados."
+        ],
+        correta: 3,
+        explicacao: "Acesso técnico não autoriza consultas por curiosidade. Cada consulta deve ter finalidade ligada ao serviço.",
+        categoria: "sigilo",
+        dificuldade: 3
+      },
+      {
+        id: "d3-28",
+        pergunta: "O recado diz apenas 'Carlos ligou. Retornar.' O que falta para outra pessoa continuar o caso?",
+        alternativas: [
+          "Data, contato, assunto, encaminhamento e situação atual.",
+          "Uma opinião pessoal sobre como Carlos parecia ao telefone.",
+          "O histórico completo de Carlos em todos os outros setores.",
+          "Somente o nome da empresa, pois o retorno já foi pedido."
+        ],
+        correta: 0,
+        explicacao: "Um registro útil inclui dados necessários para localizar a demanda, saber o que foi feito e orientar o retorno, sem excessos.",
+        categoria: "organizacao",
+        dificuldade: 2
+      },
+      {
+        id: "d3-29",
+        pergunta: "Uma pessoa diz que já reclamou, mas não tem protocolo. Como a recepção pode agir?",
+        alternativas: [
+          "Desconsiderar o relato até que ela apresente o número.",
+          "Afirmar que a reclamação nunca existiu no sistema.",
+          "Buscar dados disponíveis e registrar a nova tratativa.",
+          "Pedir que ela repita tudo sem verificar registros prévios."
+        ],
+        correta: 2,
+        explicacao: "A falta de protocolo dificulta a busca, mas não justifica abandonar a demanda. Verifique o que for possível e registre a continuidade.",
+        categoria: "organizacao",
+        dificuldade: 3
+      },
+      {
+        id: "d3-30",
+        pergunta: "Alguém afirma que uma preferência da equipe 'é lei'. Qual atitude é mais responsável?",
+        alternativas: [
+          "Repetir a frase para manter a autoridade da recepção.",
+          "Distinguir recomendação, regra interna e obrigação legal.",
+          "Aplicar a regra primeiro e procurar uma fonte depois.",
+          "Evitar toda regra que não seja conhecida de memória."
+        ],
+        correta: 1,
+        explicacao: "A aula separa reflexão, boa prática e obrigação legal. Antes de afirmar que algo é lei, confira a fonte aplicável.",
+        categoria: "decisao",
+        dificuldade: 2
+      }
     ]
   };
 
@@ -681,7 +1104,8 @@
     { id: "sigilo", numero: "08", titulo: "Sigilo ou não?", descricao: "Decida quando uma informação pode ou não ser compartilhada.", tipo: "perguntas", dados: banco.sigilo, quantidade: 8, dificuldade: "Médio" },
     { id: "primeiro-dia", numero: "09", titulo: "Missão especial — Primeiro dia", descricao: "Enfrente a chegada simultânea de demandas às 08h10.", tipo: "especial", dificuldade: "Difícil" },
     { id: "quiz-primeiro-dia", numero: "10", titulo: "Quiz do primeiro dia", descricao: "Responda 10 questões sobre os conteúdos iniciais da UC1.", tipo: "perguntas", dados: banco.quizPrimeiroDia, quantidade: 10, dificuldade: "Fácil/Médio" },
-    { id: "dilemas-dia2", numero: "11", titulo: "Dilemas profissionais — Dia 2", descricao: "Analise situações de atendimento e escolha a decisão profissional mais adequada.", tipo: "perguntas", dados: banco.dilemasDia2, quantidade: 10, dificuldade: "Médio/Difícil" }
+    { id: "dilemas-dia2", numero: "11", titulo: "Dilemas profissionais — Dia 2", descricao: "Analise situações de atendimento e escolha a decisão profissional mais adequada.", tipo: "perguntas", dados: banco.dilemasDia2, quantidade: 10, dificuldade: "Médio/Difícil" },
+    { id: "direitos-dia3", numero: "12", titulo: "Direitos e responsabilidades — Dia 3", descricao: "Decida como agir diante de direitos, deveres, limites e registros no atendimento.", tipo: "perguntas", dados: banco.direitosDia3, quantidade: 10, dificuldade: "Médio/Difícil" }
   ];
 
   const estado = {
