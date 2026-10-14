@@ -1,256 +1,249 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Missão: Atendimento</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auditoria do Jovem Aprendiz - Conecta Serviços</title>
+    <style>
+        :root {
+            --primary: #0B2447;
+            --accent: #F2B705;
+            --success: #198754;
+            --danger: #dc3545;
+            --light: #F8F9FA;
+            --muted: #6C757D;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        body { background-color: var(--white); color: #212529; line-height: 1.6; }
+
+        .header { background-color: var(--primary); color: var(--white); padding: 2rem 1rem; text-align: center; border-top: 6px solid var(--primary); }
+        .header h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .header p { font-size: 1.2rem; color: var(--accent); }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+        .card { background: var(--light); border-radius: 8px; padding: 2rem; margin-bottom: 2rem; border-left: 5px solid var(--primary); }
+
+        .nav-steps { display: flex; justify-content: space-between; margin-bottom: 2rem; overflow-x: auto; padding-bottom: 1rem; }
+        .step-btn { background: #eee; border: none; padding: 0.8rem 1.2rem; border-radius: 20px; cursor: pointer; transition: 0.3s; white-space: nowrap; margin-right: 0.5rem; }
+        .step-btn.active { background: var(--primary); color: var(--white); }
+
+        .timer-container { position: sticky; top: 1rem; z-index: 100; display: flex; justify-content: flex-end; }
+        .timer-box { background: var(--primary); color: var(--white); padding: 0.5rem 1rem; border-radius: 8px; font-weight: bold; font-size: 1.2rem; display: flex; align-items: center; gap: 0.5rem; }
+        .timer-controls { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
+        .timer-btn { padding: 0.2rem 0.5rem; border: none; border-radius: 4px; cursor: pointer; font-size: 0.8rem; }
+
+        .doc-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .doc-card { border: 1px solid #ddd; padding: 1.5rem; border-radius: 8px; background: white; }
+        .doc-card.checked { border-color: var(--success); background: #f8fff9; }
+        .doc-card h3 { color: var(--primary); margin-bottom: 0.5rem; }
+
+        .btn { padding: 0.8rem 1.5rem; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; transition: 0.3s; }
+        .btn-primary { background: var(--primary); color: var(--white); }
+        .btn-accent { background: var(--accent); color: var(--primary); }
+        
+        .group-select { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-top: 2rem; }
+        .group-btn { padding: 1rem; border: 2px solid var(--primary); border-radius: 8px; text-align: center; cursor: pointer; font-weight: bold; }
+        .group-btn.selected { background: var(--primary); color: var(--white); }
+
+        .hidden { display: none; }
+
+        footer { text-align: center; padding: 2rem; background: var(--light); color: var(--muted); font-size: 0.9rem; }
+    </style>
 </head>
 <body>
-  <div class="app-frame">
-    <section id="tela-inicial" class="screen screen-start active" aria-labelledby="titulo-inicial">
-      <div class="start-panel">
-        <div class="brand-strip">
-          <span>CONECTA SERVIÇOS</span>
-          <strong>UC1 — Recepcionar e atender pessoas</strong>
-        </div>
-        <div class="start-grid">
-          <div class="start-copy">
-            <p class="eyebrow">Simulador profissional gamificado</p>
-            <h1 id="titulo-inicial">MISSÃO: ATENDIMENTO</h1>
-            <h2>Você é o primeiro contato.</h2>
-            <p>Seu primeiro dia na Conecta Serviços começa agora.</p>
-          </div>
-          <form id="form-inicio" class="login-card" autocomplete="off">
-            <label for="nome-jogador">DIGITE SEU NOME</label>
-            <input id="nome-jogador" name="nome-jogador" type="text" maxlength="36" placeholder="Seu nome" required>
-            <button type="submit" class="btn btn-primary">INICIAR JORNADA</button>
-            <button type="button" id="btn-continuar" class="btn btn-outline hidden">CONTINUAR</button>
-            <div id="resumo-salvo" class="saved-summary" aria-live="polite"></div>
-          </form>
-        </div>
-        <button type="button" id="btn-professor-inicial" class="teacher-link">MODO PROFESSOR</button>
-      </div>
-    </section>
 
-    <main id="app-shell" class="screen shell" aria-live="polite">
-      <header class="topbar">
-        <button type="button" id="btn-menu" class="icon-button menu-button" aria-label="Abrir menu">☰</button>
-        <div class="topbar-title">
-          <strong>MISSÃO: ATENDIMENTO</strong>
-          <span id="topbar-player">Conecta Serviços</span>
-        </div>
-        <nav id="main-nav" class="main-nav" aria-label="Navegação principal">
-          <button type="button" class="nav-btn active" data-view="dashboard">Painel</button>
-          <button type="button" class="nav-btn" data-view="central-missoes">Missões</button>
-          <button type="button" class="nav-btn" data-view="perfil">Meu Perfil</button>
-          <button type="button" class="nav-btn" data-view="conquistas">Conquistas</button>
-          <button type="button" class="nav-btn" data-view="ranking">Ranking</button>
-          <button type="button" class="nav-btn" data-view="conceitos">Você Sabia?</button>
-          <button type="button" class="nav-btn" data-view="professor">Modo Professor</button>
-        </nav>
-        <div class="topbar-actions">
-          <button type="button" id="btn-toggle-som" class="btn btn-small">SOM OFF</button>
-          <button type="button" id="btn-sair" class="btn btn-small btn-outline">Sair</button>
-        </div>
-      </header>
+    <header class="header">
+        <h1>AUDITORIA DO JOVEM APRENDIZ</h1>
+        <p>Investigue. Analise. Fundamente. Proponha.</p>
+    </header>
 
-      <section id="dashboard" class="view active" aria-labelledby="titulo-dashboard">
-        <div class="content-head">
-          <div>
-            <p class="eyebrow">Painel do aprendiz</p>
-            <h2 id="titulo-dashboard">Olá, <span id="dash-nome">jogador</span>.</h2>
-          </div>
-          <button type="button" id="btn-resetar" class="btn btn-danger">REINICIAR PROGRESSO</button>
-        </div>
-
-        <div class="dashboard-layout">
-          <article class="hero-status">
+    <div class="container">
+        
+        <div class="timer-container">
             <div>
-              <span class="status-label">Cargo atual</span>
-              <strong id="dash-cargo">APRENDIZ</strong>
+                <div class="timer-box">
+                    <span>⏱️</span> <span id="display">10:00</span>
+                </div>
+                <div class="timer-controls">
+                    <button class="timer-btn" onclick="startTimer()">Iniciar</button>
+                    <button class="timer-btn" onclick="pauseTimer()">Pausar</button>
+                    <button class="timer-btn" onclick="resetTimer()">Reset</button>
+                </div>
             </div>
-            <div class="level-progress">
-              <div class="progress-head">
-                <span>XP atual</span>
-                <strong id="dash-xp">0 / 300</strong>
-              </div>
-              <div class="progress-bar" aria-label="Progresso de nível">
-                <span id="barra-xp" style="width:0%"></span>
-              </div>
+        </div>
+
+        <!-- Etapa 0: Seleção de Grupo -->
+        <section id="step-0">
+            <div class="card">
+                <h2>BEM-VINDOS, CONSULTORES!</h2>
+                <p>A Conecta Serviços precisa da sua ajuda para garantir a qualidade do Programa de Aprendizagem. Selecione o seu grupo para acessar os documentos.</p>
+                
+                <div class="group-select">
+                    <div class="group-btn" onclick="selectGroup(1)">GRUPO 01</div>
+                    <div class="group-btn" onclick="selectGroup(2)">GRUPO 02</div>
+                    <div class="group-btn" onclick="selectGroup(3)">GRUPO 03</div>
+                    <div class="group-btn" onclick="selectGroup(4)">GRUPO 04</div>
+                    <div class="group-btn" onclick="selectGroup(5)">GRUPO 05</div>
+                </div>
             </div>
-            <div class="status-grid">
-              <div><span>Nível</span><strong id="dash-nivel">1</strong></div>
-              <div><span>Sequência</span><strong id="dash-sequencia">0 acertos</strong></div>
-              <div><span>Precisão</span><strong id="dash-precisao">0%</strong></div>
-              <div><span>Missões</span><strong id="dash-missoes">0/10</strong></div>
-              <div><span>Conquistas</span><strong id="dash-conquistas">0</strong></div>
-              <div><span>Recorde</span><strong id="dash-recorde">0</strong></div>
+        </section>
+
+        <!-- Navegação de Etapas -->
+        <nav class="nav-steps hidden" id="nav-main">
+            <button class="step-btn active" onclick="showStep(1)">1. MISSÃO</button>
+            <button class="step-btn" onclick="showStep(2)">2. INVESTIGUE</button>
+            <button class="step-btn" onclick="showStep(3)">3. IDENTIFIQUE</button>
+            <button class="step-btn" onclick="showStep(4)">4. PROPONHA</button>
+            <button class="step-btn" onclick="showStep(5)">5. CONCLUA</button>
+        </nav>
+
+        <!-- Etapa 1: Entenda a Missão -->
+        <section id="step-1" class="hidden">
+            <div class="card">
+                <h2>ETAPA 1 — ENTENDA A MISSÃO</h2>
+                <p>Sua equipe de consultoria deve examinar os documentos fornecidos, identificar divergências, avaliar o cumprimento da legislação e propor melhorias responsáveis.</p>
+                <ul style="margin-top: 1rem; margin-left: 2rem;">
+                    <li>Analise as datas e cruze informações entre documentos.</li>
+                    <li>Não faça acusações sem evidências claras.</li>
+                    <li>Se faltar informação, registre o que precisa ser verificado.</li>
+                </ul>
+                <button class="btn btn-primary" style="margin-top: 1.5rem;" onclick="showStep(2)">COMEÇAR INVESTIGAÇÃO</button>
             </div>
-          </article>
+        </section>
 
-          <aside class="quick-panel">
-            <h3>Próxima ação</h3>
-            <p id="dash-proxima">Entre na Central de Missões para começar a jornada.</p>
-            <button type="button" class="btn btn-primary" data-view-target="central-missoes">CENTRAL DE MISSÕES</button>
-            <button type="button" class="btn btn-outline" data-view-target="perfil">MEU PERFIL</button>
-          </aside>
-        </div>
-      </section>
+        <!-- Etapa 2: Investigue -->
+        <section id="step-2" class="hidden">
+            <div class="card">
+                <h2>ETAPA 2 — INVESTIGUE</h2>
+                <p>Leia atentamente os documentos abaixo. Marque-os conforme concluir a leitura.</p>
+                <div id="doc-container" class="doc-list" style="margin-top: 1.5rem;">
+                    <!-- Preenchido dinamicamente via JS -->
+                </div>
+            </div>
+        </section>
 
-      <section id="central-missoes" class="view" aria-labelledby="titulo-missoes">
-        <div class="content-head">
-          <div>
-            <p class="eyebrow">Mapa de aprendizagem</p>
-            <h2 id="titulo-missoes">CENTRAL DE MISSÕES</h2>
-          </div>
-          <button type="button" class="btn btn-outline" data-view-target="dashboard">Voltar ao painel</button>
-        </div>
-        <div id="grid-missoes" class="mission-grid"></div>
-      </section>
+        <!-- Outras etapas... (simplificadas para o protótipo funcional) -->
+        <section id="step-3" class="hidden">
+            <div class="card">
+                <h2>ETAPA 3 — IDENTIFIQUE</h2>
+                <p>Para cada situação, preencha na planilha:</p>
+                <ul style="margin-left: 2rem;">
+                    <li><strong>O que aconteceu?</strong> Fato documentado.</li>
+                    <li><strong>O que o documento comprova?</strong> Evidência.</li>
+                    <li><strong>O que falta saber?</strong> Informação insuficiente.</li>
+                    <li><strong>Classificação:</strong> Adequado, Problema, Oportunidade ou Falta Info.</li>
+                </ul>
+            </div>
+        </section>
 
-      <section id="tela-missao" class="view mission-view" aria-labelledby="missao-titulo">
-        <div class="mission-toolbar">
-          <button type="button" id="btn-voltar-missoes" class="btn btn-outline">Voltar</button>
-          <div>
-            <p id="missao-subtitulo" class="eyebrow">Missão</p>
-            <h2 id="missao-titulo">Missão</h2>
-          </div>
-          <div class="round-score">
-            <span>XP rodada</span>
-            <strong id="missao-xp-rodada">0</strong>
-          </div>
-        </div>
-        <div id="missao-progresso" class="mini-progress" aria-label="Progresso da missão"><span style="width:0%"></span></div>
-        <div id="missao-conteudo" class="mission-content"></div>
-      </section>
+        <section id="step-4" class="hidden">
+            <div class="card">
+                <h2>ETAPA 4 — PROPONHA</h2>
+                <p>Elabore o plano de ação:</p>
+                <ul style="margin-left: 2rem;">
+                    <li>Ação corretiva ou de melhoria.</li>
+                    <li>Responsável (RH, Monitor, Senac, Aprendiz).</li>
+                    <li>Prioridade e Prazo.</li>
+                </ul>
+            </div>
+        </section>
 
-      <section id="tela-resultados" class="view" aria-labelledby="resultado-titulo">
-        <div class="result-panel">
-          <p class="eyebrow">Relatório de desempenho</p>
-          <h2 id="resultado-titulo">MISSÃO CONCLUÍDA</h2>
-          <div id="resultado-resumo" class="result-grid"></div>
-          <div id="resultado-indicadores" class="indicator-grid"></div>
-          <p id="resultado-explicacao" class="result-note"></p>
-          <div class="result-actions">
-            <button type="button" id="btn-jogar-novamente" class="btn btn-outline">JOGAR NOVAMENTE</button>
-            <button type="button" id="btn-proxima-missao" class="btn btn-primary">PRÓXIMA MISSÃO</button>
-            <button type="button" class="btn btn-outline" data-view-target="dashboard">VOLTAR AO PAINEL</button>
-          </div>
-        </div>
-      </section>
+        <section id="step-5" class="hidden">
+            <div class="card">
+                <h2>ETAPA 5 — CONCLUA</h2>
+                <p>Finalize o relatório do grupo e prepare-se para trocar sua análise com outra equipe para revisão.</p>
+            </div>
+        </section>
 
-      <section id="perfil" class="view" aria-labelledby="titulo-perfil">
-        <div class="content-head">
-          <div>
-            <p class="eyebrow">Resumo do perfil</p>
-            <h2 id="titulo-perfil">MEU PERFIL</h2>
-          </div>
-          <button type="button" class="btn btn-outline" data-view-target="dashboard">Voltar ao painel</button>
-        </div>
-        <div class="profile-layout">
-          <article class="profile-card">
-            <h3 id="perfil-nome">Nome</h3>
-            <dl>
-              <div><dt>Cargo</dt><dd id="perfil-cargo">Aprendiz</dd></div>
-              <div><dt>Nível</dt><dd id="perfil-nivel">1</dd></div>
-              <div><dt>XP</dt><dd id="perfil-xp">0</dd></div>
-              <div><dt>Missões</dt><dd id="perfil-missoes">0</dd></div>
-              <div><dt>Acertos</dt><dd id="perfil-acertos">0</dd></div>
-              <div><dt>Precisão</dt><dd id="perfil-precisao">0%</dd></div>
-              <div><dt>Conquistas</dt><dd id="perfil-conquistas">0</dd></div>
-            </dl>
-          </article>
-          <article class="skills-card">
-            <h3>Competências</h3>
-            <div id="perfil-barras" class="skill-bars"></div>
-          </article>
-        </div>
-      </section>
+    </div>
 
-      <section id="conquistas" class="view" aria-labelledby="titulo-conquistas">
-        <div class="content-head">
-          <div>
-            <p class="eyebrow">Badges</p>
-            <h2 id="titulo-conquistas">CONQUISTAS</h2>
-          </div>
-          <button type="button" class="btn btn-outline" data-view-target="dashboard">Voltar ao painel</button>
-        </div>
-        <div id="grid-conquistas" class="badge-grid"></div>
-      </section>
+    <footer>
+        <p>Dinâmica Auditoria do Jovem Aprendiz - UC1 - Prof. João Marcos de Sousa Rosal</p>
+    </footer>
 
-      <section id="ranking" class="view" aria-labelledby="titulo-ranking">
-        <div class="content-head">
-          <div>
-            <p class="eyebrow">Ranking deste dispositivo</p>
-            <h2 id="titulo-ranking">RANKING LOCAL</h2>
-          </div>
-          <button type="button" class="btn btn-outline" data-view-target="dashboard">Voltar ao painel</button>
-        </div>
-        <div class="table-card">
-          <table>
-            <thead>
-              <tr>
-                <th>Posição</th>
-                <th>Nome</th>
-                <th>Nível</th>
-                <th>XP</th>
-                <th>Pontuação máxima</th>
-              </tr>
-            </thead>
-            <tbody id="ranking-corpo"></tbody>
-          </table>
-        </div>
-      </section>
+    <script>
+        let currentGroup = 0;
+        let timer;
+        let timeLeft = 600;
+        const times = [600, 1500, 1200, 900, 600]; // Tempos em segundos para cada etapa
 
-      <section id="conceitos" class="view" aria-labelledby="titulo-conceitos">
-        <div class="content-head">
-          <div>
-            <p class="eyebrow">Conceitos complementares</p>
-            <h2 id="titulo-conceitos">VOCÊ SABIA?</h2>
-          </div>
-          <button type="button" class="btn btn-outline" data-view-target="dashboard">Voltar ao painel</button>
-        </div>
-        <div id="grid-conceitos" class="concept-grid"></div>
-      </section>
+        const groupDocs = {
+            1: [
+                { id: "DOC 01", title: "Comunicado RH-012/2026", desc: "Suspensão de liberação para curso em 15/10." },
+                { id: "DOC 05", title: "Certificação ADM-05", desc: "Certificado automático por tempo de casa." },
+                { id: "DOC 10", title: "Diário de Bordo", desc: "Registro detalhado de atendimento e PABX." },
+                { id: "DOC 08", title: "Apoio Pedagógico", desc: "Pedido de ajuda em Excel sem retorno." }
+            ],
+            2: [
+                { id: "DOC 02", title: "Avaliação Módulo 1", desc: "Menção PA sem direito a recuperação." },
+                { id: "DOC 11", title: "Ata Monitor/RH", desc: "Planejamento de rotação de setores." },
+                { id: "DOC 04", title: "Ponto Setembro", desc: "Divergência entre folha e faltas no Senac." }
+            ]
+            // Adicionar outros conforme necessário...
+        };
 
-      <section id="professor" class="view" aria-labelledby="titulo-professor">
-        <div class="content-head">
-          <div>
-            <p class="eyebrow">Acompanhamento local</p>
-            <h2 id="titulo-professor">MODO PROFESSOR</h2>
-          </div>
-          <div class="action-row">
-            <button type="button" id="btn-exportar" class="btn btn-primary">EXPORTAR RESULTADOS</button>
-            <button type="button" id="btn-zerar-ranking" class="btn btn-danger">ZERAR RANKING</button>
-          </div>
-        </div>
-        <p class="section-note">Os dados abaixo pertencem somente a este navegador e a este dispositivo.</p>
-        <div class="table-card">
-          <table>
-            <thead>
-              <tr>
-                <th>Nome</th>
-                <th>XP</th>
-                <th>Nível</th>
-                <th>Acertos</th>
-                <th>Erros</th>
-                <th>Precisão</th>
-                <th>Missões</th>
-                <th>Pontuação</th>
-                <th>Data</th>
-              </tr>
-            </thead>
-            <tbody id="professor-corpo"></tbody>
-          </table>
-        </div>
-      </section>
-    </main>
-  </div>
+        function selectGroup(num) {
+            currentGroup = num;
+            document.querySelectorAll('.group-btn').forEach(btn => btn.classList.remove('selected'));
+            event.target.classList.add('selected');
+            document.getElementById('nav-main').classList.remove('hidden');
+            showStep(1);
+            loadDocs();
+        }
 
-  <div id="toast-area" class="toast-area" aria-live="assertive"></div>
-  <div id="level-flash" class="level-flash hidden" role="status" aria-live="assertive"></div>
+        function showStep(num) {
+            document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+            document.getElementById('step-' + num).classList.remove('hidden');
+            document.querySelectorAll('.step-btn').forEach((btn, idx) => {
+                btn.classList.toggle('active', idx === num-1);
+            });
+            timeLeft = times[num-1];
+            updateTimerDisplay();
+        }
 
-  <script src="script.js"></script>
+        function loadDocs() {
+            const container = document.getElementById('doc-container');
+            container.innerHTML = '';
+            const docs = groupDocs[currentGroup] || [];
+            docs.forEach(doc => {
+                container.innerHTML += `
+                    <div class="doc-card" onclick="this.classList.toggle('checked')">
+                        <h3>${doc.id}</h3>
+                        <p><strong>${doc.title}</strong></p>
+                        <p style="font-size: 0.9rem; color: #666; margin-top:0.5rem;">${doc.desc}</p>
+                        <div style="margin-top: 1rem;">
+                            <label><input type="checkbox"> Lido</label>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function startTimer() {
+            if (timer) clearInterval(timer);
+            timer = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timer);
+                    alert("Tempo da etapa encerrado!");
+                } else {
+                    timeLeft--;
+                    updateTimerDisplay();
+                }
+            }, 1000);
+        }
+
+        function pauseTimer() { clearInterval(timer); }
+        function resetTimer() { pauseTimer(); timeLeft = 600; updateTimerDisplay(); }
+
+        function updateTimerDisplay() {
+            const m = Math.floor(timeLeft / 60);
+            const s = timeLeft % 60;
+            document.getElementById('display').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+    </script>
 </body>
 </html>
