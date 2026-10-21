@@ -8,7 +8,7 @@ navegador e nada é enviado para fora do aparelho. Funciona em computador e em c
 
 ```
 dinamicas/
-├── index.html          abertura: o que é a dinâmica, texto para enviar aos alunos e botão de iniciar
+├── index.html          abertura: o que é a dinâmica, como o grupo conduz e botão de iniciar
 ├── dinamica-1.html     a dinâmica: página inicial (grupo), 7 blocos e relatório final
 ├── professor.html      guia do professor, protegido por código
 ├── LEIA-ME.md          este arquivo
@@ -92,5 +92,5 @@ item por item da foto, a proposta, as melhorias escolhidas e as respostas da ref
 
 ## Texto para enviar aos alunos
 
-Está na `index.html`, na seção **"Texto para enviar aos alunos"**, com um botão **Copiar texto** — é só colar no
-grupo da turma. O guia do professor tem o mesmo material em versão de condução.
+O texto de orientação **não fica na plataforma**: ele é enviado pelo professor no grupo da turma. O guia do
+professor tem o material de condução equivalente.

@@ -21,7 +21,6 @@
       de dados.</p>
       <div class="linha mt2">
         <a class="btn grande" href="dinamica-1.html">Iniciar a Dinâmica 1</a>
-        <a class="btn secundario" href="#texto-alunos">Ver o texto para enviar aos alunos</a>
       </div>
       <p class="apoio mt">Um aparelho por grupo · 7 blocos · relatório final em PDF, CSV ou TXT</p>
     </section>
@@ -60,66 +59,6 @@
       </div>
     </div>
 
-    <section class="cartao mt2" id="texto-alunos">
-      <div class="linha"><span class="etiqueta acao">Texto para enviar aos alunos</span>
-        <button class="btn secundario pequeno" id="btCopiar">Copiar texto</button></div>
-      <h2 class="mt">Instruções da Dinâmica 1 — para copiar e colar no grupo da turma</h2>
-      <div id="textoAlunos">
-        <p><b>Dinâmica 1 — Caça-Falhas da Recepção (UC1 · Recepcionar e atender pessoas)</b></p>
-
-        <p>Pessoal, nesta atividade vocês vão fazer o diagnóstico da recepção da Conecta Serviços, uma empresa
-        fictícia que vai passar por uma avaliação interna. Vamos trabalhar em grupos de três ou quatro pessoas,
-        com um aparelho por grupo.</p>
-
-        <p>O cenário é uma foto real de uma recepção, com 14 pontos numerados. Vocês vão olhar essa foto como quem
-        chega para trabalhar: perceber o que está errado, o que está certo e o que isso significa para quem é
-        atendido ali todos os dias.</p>
-
-        <p><b>Como proceder:</b></p>
-        <ol class="apoio lista-num">
-          <li>Abram a plataforma, informem o nome do grupo e o nome de todos os integrantes. Escolham o porta-voz
-          desta primeira etapa: ele clica, mas nenhuma decisão é dele, tudo é combinado antes no grupo. A cada
-          etapa a função gira, para todos participarem.</li>
-          <li>Cliquem em <b>Iniciar a dinâmica</b> e leiam a tela de abertura com calma. Na primeira vez aparece um
-          tutorial curto explicando como clicar e como responder cada ponto.</li>
-          <li>No diagnóstico, toquem em um número por vez. Leiam a descrição do ponto, debatam e decidam: esse
-          ponto <b>está adequado</b> ou <b>precisa melhorar</b>? Se precisar melhorar, escolham a categoria do
-          problema, a medida que resolveria e, quando aparecer a pergunta, a norma que trata do assunto. Sigam até
-          registrar os 14 pontos.</li>
-          <li>Na priorização, para cada problema encontrado, definam o <b>impacto</b> (alto, médio ou baixo), a
-          <b>urgência</b> (agora ou pode esperar) e <b>quem resolve</b> (a recepção ou outro setor).</li>
-          <li>Na construção da proposta, escrevam como o atendimento deve funcionar na prática: a ordem da fila e
-          a triagem, o que a recepção diz ao cliente e como registra o pedido, o que garante acessibilidade e
-          segurança e o que entra como consumo consciente.</li>
-          <li>Na proposta de melhorias, escolham os problemas, os riscos e as ações que o grupo vai defender e
-          escrevam a justificativa citando a norma ou a lei que sustenta cada escolha.</li>
-          <li>Na reflexão, respondam as cinco questões em grupo. Não existe resposta única: o que vale é a resposta
-          se apoiar no que vocês viram na foto.</li>
-          <li>No fim, cliquem em <b>Concluir e gerar relatório</b>. O grupo recebe a pontuação, os acertos, os
-          erros, o desempenho por indicador e o relatório em PDF, CSV ou TXT.</li>
-        </ol>
-
-        <p><b>O que esperamos de vocês:</b></p>
-        <ul class="apoio">
-          <li><b>Debatam antes de clicar.</b> A plataforma não corrige na hora — a conferência é feita no debate
-          final, com a turma.</li>
-          <li><b>Justifiquem com o que está na foto.</b> "Achei ruim" não basta: digam o que está no lugar errado,
-          quem corre risco por causa disso e o que resolveria.</li>
-          <li><b>Registrem os 14 pontos</b>, inclusive os que vocês considerarem adequados: reconhecer o que está
-          certo também é diagnóstico.</li>
-          <li><b>Guardem o relatório do grupo.</b> Ele é o registro da atividade e entra no portfólio da UC1.</li>
-        </ul>
-
-        <p>Qualquer dúvida, chamem o professor. Bom trabalho!</p>
-
-        <p class="apoio"><b>Versão curta para o grupo da turma:</b> hoje a atividade é a Dinâmica 1 — Caça-Falhas da
-        Recepção. Abram a plataforma, informem o grupo e os integrantes e sigam os blocos: diagnóstico dos 14 pontos
-        da foto, priorização, construção da proposta, proposta de melhorias e reflexão. Debatam antes de clicar,
-        registrem os 14 pontos (inclusive os que estão corretos) e, no fim, gerem o relatório do grupo em PDF e
-        guardem o arquivo — ele é o registro da UC1.</p>
-      </div>
-    </section>
-
     <div class="cartao mt2">
       <h2>Antes de começar</h2>
       <div class="grade g3">
@@ -143,18 +82,6 @@
 <script src="assets/base.js"></script>
 <script>
   Conecta.cabecalho({ contexto:'UC1 · Dinâmica 1 — caça-falhas da recepção' });
-  document.getElementById('btCopiar').onclick = function () {
-    var t = document.getElementById('textoAlunos').innerText;
-    var pronto = function () { Conecta.aviso('Texto copiado. É só colar no grupo da turma.'); };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(t).then(pronto, function () { selecionar(); });
-    } else { selecionar(); }
-    function selecionar() {
-      var r = document.createRange(); r.selectNodeContents(document.getElementById('textoAlunos'));
-      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-      Conecta.aviso('Texto selecionado. Use Ctrl+C (ou Cmd+C) para copiar.');
-    }
-  };
 </script>
 </body>
 </html>

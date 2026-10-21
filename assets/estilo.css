@@ -334,9 +334,6 @@ h2[data-cor], .dica[data-cor] h4{color:var(--cor,var(--acao))}
   background:radial-gradient(circle, rgba(255,210,0,.18), transparent 65%); pointer-events:none}
 .capa-bloco h1{font-size:clamp(28px,5vw,44px)}
 .btn.grande{font-size:18px; padding:15px 26px}
-.lista-num{padding-left:22px}
-.lista-num li{margin:7px 0}
-#textoAlunos p{margin:10px 0}
 
 /* ============================================================
    Celular: uma coluna, alvos grandes, sem rolagem lateral
