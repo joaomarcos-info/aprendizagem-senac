@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dinâmica 1 — Caça-Falhas da Recepção · Conecta Serviços</title>
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+<a class="pular" href="#inicio">Ir para o conteúdo</a>
+<div class="wrap">
+  <div id="topo"></div>
+
+  <section id="inicio"></section>
+
+  <section id="sessao" class="oculto">
+    <div id="bloco"></div>
+  </section>
+
+  <section id="final" class="oculto">
+    <div id="relatorio"></div>
+    <div class="linha mt2">
+      <a class="btn texto pequeno" href="index.html">Voltar à escolha das dinâmicas</a>
+    </div>
+  </section>
+
+  <div class="rodape">Conecta Serviços · UC1 — Recepcionar e atender pessoas · Dinâmica 1: caça-falhas e proposta de melhoria</div>
+</div>
+<div id="areaImpressao"></div>
+
+<script src="assets/base.js"></script>
+<script src="assets/conteudo1.js"></script>
+<script>
+(function () {
+  var D = DINAMICA1;
+
+  /* link direto para o professor: ?grupo=Nome&integrantes=A,B&iniciar=1&bloco=3 */
+  var qs = new URLSearchParams(location.search);
+  if (qs.get('grupo') && !Conecta.grupo()) {
+    Conecta.definirGrupo(qs.get('grupo'), (qs.get('integrantes') || '').split(','));
+  }
+
+  Conecta.cabecalho({ contexto:'UC1 · Dinâmica 1 · Caça-Falhas', voltar:'index.html' });
+
+  /* ---------------- tutorial ---------------- */
+  var TUT = [
+    { titulo:'O que é esta dinâmica',
+      texto:'A Conecta Serviços vai passar por uma avaliação interna e a recepção precisa melhorar antes disso. ' +
+        'O grupo é a equipe encarregada de encontrar o que está errado, decidir a prioridade e propor a melhoria.' },
+    { titulo:'Onde vocês trabalham',
+      texto:'Na foto real da recepção. Cada número é um ponto da imagem: balcão, fios, extintor, avisos, espera, entrada. ' +
+        'Toquem em um número para ver de perto o que aquele ponto mostra.' },
+    { titulo:'Como decidir',
+      texto:'Em cada ponto o grupo decide se está <b>adequado</b> ou se <b>precisa melhorar</b>. Se precisar, escolham a categoria ' +
+        'e a medida necessária. Nada é decidido por uma pessoa só: debatam e só depois registrem.' },
+    { titulo:'Quem clica',
+      texto:'O porta-voz muda a cada ponto registrado, então todos passam pela função de clicar e registrar. ' +
+        'Quem não concorda deve dizer antes do clique, não depois.' },
+    { titulo:'Sem gabarito agora',
+      texto:'A plataforma não diz se vocês acertaram. O resultado sai no painel final, junto com o que a lei e as normas pedem. ' +
+        'Por isso, registrem a decisão de vocês, não a resposta "mais bonita".' }
+  ];
+
+  var BLOCOS = [
+    { id:'desafio',      cor:'amarelo', etiqueta:'o cenário',  titulo:'O desafio da recepção',
+      descricao:'Conheçam a empresa, vejam a recepção e combinem como o grupo decide.',
+      render: renderDesafio },
+    { id:'diagnostico',  cor:'ciano',   etiqueta:'na foto',    titulo:'Diagnóstico da recepção',
+      descricao:'Toquem cada número da foto e registrem a decisão do grupo.',
+      render: renderDiagnostico, aoConcluir: exigirDiagnostico },
+    { id:'priorizacao',  cor:'laranja', etiqueta:'o que vem primeiro', titulo:'Priorização',
+      descricao:'Para cada ponto que precisa melhorar: impacto, urgência e quem resolve.',
+      render: renderPriorizacao, aoConcluir: exigirPriorizacao },
+    { id:'proposta',     cor:'verde',   etiqueta:'a proposta', titulo:'Construção da proposta',
+      descricao:'Quatro frentes de melhoria, com base no que vocês viram na foto.',
+      render: renderProposta, aoConcluir: exigirProposta },
+    { id:'melhorias',    cor:'rosa',    etiqueta:'escolhas do grupo', titulo:'Proposta de melhorias',
+      descricao:'Marquem problemas, riscos e ações e escrevam a justificativa do grupo.',
+      render: renderMelhorias, aoConcluir: exigirMelhorias },
+    { id:'reflexao',     cor:'roxo',    etiqueta:'debate do grupo', titulo:'Reflexão e questões',
+      descricao:'Cinco perguntas para o grupo responder depois de tudo o que viram.',
+      render: renderReflexao, aoConcluir: exigirReflexao },
+    { id:'consolidacao', cor:'azul',    etiqueta:'fechamento', titulo:'Consolidação',
+      descricao:'Resumo por indicador, o que fica pronto e o relatório do grupo.',
+      render: renderConsolidacao }
+  ];
+
+  /* ---------------- dados do grupo ---------------- */
+  function dados(ctx) { return ctx.dados; }
+  function registro(ctx, id) { var d = ctx.dados; d.itens = d.itens || {}; return d.itens[id]; }
+  function gravarItem(ctx, id, valor) { var d = ctx.dados; d.itens = d.itens || {}; d.itens[id] = valor; ctx.salvar(); }
+  function marcadosComoProblema(ctx, apenasIds) {
+    var d = ctx.dados.itens || {};
+    return D.itens.filter(function (i) { return d[i.id] && d[i.id].decisao === 'melhorar'; })
+      .map(function (i) { return apenasIds ? i.id : i; });
+  }
+  function nomeCategoria(id) {
+    var c = D.categorias.filter(function (x) { return x.id === id; })[0];
+    return c ? c.nome : id;
+  }
+
+  /* ---------------- bloco 1: o desafio ---------------- */
+  function renderDesafio(el, ctx) {
+    el.innerHTML =
+      '<div class="cartao"><div class="espalha"><h2>A empresa</h2><span class="etiqueta acao">Conecta Serviços</span></div>' +
+      '<p>A Conecta Serviços é uma empresa pequena de serviços administrativos: recebe documentos, emite declarações, ' +
+      'encaminha pedidos para o financeiro e para o departamento pessoal e atende o público no balcão, no telefone e no chat.</p>' +
+      '<p>Uma avaliação interna foi marcada. Antes disso, a direção pediu que a própria equipe da recepção olhasse o ambiente ' +
+      'com atenção e propusesse melhorias. É esse o trabalho de vocês.</p></div>' +
+
+      '<div class="cartao mt"><h2>A recepção que vocês vão analisar</h2>' +
+      '<div class="foto mt"><img src="' + D.cenario.imagem + '" alt="' + Conecta.esc(D.cenario.titulo) + '">' +
+      '<div class="legenda"><span><b>' + Conecta.esc(D.cenario.titulo) + '</b> · ' + Conecta.esc(D.cenario.onde) + '</span>' +
+      '<span>no próximo bloco os números aparecem nesta imagem</span></div></div></div>' +
+
+      '<div class="cartao mt"><h2>Como o grupo decide</h2>' +
+      '<div class="grade g2"><div><ul class="apoio">' +
+      '<li><b>Debatam antes de clicar.</b> O registro é do grupo, não de quem está com o mouse.</li>' +
+      '<li><b>Porta-voz da vez.</b> A cada ponto registrado, outra pessoa assume o clique.</li>' +
+      '<li><b>Nada de resposta pela metade.</b> Em cada ponto com problema, o grupo diz a categoria e a medida necessária.</li>' +
+      '</ul></div><div><div class="dica"><h4>Foque no que a foto mostra</h4>' +
+      '<p class="apoio">Se vocês não conseguem apontar o que está errado na imagem, provavelmente aquele ponto não tem problema. ' +
+      'Nem todo número esconde uma falha.</p></div>' +
+      '<div class="dica"><h4>Use o que já sabem</h4>' +
+      '<p class="apoio">Segurança, ergonomia, acessibilidade, informação clara e uso consciente dos recursos entram nesta análise.</p></div>' +
+      '</div></div></div>';
+  }
+
+  /* ---------------- bloco 2: diagnóstico na foto ---------------- */
+  function renderDiagnostico(el, ctx) {
+    var d = ctx.dados.itens || {};
+    var registrados = D.itens.filter(function (i) { return d[i.id]; }).length;
+    var problemas = marcadosComoProblema(ctx, true).length;
+
+    el.innerHTML =
+      '<div class="cartao"><div class="espalha"><div><h2>Tabuleiro da recepção</h2>' +
+      '<p class="apoio">Toquem nos números, um por vez. O grupo decide e o porta-voz registra.</p></div>' +
+      '<div class="hud" style="margin:0">' +
+      '<div class="caixa"><small>Registrados</small><b>' + registrados + '/' + D.itens.length + '</b></div>' +
+      '<div class="caixa"><small>Marcados como problema</small><b>' + problemas + '</b></div>' +
+      '</div></div>' +
+      '<div class="foto mt" id="tabuleiro">' +
+      '<img src="' + D.cenario.imagem + '" alt="' + Conecta.esc(D.cenario.titulo) + '">' +
+      D.itens.map(function (i) {
+        var r = d[i.id];
+        return '<button class="pino ' + (r ? 'feito' : 'pulsa') + '" data-item="' + i.id + '" ' +
+          'style="left:' + i.x + '%; top:' + i.y + '%" title="Ponto ' + i.n + '">' + i.n + '</button>';
+      }).join('') +
+      '<div class="legenda"><span><b>' + D.itens.length + ' pontos numerados</b> na recepção da Conecta Serviços</span>' +
+      '<span id="avisoTab">' + (registrados === D.itens.length ? 'Todos os pontos foram registrados.' : 'Faltam ' + (D.itens.length - registrados) + ' pontos.') + '</span></div>' +
+      '</div></div>' +
+
+      '<div class="cartao mt"><h2>Caderno de achados do grupo</h2>' +
+      (registrados ? '<div class="mt" id="caderno">' + D.itens.filter(function (i) { return d[i.id]; }).map(function (i) {
+        var r = d[i.id];
+        var texto = r.decisao === 'adequado' ? 'Adequado' :
+          'Precisa melhorar · ' + nomeCategoria(r.categoria) + ' · ' + r.medida + (r.norma ? ' · norma: ' + r.norma : '');
+        return '<div class="ficha ' + (r.decisao === 'adequado' ? 'ok' : '') + '">' +
+          '<div class="espalha"><b>Ponto ' + i.n + ' — ' + Conecta.esc(i.nome) + '</b>' +
+          '<button class="btn texto pequeno" data-rever="' + i.id + '">Rever decisão</button></div>' +
+          '<p class="apoio">' + Conecta.esc(texto) + '</p></div>';
+      }).join('') + '</div>'
+      : '<p class="apoio mt">Nada registrado ainda. Comece tocando em um número da foto.</p>') +
+      '</div>';
+
+    Array.prototype.forEach.call(el.querySelectorAll('[data-item]'), function (b) {
+      b.onclick = function () { fluxoItem(b.getAttribute('data-item'), ctx); };
+    });
+    Array.prototype.forEach.call(el.querySelectorAll('[data-rever]'), function (b) {
+      b.onclick = function () { fluxoItem(b.getAttribute('data-rever'), ctx); };
+    });
+  }
+
+  /* fluxo de decisão de um ponto da foto */
+  function fluxoItem(id, ctx) {
+    var item = D.itens.filter(function (x) { return x.id === id; })[0];
+    var anterior = registro(ctx, id) || null;
+    var esc = {
+      decisao: anterior ? anterior.decisao : null,
+      categoria: anterior ? anterior.categoria : null,
+      medida: anterior ? anterior.medida : null,
+      norma: anterior ? anterior.norma : null
+    };
+    var etapa = anterior ? 9 : 1;
+    var passos = 3 + (item.nr ? 1 : 0);
+
+    function render() {
+      var html =
+        '<span class="etiqueta acao">Ponto ' + item.n + ' de ' + D.itens.length + ' · ' + Conecta.esc(item.nome) + '</span>' +
+        '<h3 class="mt">' + Conecta.esc(item.nome) + '</h3>' +
+        '<p class="apoio"><b>O que se vê:</b> ' + Conecta.esc(item.onde) + '</p>' +
+        '<div class="dica"><h4>Debatam antes de responder</h4>' +
+        '<p class="apoio">Porta-voz da vez: <b>' + Conecta.esc(Conecta.portaVoz(item.n)) + '</b>. ' +
+        'Quem discordar deve falar agora, não depois do registro.</p></div>';
+
+      if (etapa === 1) {
+        html += '<h4 class="mt2">Este ponto está adequado ou precisa melhorar?</h4>' +
+          '<button class="opcao" data-ac="adequado"><b>Está adequado</b><br><span class="apoio">Não há problema neste ponto da recepção.</span></button>' +
+          '<button class="opcao" data-ac="melhorar"><b>Precisa melhorar</b><br><span class="apoio">Existe problema e o grupo vai explicar qual é.</span></button>';
+      } else if (etapa === 2) {
+        html += '<h4 class="mt2">Passo 2 de ' + passos + ' · A que assunto pertence o problema?</h4><div class="grade g2">' +
+          D.categorias.map(function (c) {
+            return '<button class="opcao ' + (esc.categoria === c.id ? 'marcada' : '') + '" data-cat="' + c.id + '">' + Conecta.esc(c.nome) + '</button>';
+          }).join('') + '</div>';
+      } else if (etapa === 3) {
+        html += '<h4 class="mt2">Passo 3 de ' + passos + ' · Qual medida resolve?</h4>' +
+          D.medidas.map(function (m) {
+            return '<button class="opcao ' + (esc.medida === m ? 'marcada' : '') + '" data-med="' + Conecta.esc(m) + '">' + Conecta.esc(m) + '</button>';
+          }).join('');
+      } else if (etapa === 4) {
+        html += '<h4 class="mt2">Passo 4 de ' + passos + ' · Qual norma trata deste ponto?</h4>' +
+          item.nr.opcoes.map(function (o, k) {
+            return '<button class="opcao ' + (esc.norma === o.texto ? 'marcada' : '') + '" data-norma="' + k + '">' + Conecta.esc(o.texto) + '</button>';
+          }).join('');
+      } else {
+        html += '<h4 class="mt2">Confirmação do grupo</h4>' +
+          '<div class="dica"><h4>Registro</h4><p class="apoio">' + Conecta.esc(resumo()) + '</p></div>' +
+          '<div class="linha mt"><button class="btn" data-salvar="1">Registrar no caderno</button>' +
+          '<button class="btn texto pequeno" data-voltar="1">Corrigir antes</button></div>';
+      }
+
+      html += '<div class="linha mt2"><button class="btn texto pequeno" data-fechar="1">Fechar sem registrar</button>' +
+        (etapa > 1 && etapa !== 9 ? '<button class="btn secundario pequeno" data-anterior="1">Passo anterior</button>' : '') + '</div>';
+
+      Conecta.modal(html);
+
+      function ligar(sel, fn) {
+        var el2 = document.querySelector(sel);
+        if (el2) el2.onclick = fn;
+      }
+      ligar('[data-fechar]', function () { Conecta.fecharModal(); });
+      ligar('[data-anterior]', function () { etapa--; render(); });
+      ligar('[data-voltar]', function () { etapa = 1; render(); });
+      ligar('[data-salvar]', function () {
+        gravarItem(ctx, id, { decisao:esc.decisao, categoria:esc.categoria, medida:esc.medida, norma:esc.norma });
+        Conecta.fecharModal(); Conecta.som('registro');
+        Conecta.aviso('Ponto ' + item.n + ' registrado — agora o porta-voz muda');
+        ctx.irPara(ctx.estado.bloco);
+      });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-ac]'), function (b) {
+        b.onclick = function () {
+          esc.decisao = b.getAttribute('data-ac');
+          Conecta.som('toque');
+          if (esc.decisao === 'adequado') { esc.categoria = null; esc.medida = null; esc.norma = null; etapa = 9; }
+          else { etapa = 2; }
+          render();
+        };
+      });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-cat]'), function (b) {
+        b.onclick = function () { esc.categoria = b.getAttribute('data-cat'); Conecta.som('toque'); etapa = 3; render(); };
+      });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-med]'), function (b) {
+        b.onclick = function () {
+          esc.medida = b.getAttribute('data-med'); Conecta.som('toque');
+          etapa = item.nr ? 4 : 9; render();
+        };
+      });
+      Array.prototype.forEach.call(document.querySelectorAll('[data-norma]'), function (b) {
+        b.onclick = function () {
+          esc.norma = item.nr.opcoes[Number(b.getAttribute('data-norma'))].texto;
+          Conecta.som('toque'); etapa = 9; render();
+        };
+      });
+    }
+
+    function resumo() {
+      if (esc.decisao === 'adequado') return 'Ponto ' + item.n + ' — ' + item.nome + ': está adequado.';
+      return 'Ponto ' + item.n + ' — ' + item.nome + ': precisa melhorar · ' + nomeCategoria(esc.categoria) + ' · ' +
+        esc.medida + (esc.norma ? ' · norma: ' + esc.norma : '');
+    }
+
+    render();
+  }
+
+  function exigirDiagnostico(ctx) {
+    var faltam = D.itens.filter(function (i) { return !registro(ctx, i.id); });
+    if (faltam.length) {
+      Conecta.aviso('Faltam ' + faltam.length + ' ponto(s) da foto para registrar');
+      return false;
+    }
+    return true;
+  }
+
+  /* ---------------- bloco 3: priorização ---------------- */
+  function renderPriorizacao(el, ctx) {
+    var lista = marcadosComoProblema(ctx);
+    ctx.dados.prioridade = ctx.dados.prioridade || {};
+
+    if (!lista.length) {
+      el.innerHTML = '<div class="cartao"><h2>Priorização</h2>' +
+        '<p class="apoio">Vocês não marcaram nenhum ponto como problema no bloco anterior. Voltem ao diagnóstico e registrem o que precisa melhorar.</p></div>';
+      return;
+    }
+
+    el.innerHTML =
+      '<div class="cartao"><h2>Antes de escolher, combine os três critérios</h2>' +
+      '<div class="grade g3 mt">' +
+      '<div class="dica"><h4>Impacto</h4><p class="apoio">' + Conecta.esc(D.explica.impacto) + '</p></div>' +
+      '<div class="dica"><h4>Urgência</h4><p class="apoio">' + Conecta.esc(D.explica.urgencia) + '</p></div>' +
+      '<div class="dica"><h4>Quem resolve</h4><p class="apoio">' + Conecta.esc(D.explica.responsavel) + '</p></div>' +
+      '</div></div>' +
+
+      '<div class="cartao mt"><h2>Priorização dos ' + lista.length + ' pontos marcados</h2>' +
+      '<p class="apoio">Cada linha é um ponto que o grupo considerou problema. Escolham as três respostas em cada linha.</p>' +
+      '<div class="mt" id="tabelaPrio">' +
+      lista.map(function (i) {
+        var p = ctx.dados.prioridade[i.id] || {};
+        return '<div class="ficha" data-linha="' + i.id + '">' +
+          '<div class="espalha"><b>Ponto ' + i.n + ' — ' + Conecta.esc(i.nome) + '</b>' +
+          '<span class="etiqueta">' + Conecta.esc(nomeCategoria(registro(ctx, i.id).categoria)) + '</span></div>' +
+          '<div class="campo-triplo mt">' +
+          '<div><label for="imp_' + i.id + '">Impacto</label><select id="imp_' + i.id + '" data-tipo="impacto" data-id="' + i.id + '">' +
+            opcoes(D.impacto, p.impacto) + '</select></div>' +
+          '<div><label for="urg_' + i.id + '">Urgência</label><select id="urg_' + i.id + '" data-tipo="urgencia" data-id="' + i.id + '">' +
+            opcoes(D.urgencia, p.urgencia) + '</select></div>' +
+          '<div><label for="res_' + i.id + '">Quem resolve</label><select id="res_' + i.id + '" data-tipo="responsavel" data-id="' + i.id + '">' +
+            opcoes(D.responsavel, p.responsavel) + '</select></div>' +
+          '</div></div>';
+      }).join('') + '</div>' +
+      '<div class="espalha mt"><p class="apoio" id="contadorPrio">' + contarPrioridade(ctx, lista) + '</p>' +
+      '<button class="btn secundario pequeno" id="btLimparPrio">Limpar priorização</button></div></div>';
+
+    Array.prototype.forEach.call(el.querySelectorAll('select[data-tipo]'), function (s) {
+      s.onchange = function () {
+        var id = s.getAttribute('data-id'), tipo = s.getAttribute('data-tipo');
+        ctx.dados.prioridade[id] = ctx.dados.prioridade[id] || {};
+        ctx.dados.prioridade[id][tipo] = s.value;
+        ctx.salvar();
+        document.getElementById('contadorPrio').textContent = contarPrioridade(ctx, lista);
+      };
+    });
+    document.getElementById('btLimparPrio').onclick = function () {
+      ctx.dados.prioridade = {}; ctx.salvar(); ctx.irPara(ctx.estado.bloco);
+    };
+  }
+  function opcoes(lista, atual) {
+    return '<option value="">— escolham —</option>' + lista.map(function (o) {
+      return '<option value="' + Conecta.esc(o) + '"' + (atual === o ? ' selected' : '') + '>' + Conecta.esc(o) + '</option>';
+    }).join('');
+  }
+  function contarPrioridade(ctx, lista) {
+    var completas = lista.filter(function (i) {
+      var p = ctx.dados.prioridade[i.id] || {};
+      return p.impacto && p.urgencia && p.responsavel;
+    }).length;
+    return completas + ' de ' + lista.length + ' linhas completas.';
+  }
+  function exigirPriorizacao(ctx) {
+    var lista = marcadosComoProblema(ctx);
+    if (!lista.length) { Conecta.aviso('Voltem ao diagnóstico: nenhum ponto foi marcado como problema'); return false; }
+    var faltam = lista.filter(function (i) {
+      var p = ctx.dados.prioridade[i.id] || {};
+      return !(p.impacto && p.urgencia && p.responsavel);
+    });
+    if (faltam.length) { Conecta.aviso('Faltam ' + faltam.length + ' linha(s) da priorização'); return false; }
+    return true;
+  }
+
+  /* ---------------- bloco 4: construção da proposta ---------------- */
+  function renderProposta(el, ctx) {
+    ctx.dados.proposta = ctx.dados.proposta || {};
+    el.innerHTML =
+      '<div class="cartao"><h2>Como escrever a proposta</h2>' +
+      '<p class="apoio">Cada frente abaixo tem o que precisa ser respondido, um exemplo e os pontos da foto que servem de base. ' +
+      'Escrevam com as palavras de vocês, pensando no cliente e em quem trabalha na recepção.</p></div>' +
+      D.propostaCampos.map(function (c, k) {
+        var v = ctx.dados.proposta[c.id] || '';
+        return '<div class="cartao mt" data-cor="' + c.cor + '"><div class="espalha"><h2>' + (k + 1) + '. ' + Conecta.esc(c.titulo) + '</h2>' +
+          '<span class="etiqueta acao" data-cor="' + c.cor + '">frente de melhoria</span></div>' +
+          '<div class="grade g2 mt">' +
+          '<div><h4>O que precisa aparecer na resposta</h4><ul class="apoio">' +
+          c.oQueEscrever.map(function (o) { return '<li>' + Conecta.esc(o) + '</li>'; }).join('') + '</ul></div>' +
+          '<div><div class="dica"><h4>Exemplo</h4><p class="apoio">' + Conecta.esc(c.exemplo) + '</p></div>' +
+          '<div class="dica"><h4>Base na foto</h4><p class="apoio">' + Conecta.esc(c.baseImagem) + '</p></div></div>' +
+          '</div>' +
+          '<label for="pc_' + c.id + '">Resposta do grupo</label>' +
+          '<textarea id="pc_' + c.id + '" data-campo="' + c.id + '" rows="6" placeholder="Comecem pelo que o cliente precisa e depois digam o que a recepção vai fazer.">' + Conecta.esc(v) + '</textarea>' +
+          '<p class="apoio mt" id="cnt_' + c.id + '">' + contarTexto(v) + '</p></div>';
+      }).join('');
+
+    Array.prototype.forEach.call(el.querySelectorAll('[data-campo]'), function (t) {
+      t.oninput = function () {
+        ctx.dados.proposta[t.getAttribute('data-campo')] = t.value;
+        ctx.salvar();
+        var c = document.getElementById('cnt_' + t.getAttribute('data-campo'));
+        if (c) c.textContent = contarTexto(t.value);
+      };
+    });
+  }
+  function contarTexto(v) {
+    var n = (v || '').trim().length;
+    return n < 120 ? n + ' caracteres — escrevam um pouco mais (mínimo 120).' : n + ' caracteres — ok.';
+  }
+  function exigirProposta(ctx) {
+    var faltam = D.propostaCampos.filter(function (c) { return ((ctx.dados.proposta || {})[c.id] || '').trim().length < 120; });
+    if (faltam.length) { Conecta.aviso('Faltam ' + faltam.length + ' frente(s) da proposta com pelo menos 120 caracteres'); return false; }
+    return true;
+  }
+
+  /* ---------------- bloco 5: proposta de melhorias ---------------- */
+  function renderMelhorias(el, ctx) {
+    ctx.dados.melhorias = ctx.dados.melhorias || { problemas:[], riscos:[], acoes:[], justificativa:'' };
+    var m = ctx.dados.melhorias;
+    var listaProblemas = marcadosComoProblema(ctx);
+
+    el.innerHTML =
+      '<div class="cartao"><h2>Passo 1 · Quais problemas o grupo assume como prioritários</h2>' +
+      '<p class="apoio">Marquem os pontos que o grupo vai atacar primeiro (o diagnóstico já indicou ' + listaProblemas.length + ').</p>' +
+      listaProblemas.map(function (i) {
+        var on = m.problemas.indexOf(i.id) >= 0;
+        return '<label class="marcador ' + (on ? 'on' : '') + '"><input type="checkbox" data-grupo="problemas" value="' + i.id + '"' + (on ? ' checked' : '') + '>' +
+          '<span><b>Ponto ' + i.n + ' — ' + Conecta.esc(i.nome) + '</b>' +
+          '<small>' + Conecta.esc(nomeCategoria(registro(ctx, i.id).categoria)) + ' · ' + Conecta.esc(registro(ctx, i.id).medida) + '</small></span></label>';
+      }).join('') + '</div>' +
+
+      '<div class="cartao mt"><h2>Passo 2 · Que riscos precisam ser evitados</h2>' +
+      '<p class="apoio">Marquem pelo menos dois riscos que a proposta de vocês ajuda a evitar.</p>' +
+      D.riscos.map(function (r) {
+        var on = m.riscos.indexOf(r.id) >= 0;
+        return '<label class="marcador ' + (on ? 'on' : '') + '"><input type="checkbox" data-grupo="riscos" value="' + r.id + '"' + (on ? ' checked' : '') + '>' +
+          '<span>' + Conecta.esc(r.texto) + '</span></label>';
+      }).join('') + '</div>' +
+
+      '<div class="cartao mt"><h2>Passo 3 · Que ações a recepção vai executar</h2>' +
+      '<p class="apoio">Marquem pelo menos três ações. Elas são a parte prática da proposta.</p>' +
+      D.acoes.map(function (a) {
+        return '<h4 class="mt">' + Conecta.esc(a.area) + '</h4>' + a.itens.map(function (i) {
+          var on = m.acoes.indexOf(i.id) >= 0;
+          return '<label class="marcador ' + (on ? 'on' : '') + '"><input type="checkbox" data-grupo="acoes" value="' + i.id + '"' + (on ? ' checked' : '') + '>' +
+            '<span>' + Conecta.esc(i.texto) + '</span></label>';
+        }).join('');
+      }).join('') + '</div>' +
+
+      '<div class="cartao mt"><h2>Passo 4 · Justificativa do grupo</h2>' +
+      '<p class="apoio">Expliquem por que essas escolhas, o que a lei ou a norma pede e o que muda para o cliente e para a equipe.</p>' +
+      '<label for="just"></label><textarea id="just" rows="6" placeholder="Escolhemos estas ações porque... A norma que sustenta é... Para o cliente muda...">' + Conecta.esc(m.justificativa) + '</textarea>' +
+      '<div class="espalha mt"><p class="apoio" id="cntJust">' + resumoSelecao(m) + '</p>' +
+      '<button class="btn secundario pequeno" id="btVerResumo">Ver resumo das escolhas</button></div></div>';
+
+    Array.prototype.forEach.call(el.querySelectorAll('input[data-grupo]'), function (c) {
+      c.onchange = function () {
+        var g = c.getAttribute('data-grupo');
+        m[g] = m[g] || [];
+        var pos = m[g].indexOf(c.value);
+        if (c.checked && pos < 0) m[g].push(c.value);
+        if (!c.checked && pos >= 0) m[g].splice(pos, 1);
+        ctx.salvar();
+        c.parentNode.className = 'marcador' + (c.checked ? ' on' : '');
+        document.getElementById('cntJust').textContent = resumoSelecao(m);
+      };
+    });
+    document.getElementById('just').oninput = function () {
+      m.justificativa = document.getElementById('just').value; ctx.salvar();
+      document.getElementById('cntJust').textContent = resumoSelecao(m);
+    };
+    document.getElementById('btVerResumo').onclick = function () { resumoEscolhas(m); };
+  }
+  function resumoSelecao(m) {
+    return m.problemas.length + ' problema(s) · ' + m.riscos.length + ' risco(s) · ' + m.acoes.length + ' ação(ões) · ' +
+      (m.justificativa || '').trim().length + ' caracteres de justificativa';
+  }
+  function resumoEscolhas(m) {
+    var nomes = function (ids, banco, campoTxt) {
+      return banco.filter(function (x) { return ids.indexOf(x.id) >= 0; }).map(function (x) { return '· ' + x[campoTxt]; }).join('<br>');
+    };
+    var probs = D.itens.filter(function (i) { return m.problemas.indexOf(i.id) >= 0; })
+      .map(function (i) { return '· Ponto ' + i.n + ' — ' + i.nome; }).join('<br>');
+    var acoes = D.acoes.map(function (a) {
+      var sel = a.itens.filter(function (i) { return m.acoes.indexOf(i.id) >= 0; });
+      return sel.length ? '<b>' + a.area + '</b><br>' + sel.map(function (i) { return '· ' + i.texto; }).join('<br>') : '';
+    }).filter(Boolean).join('<br>');
+    Conecta.modal('<h3>Resumo das escolhas do grupo</h3>' +
+      '<h4 class="mt">Problemas prioritários</h4><p class="apoio">' + (probs || 'nenhum') + '</p>' +
+      '<h4 class="mt">Riscos</h4><p class="apoio">' + (nomes(m.riscos, D.riscos, 'texto') || 'nenhum') + '</p>' +
+      '<h4 class="mt">Ações</h4><p class="apoio">' + (acoes || 'nenhuma') + '</p>' +
+      '<h4 class="mt">Justificativa</h4><p class="apoio">' + (Conecta.esc(m.justificativa) || '—') + '</p>' +
+      '<div class="linha mt"><button class="btn" id="btFecharResumo">Entendi</button></div>');
+    document.getElementById('btFecharResumo').onclick = function () { Conecta.fecharModal(); };
+  }
+  function exigirMelhorias(ctx) {
+    var m = ctx.dados.melhorias || { problemas:[], riscos:[], acoes:[], justificativa:'' };
+    if (!m.problemas.length) { Conecta.aviso('Marquem pelo menos um problema prioritário'); return false; }
+    if (m.riscos.length < 2) { Conecta.aviso('Marquem pelo menos dois riscos'); return false; }
+    if (m.acoes.length < 3) { Conecta.aviso('Marquem pelo menos três ações'); return false; }
+    if ((m.justificativa || '').trim().length < 120) { Conecta.aviso('A justificativa precisa de pelo menos 120 caracteres'); return false; }
+    return true;
+  }
+
+  /* ---------------- bloco 6: reflexão e questões ---------------- */
+  function renderReflexao(el, ctx) {
+    ctx.dados.reflexoes = ctx.dados.reflexoes || {};
+    el.innerHTML =
+      '<div class="cartao"><h2>Debate final do grupo</h2>' +
+      '<p class="apoio">Sem apresentação para a turma: as respostas ficam no relatório do grupo e servem para a conversa com o professor. ' +
+      'Respondam com o que viram na foto e com o que já sabem sobre atendimento e segurança.</p></div>' +
+      D.reflexoes.map(function (r, k) {
+        var v = ctx.dados.reflexoes[r.id] || '';
+        return '<div class="cartao mt"><h2>Questão ' + (k + 1) + '</h2>' +
+          '<p>' + Conecta.esc(r.pergunta) + '</p>' +
+          '<div class="dica"><h4>Como responder</h4><p class="apoio">' + Conecta.esc(r.apoio) + '</p></div>' +
+          '<label for="rf_' + r.id + '">Resposta do grupo</label>' +
+          '<textarea id="rf_' + r.id + '" data-reflexao="' + r.id + '" rows="4">' + Conecta.esc(v) + '</textarea>' +
+          '<p class="apoio mt" id="cntr_' + r.id + '">' + contarReflexao(v) + '</p></div>';
+      }).join('');
+
+    Array.prototype.forEach.call(el.querySelectorAll('[data-reflexao]'), function (t) {
+      t.oninput = function () {
+        var id = t.getAttribute('data-reflexao');
+        ctx.dados.reflexoes[id] = t.value; ctx.salvar();
+        document.getElementById('cntr_' + id).textContent = contarReflexao(t.value);
+      };
+    });
+  }
+  function contarReflexao(v) {
+    var n = (v || '').trim().length;
+    return n < 80 ? n + ' caracteres — resposta curta (mínimo 80).' : n + ' caracteres — ok.';
+  }
+  function exigirReflexao(ctx) {
+    var faltam = D.reflexoes.filter(function (r) { return ((ctx.dados.reflexoes || {})[r.id] || '').trim().length < 80; });
+    if (faltam.length) { Conecta.aviso('Faltam ' + faltam.length + ' questão(ões) com pelo menos 80 caracteres'); return false; }
+    return true;
+  }
+
+  /* ---------------- bloco 7: consolidação ---------------- */
+  function renderConsolidacao(el, ctx) {
+    var problemas = marcadosComoProblema(ctx);
+    var porIndicador = D.indicadores.map(function (ind) {
+      var marcados = problemas.filter(function (i) { return ind.categorias.indexOf(i.categoria) >= 0; });
+      var corretos = D.itens.filter(function (i) { return !i.adequado && ind.categorias.indexOf(i.categoria) >= 0; }).length;
+      return { nome:ind.nome, ok:marcados.length, total:corretos };
+    });
+    var conferidos = [
+      { nome:'Diagnóstico da foto', feito: D.itens.every(function (i) { return registro(ctx, i.id); }) },
+      { nome:'Priorização', feito: problemas.length > 0 && problemas.every(function (i) { var p = (ctx.dados.prioridade || {})[i.id] || {}; return p.impacto && p.urgencia && p.responsavel; }) },
+      { nome:'Proposta em quatro frentes', feito: D.propostaCampos.every(function (c) { return ((ctx.dados.proposta || {})[c.id] || '').trim().length >= 120; }) },
+      { nome:'Proposta de melhorias escolhida', feito: exigirMelhoriasSilencioso(ctx) },
+      { nome:'Reflexão respondida', feito: D.reflexoes.every(function (r) { return ((ctx.dados.reflexoes || {})[r.id] || '').trim().length >= 80; }) }
+    ];
+    el.innerHTML =
+      '<div class="cartao"><h2>Achados do grupo por indicador</h2>' +
+      '<div class="grade g2 mt">' + porIndicador.map(function (m) {
+        var pct = m.total ? Math.round(100 * m.ok / m.total) : 0;
+        return '<div><div class="espalha"><b>' + Conecta.esc(m.nome) + '</b><span class="apoio">' + m.ok + ' de ' + m.total + ' pontos</span></div>' +
+          '<div class="medidor ' + (pct >= 80 ? 'ok' : '') + '"><i style="width:' + pct + '%"></i></div></div>';
+      }).join('') + '</div>' +
+      '<p class="apoio mt">A barra mostra quantos pontos daquele indicador o grupo encontrou na foto. ' +
+      'O professor vai mostrar, no debate, o que a lei e as normas pedem em cada um.</p></div>' +
+
+      '<div class="cartao mt"><h2>O que o grupo entrega hoje</h2>' +
+      '<ul class="mt">' + conferidos.map(function (c) {
+        return '<li>' + (c.feito ? '<span class="marca-ok">pronto</span>' : '<span class="marca-erro">pendente</span>') + ' — ' + c.nome + '</li>';
+      }).join('') + '</ul></div>' +
+
+      '<div class="cartao mt"><h2>Antes de gerar o relatório</h2>' +
+      '<p class="apoio">O botão de concluir gera o painel final com pontuação, acertos, erros, os itens da foto, ' +
+      'a proposta e as respostas do grupo. Dá para salvar em PDF, CSV ou TXT e imprimir a ficha.</p></div>';
+  }
+  function exigirMelhoriasSilencioso(ctx) {
+    var m = ctx.dados.melhorias || {};
+    return !!(m.problemas && m.problemas.length && m.riscos && m.riscos.length >= 2 &&
+      m.acoes && m.acoes.length >= 3 && (m.justificativa || '').trim().length >= 120);
+  }
+
+  /* ---------------- pontuação e relatório ---------------- */
+  function avaliarItem(ctx, item) {
+    var r = registro(ctx, item.id);
+    var pontos = 0, certo = null, resposta = 'sem registro';
+    if (!r) return { item:item, pontos:0, certo:null, resposta:resposta };
+    if (item.adequado) {
+      certo = r.decisao === 'adequado';
+      pontos = certo ? 100 : 0;
+      resposta = r.decisao === 'adequado' ? 'está adequado' : 'marcou como problema';
+    } else {
+      var acertouDecisao = r.decisao === 'melhorar';
+      certo = acertouDecisao && r.categoria === item.categoria && r.medida === item.medida && (!item.nr || r.norma === textoCorreto(item));
+      pontos = acertouDecisao ? 100 : 0;
+      if (acertouDecisao) {
+        if (r.categoria === item.categoria) pontos += 70;
+        if (r.medida === item.medida) pontos += 70;
+        if (item.nr) { if (r.norma === textoCorreto(item)) pontos += 90; }
+      }
+      resposta = 'precisa melhorar · ' + nomeCategoria(r.categoria) + ' · ' + r.medida + (r.norma ? ' · norma: ' + r.norma : '');
+    }
+    return { item:item, pontos:pontos, certo:certo, resposta:resposta };
+  }
+  function textoCorreto(item) {
+    return (item.nr.opcoes.filter(function (o) { return o.correta; })[0] || {}).texto;
+  }
+
+  function montarRelatorio(ctx) {
+    var avaliacoes = D.itens.map(function (i) { return avaliarItem(ctx, i); });
+    var pontos = avaliacoes.reduce(function (s, a) { return s + a.pontos; }, 0);
+    var m = ctx.dados.melhorias || {};
+    var completouPrio = exigirPriorizacaoSilencioso(ctx);
+    var completouProposta = D.propostaCampos.every(function (c) { return ((ctx.dados.proposta || {})[c.id] || '').trim().length >= 120; });
+    var completouReflexao = D.reflexoes.every(function (r) { return ((ctx.dados.reflexoes || {})[r.id] || '').trim().length >= 80; });
+    if (completouPrio) pontos += 200;
+    if (completouProposta) pontos += 250;
+    if (exigirMelhoriasSilencioso(ctx)) pontos += 250;
+    if (completouReflexao) pontos += 300;
+
+    var selos = [];
+    if (ctx.dados.itens && D.itens.every(function (i) { return registro(ctx, i.id); })) selos.push('Foto inteira conferida');
+    if (completouPrio) selos.push('Prioridade definida');
+    if (completouProposta) selos.push('Proposta em quatro frentes');
+    if (exigirMelhoriasSilencioso(ctx)) selos.push('Ações escolhidas pelo grupo');
+    if (completouReflexao) selos.push('Debate final registrado');
+
+    var avaliacoesValidas = avaliacoes.filter(function (a) { return a.certo !== null; });
+    var dados = {
+      titulo: D.titulo,
+      pontos: pontos,
+      duracao: ctx.estado.iniciadoEm ? Math.round((Date.now() - new Date(ctx.estado.iniciadoEm).getTime()) / 1000) : 0,
+      itens: avaliacoesValidas.map(function (a) {
+        return { nome:'Ponto ' + a.item.n + ' — ' + a.item.nome, resposta:a.resposta, certo:a.certo, pontos:a.pontos };
+      }),
+      indicadores: (function () {
+        var probs = marcadosComoProblema(ctx);
+        return D.indicadores.map(function (ind) {
+          var marcados = probs.filter(function (i) { return ind.categorias.indexOf(i.categoria) >= 0; });
+          var corretos = D.itens.filter(function (i) { return !i.adequado && ind.categorias.indexOf(i.categoria) >= 0; });
+          var ok = marcados.filter(function (i) { return corretos.indexOf(i) >= 0; }).length;
+          return { nome:ind.nome, ok:ok, total:corretos.length };
+        });
+      })(),
+      selos: selos,
+      observacoes: ctx.dados.observacoes || '',
+      extras: extras(ctx)
+    };
+    document.getElementById('sessao').classList.add('oculto');
+    document.getElementById('final').classList.remove('oculto');
+    Conecta.relatorio('#relatorio', dados);
+    Conecta.confete(60); Conecta.som('fim');
+    window.scrollTo({ top:0, behavior:'smooth' });
+  }
+  function exigirPriorizacaoSilencioso(ctx) {
+    var lista = marcadosComoProblema(ctx);
+    if (!lista.length) return false;
+    return lista.every(function (i) {
+      var p = (ctx.dados.prioridade || {})[i.id] || {};
+      return p.impacto && p.urgencia && p.responsavel;
+    });
+  }
+  function extras(ctx) {
+    var out = [];
+    var probs = marcadosComoProblema(ctx);
+    if (probs.length) {
+      out.push({ titulo:'Priorização do grupo', texto: probs.map(function (i) {
+        var p = (ctx.dados.prioridade || {})[i.id] || {};
+        return 'Ponto ' + i.n + ' — ' + i.nome + ': impacto ' + (p.impacto || '—') + ', urgência ' + (p.urgencia || '—') +
+          ', ' + (p.responsavel || '—');
+      }).join('\n') });
+    }
+    var pr = ctx.dados.proposta || {};
+    D.propostaCampos.forEach(function (c) {
+      out.push({ titulo:c.titulo, texto: pr[c.id] || '—' });
+    });
+    var m = ctx.dados.melhorias || { problemas:[], riscos:[], acoes:[], justificativa:'' };
+    var riscos = D.riscos.filter(function (r) { return (m.riscos || []).indexOf(r.id) >= 0; }).map(function (r) { return '- ' + r.texto; });
+    var acoes = [];
+    D.acoes.forEach(function (a) {
+      a.itens.forEach(function (i) { if ((m.acoes || []).indexOf(i.id) >= 0) acoes.push('- [' + a.area + '] ' + i.texto); });
+    });
+    out.push({ titulo:'Problemas prioritários escolhidos', texto: probs.map(function (i) { return '- Ponto ' + i.n + ': ' + i.nome; }).join('\n') || '—' });
+    out.push({ titulo:'Riscos que a proposta evita', texto: riscos.join('\n') || '—' });
+    out.push({ titulo:'Ações escolhidas pelo grupo', texto: acoes.join('\n') || '—' });
+    out.push({ titulo:'Justificativa do grupo', texto: m.justificativa || '—' });
+    var rf = ctx.dados.reflexoes || {};
+    out.push({ titulo:'Reflexão final — respostas do grupo', texto: D.reflexoes.map(function (r) {
+      return r.pergunta + '\n' + (rf[r.id] || '—');
+    }).join('\n\n') });
+    return out;
+  }
+
+  /* ---------------- sessão ---------------- */
+  function iniciarSessao() {
+    document.getElementById('inicio').classList.add('oculto');
+    document.getElementById('sessao').classList.remove('oculto');
+    Conecta.sessao({
+      alvo:'#bloco',
+      chave:'dinamica1',
+      blocoInicial: parseInt(qs.get('bloco') || '1', 10),
+      blocos: BLOCOS,
+      dadosIniciais: { itens:{}, prioridade:{}, proposta:{}, melhorias:null, reflexoes:{} },
+      aoFinalizar: montarRelatorio
+    });
+  }
+
+  /* ---------------- página inicial ---------------- */
+  Conecta.paginaInicial({
+    alvo:'#inicio',
+    etiqueta:'UC1 · Recepcionar e atender pessoas · Dinâmica 1',
+    titulo:'Caça-Falhas da Recepção e proposta de melhoria',
+    sobre:'A recepção da Conecta Serviços vai passar por uma avaliação interna. O grupo analisa uma <b>foto real do ambiente</b>, ' +
+      'encontra o que está adequado e o que precisa melhorar, decide o que vem primeiro e escreve a proposta de melhoria da equipe. ' +
+      'Tudo é decidido em grupo: nada é respondido individualmente e não há apresentação para a turma.',
+    regras:[
+      'Um aparelho por grupo. O progresso fica salvo neste navegador.',
+      'Cada decisão é debatida antes do clique; o porta-voz muda a cada ponto registrado.',
+      'Na foto, nem todo número tem problema: o grupo precisa justificar o que escolher.',
+      'A plataforma não mostra se a resposta está certa durante a atividade. O resultado sai no painel final.',
+      'No fim, o grupo gera o relatório e pode salvar em PDF, CSV ou TXT.'
+    ],
+    conteudo:[
+      'Organização da recepção, fila, triagem e encaminhamento.',
+      'Comunicação com o cliente: cartazes, telefone e canais digitais.',
+      'Acessibilidade e atendimento prioritário.',
+      'Segurança do ambiente: fiação, extintor, circulação e armazenagem.',
+      'Ergonomia de quem atende: cadeira, tela, iluminação e pausas.',
+      'Consumo consciente: resíduos, cópias, energia e água.'
+    ],
+    blocos: BLOCOS,
+    chaveTutorial:'dinamica1',
+    passosTutorial: TUT,
+    avisoInicio:'Depois do início, o grupo conduz a atividade sozinho: a plataforma dá as instruções de cada bloco.',
+    aoIniciar: iniciarSessao
+  });
+
+  if (qs.get('iniciar') === '1' && Conecta.grupo()) iniciarSessao();
+
+})();
+</script>
+</body>
+</html>

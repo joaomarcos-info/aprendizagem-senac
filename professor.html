@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia do professor · Dinâmicas da UC1 — Conecta Serviços</title>
+<link rel="stylesheet" href="assets/estilo.css">
+</head>
+<body>
+<a class="pular" href="#conteudo">Ir para o conteúdo</a>
+<div class="wrap">
+  <div id="topo"></div>
+
+  <main id="conteudo">
+    <section id="acesso">
+      <span class="etiqueta erro">Área restrita</span>
+      <h1>Guia do professor</h1>
+      <p class="entrada">Gabarito comentado da dinâmica, cards das normas, roteiro de debate e material para imprimir.
+      Este conteúdo não deve ser aberto pelos grupos durante a atividade.</p>
+      <div class="cartao mt2">
+        <label for="senha">Código de acesso do professor</label>
+        <div class="campo-duplo">
+          <input id="senha" type="password" placeholder="Digite o código">
+          <div class="linha" style="align-items:flex-end"><button class="btn" id="btEntrar">Entrar</button></div>
+        </div>
+        <p class="apoio mt" id="retornoSenha">O código padrão está no arquivo LEIA-ME.md e pode ser alterado no próprio HTML.</p>
+      </div>
+    </section>
+
+    <section id="guia" class="oculto">
+      <span class="etiqueta acao">Uso exclusivo do professor</span>
+      <h1>Guia do professor</h1>
+      <p class="entrada">Condução, gabarito comentado, normas de apoio e material para imprimir.</p>
+      <div class="linha mt2" id="abas">
+        <button class="btn pequeno" data-aba="conducao">Condução</button>
+        <button class="btn secundario pequeno" data-aba="gabarito1">Gabarito · Dinâmica 1</button>
+        <button class="btn secundario pequeno" data-aba="normas">Normas e leis</button>
+        <button class="btn secundario pequeno" data-aba="imprimiveis">Imprimíveis</button>
+        <button class="btn texto pequeno" id="btSair">Sair</button>
+      </div>
+      <div id="painel" class="mt"></div>
+    </section>
+  </main>
+
+  <div class="rodape">Conecta Serviços · Guia do professor · UC1 — Recepcionar e atender pessoas</div>
+</div>
+<div id="areaImpressao"></div>
+
+<script src="assets/base.js"></script>
+<script src="assets/conteudo1.js"></script>
+<script>
+(function () {
+  var D1 = DINAMICA1;
+  var SENHA = 'PROF2026';           /* altere aqui se quiser outro código */
+  var CHAVE = 'cs_prof_ok';
+
+  Conecta.cabecalho({ contexto:'UC1 · Guia do professor', voltar:'index.html' });
+
+  function nomeCat(id) {
+    var c = D1.categorias.filter(function (x) { return x.id === id; })[0];
+    return c ? c.nome : (id || '—');
+  }
+  function correta(opcoes) {
+    return (opcoes.filter(function (o) { return o.correta; })[0] || {}).texto || '—';
+  }
+
+  /* ---------------- abas ---------------- */
+  function abrir(aba) {
+    Array.prototype.forEach.call(document.querySelectorAll('[data-aba]'), function (b) {
+      b.className = 'btn pequeno' + (b.getAttribute('data-aba') === aba ? '' : ' secundario');
+    });
+    var p = document.getElementById('painel');
+    if (aba === 'conducao') p.innerHTML = telaConducao();
+    if (aba === 'gabarito1') p.innerHTML = telaGabarito1();
+    if (aba === 'normas') p.innerHTML = telaNormas();
+    if (aba === 'imprimiveis') p.innerHTML = telaImprimiveis();
+    if (aba === 'imprimiveis') {
+      document.getElementById('btImprimir').onclick = function () { imprimir(document.getElementById('folha').innerHTML); };
+    }
+    window.scrollTo({ top:0, behavior:'smooth' });
+  }
+
+  function imprimir(html) {
+    var area = document.getElementById('areaImpressao');
+    area.innerHTML = html;
+    window.print();
+  }
+
+  /* ---------------- condução ---------------- */
+  function telaConducao() {
+    return '<div class="cartao"><h2>Como a dinâmica se encaixa no dia</h2>' +
+      '<table><thead><tr><th>Momento</th><th>Atividade</th><th>O que o professor faz</th></tr></thead><tbody>' +
+      '<tr><td>08:00–09:20</td><td>Dinâmica 1 — Caça-Falhas e proposta</td>' +
+      '<td>Abre a plataforma, garante um aparelho por grupo e circula. Só intervém se o grupo travar na leitura da foto.</td></tr>' +
+      '<tr><td>Depois do intervalo</td><td>Debate final e fechamento da UC1</td>' +
+      '<td>Conduz a conferência dos 14 pontos com o gabarito, compara as priorizações e fecha os quatro indicadores.</td></tr>' +
+      '</tbody></table>' +
+      '<p class="apoio mt">A dinâmica é conduzida pelo grupo: a plataforma dá as instruções e o registro. ' +
+      'O professor entra no debate e na conferência.</p></div>' +
+
+      '<div class="cartao"><h2>Dinâmica 1 — bloco por bloco</h2>' +
+      '<p class="apoio">Os tempos abaixo são referência do professor: eles não aparecem na plataforma dos alunos.</p>' +
+      '<table><thead><tr><th>Tempo</th><th>Bloco</th><th>O que observar</th></tr></thead><tbody>' +
+      '<tr><td>00:00–00:20</td><td>O desafio da recepção</td><td>Se o grupo entendeu a missão, combinou o rodízio do porta-voz e leu a foto com atenção.</td></tr>' +
+      '<tr><td>00:20–00:55</td><td>Diagnóstico da recepção</td><td>Se debate antes de clicar, se cobre os 14 pontos e se percebe que dois pontos já estão corretos.</td></tr>' +
+      '<tr><td>00:55–01:35</td><td>Priorização</td><td>Se distingue impacto de urgência e o que a recepção resolve do que depende de outro setor.</td></tr>' +
+      '<tr><td>01:35–02:20</td><td>Construção da proposta</td><td>Se o fluxo de fila, triagem e encaminhamento está descrito, e não só citado.</td></tr>' +
+      '<tr><td>02:20–03:05</td><td>Proposta de melhorias</td><td>Se as ações escolhidas respondem aos achados e se a justificativa cita norma ou lei.</td></tr>' +
+      '<tr><td>03:05–03:40</td><td>Reflexão e questões</td><td>Se as respostas usam o que viram na foto; anote as respostas frágeis para o debate.</td></tr>' +
+      '<tr><td>03:40–04:00</td><td>Consolidação</td><td>Relação com os quatro indicadores e relatório do grupo.</td></tr>' +
+      '</tbody></table></div>' +
+
+      '<div class="cartao"><h2>Roteiro de debate — perguntas e respostas esperadas</h2>' +
+      '<table><thead><tr><th>Pergunta</th><th>Resposta esperada</th><th>Base</th></tr></thead><tbody>' +
+      '<tr><td>Qual problema da recepção tem maior chance de virar reclamação registrada?</td>' +
+      '<td>Os que ferem direito do consumidor: aviso ilegível, lista de serviços sem prazo e fila sem prioridade demarcada.</td>' +
+      '<td>CDC, art. 6º; Lei 10.048/2000</td></tr>' +
+      '<tr><td>O que a recepção resolve sozinha?</td>' +
+      '<td>Sinalizar, registrar, orientar a equipe e ajustar o que está ao alcance; obra e compra dependem de outro setor.</td>' +
+      '<td>Boas práticas de gestão</td></tr>' +
+      '<tr><td>Onde a norma aparece dentro do atendimento?</td>' +
+      '<td>No extintor atrás das caixas, no emaranhado de cabos sobre o balcão, no cabo cruzando o piso, no aviso ilegível da parede e nas caixas que fecham a entrada.</td>' +
+      '<td>NR 23, NR 26, NR 10, NR 8 e NR 11</td></tr>' +
+      '<tr><td>Qual decisão do grupo foi mais difícil e por quê?</td>' +
+      '<td>Esperado: demandas simultâneas e situações de risco, porque a decisão envolve o cliente presente.</td>' +
+      '<td>Boas práticas de atendimento</td></tr>' +
+      '<tr><td>Como o grupo mediria se a melhoria funcionou?</td>' +
+      '<td>Tempo de espera, número de reclamações, retrabalho por informação errada, adesão à prioridade.</td>' +
+      '<td>Indicadores de atendimento</td></tr>' +
+      '</tbody></table></div>' +
+
+      '<div class="cartao"><h2>Rubrica de avaliação — seis critérios, de 0 a 2 pontos</h2>' +
+      '<table><thead><tr><th>Critério</th><th>0 ponto</th><th>1 ponto</th><th>2 pontos</th></tr></thead><tbody>' +
+      '<tr><td>Atendimento e acolhimento</td><td>Não acolhe e não resolve</td><td>Acolhe, mas deixa sem resposta</td><td>Acolhe, informa com base oficial e encaminha</td></tr>' +
+      '<tr><td>Comunicação e mediação</td><td>Interrompe e não confirma</td><td>Explica, mas não confirma entendimento</td><td>Escuta, reformula, confirma e medeia conflito</td></tr>' +
+      '<tr><td>Registro e encaminhamento</td><td>Não registra</td><td>Registra incompleto</td><td>Registra canal, setor e prazo</td></tr>' +
+      '<tr><td>Acessibilidade e prioridade</td><td>Ignora a prioridade legal</td><td>Reconhece, mas não aplica</td><td>Aplica e acompanha até o fim</td></tr>' +
+      '<tr><td>Segurança e norma</td><td>Expõe-se ou expõe o cliente ao risco</td><td>Percebe o risco e não age</td><td>Age conforme o procedimento e comunica</td></tr>' +
+      '<tr><td>Postura profissional e trabalho em grupo</td><td>Não participa ou desrespeita</td><td>Participa parcialmente</td><td>Participa, ouve e sustenta a decisão do grupo</td></tr>' +
+      '</tbody></table>' +
+      '<p class="apoio mt">Total possível: 12 pontos. Use a rubrica no debate, junto com o relatório que o grupo gera.</p></div>';
+  }
+
+  /* ---------------- gabarito 1 ---------------- */
+  /* priorização de referência (não é gabarito absoluto: vale o debate) */
+  var PRIO1 = {
+    i1:['Alto','Agora','Depende de outro setor'], i2:['Médio','Pode esperar','Depende de outro setor'],
+    i3:['Alto','Agora','A recepção resolve'],      i4:['Alto','Agora','A recepção resolve'],
+    i5:['Alto','Agora','A recepção resolve'],      i6:['Médio','Agora','A recepção resolve'],
+    i7:['Alto','Agora','A recepção resolve'],      i8:['Médio','Pode esperar','Depende de outro setor'],
+    i9:['Médio','Agora','A recepção resolve'],     i10:['Médio','Agora','A recepção resolve'],
+    i11:['Médio','Pode esperar','A recepção resolve'], i12:['Alto','Agora','A recepção resolve']
+  };
+  var RESP1 = {
+    r1:['Os cabos no piso e a extensão sobrecarregada no balcão: quem passa tropeça e há risco de choque elétrico. Em seguida, o extintor atrás das caixas, porque atrasa o combate a um princípio de incêndio.','NR 10, NR 8 e NR 23'],
+    r2:['Não dava para perceber: não havia piso demarcado, placa de prioridade nem orientação de quem passa primeiro.','Lei 10.048/2000'],
+    r3:['O direito à informação adequada e clara (art. 6º, III, do CDC): o cliente precisa saber prazo, condição e valor antes de decidir.','CDC, art. 6º, III'],
+    r4:['A recepção resolve sinalizar, registrar, organizar o posto e orientar a equipe. Depende de outro setor o que exige obra, compra ou manutenção: trecho rebaixado no balcão, monitor novo e segundo coletor.','LBI, NR 17, NR 24 e boas práticas de gestão'],
+    r5:['Uma só melhoria: desobstruir a passagem e o extintor, ou demarcar a fila com faixa prioritária. Medida: tempo de espera, número de reclamações e ocorrências de tropeço.','Indicadores de atendimento']
+  };
+
+  function telaGabarito1() {
+    var linhas = D1.itens.map(function (p) {
+      return '<tr><td><b>' + p.n + '</b> · ' + Conecta.esc(p.nome) + '</td>' +
+        '<td>' + (p.adequado ? '<span class="marca-ok">adequado</span>' : '<span class="marca-erro">precisa melhorar</span>') + '</td>' +
+        '<td>' + (p.adequado ? Conecta.esc(p.categoriaSugerida ? nomeCat(p.categoriaSugerida) : '—') : Conecta.esc(nomeCat(p.categoria))) + '</td>' +
+        '<td>' + (p.adequado ? '—' : Conecta.esc(p.medida)) + '</td>' +
+        '<td>' + (p.nr ? Conecta.esc(correta(p.nr.opcoes)) : (p.adequado ? '—' : '<span class="apoio">sem norma neste ponto</span>')) + '</td>' +
+        '<td>' + Conecta.esc(p.comentario) + '</td>' +
+        '<td>' + Conecta.esc(p.base) + '</td></tr>';
+    }).join('');
+    var prio = D1.itens.filter(function (p) { return !p.adequado; }).map(function (p) {
+      var s = PRIO1[p.id] || [];
+      return '<tr><td>' + p.n + ' · ' + Conecta.esc(p.nome) + '</td><td>' + Conecta.esc(s[0] || '—') + '</td>' +
+        '<td>' + Conecta.esc(s[1] || '—') + '</td><td>' + Conecta.esc(s[2] || '—') + '</td></tr>';
+    }).join('');
+    var quest = D1.reflexoes.map(function (r) {
+      var s = RESP1[r.id] || ['—','—'];
+      return '<tr><td>' + Conecta.esc(r.pergunta) + '</td><td>' + Conecta.esc(s[0]) + '</td><td>' + Conecta.esc(s[1]) + '</td></tr>';
+    }).join('');
+    return '<div class="cartao"><h2>Gabarito comentado — Dinâmica 1</h2>' +
+      '<p class="apoio">' + D1.itens.filter(function (p) { return !p.adequado; }).length + ' pontos precisam melhorar e ' +
+      D1.itens.filter(function (p) { return p.adequado; }).length + ' estão adequados. ' +
+      'As normas aparecem em ' + D1.itens.filter(function (p) { return p.nr; }).length + ' pontos — não em todos, de propósito. ' +
+      'Duas categorias da lista (atendimento e conflitos) não têm ponto correspondente nesta foto: se o grupo escolher uma delas, ' +
+      'peça que mostre na imagem onde está o problema.</p>' +
+      '<div class="foto mt" style="max-width:760px"><img src="assets/cenario-numerado.jpg" alt="Pontos numerados da recepção da Conecta Serviços"></div>' +
+      '<table class="mt"><thead><tr><th>Ponto</th><th>Situação</th><th>Categoria correta</th><th>Medida sugerida</th><th>Norma</th><th>Comentário</th><th>Base</th></tr></thead>' +
+      '<tbody>' + linhas + '</tbody></table></div>' +
+
+      '<div class="cartao"><h2>Priorização de referência</h2>' +
+      '<p class="apoio">Impacto e urgência dependem do debate: o grupo pode justificar outra escolha. O que não é discutível é ' +
+      'que obra, compra e manutenção não são resolvidas apenas pela recepção.</p>' +
+      '<table><thead><tr><th>Ponto</th><th>Impacto</th><th>Urgência</th><th>Quem resolve</th></tr></thead><tbody>' + prio + '</tbody></table></div>' +
+
+      '<div class="cartao"><h2>Reflexão final — respostas esperadas</h2>' +
+      '<p class="apoio">São as mesmas cinco perguntas que o grupo responde na plataforma, com a leitura de referência para o debate.</p>' +
+      '<table><thead><tr><th>Pergunta</th><th>Resposta esperada</th><th>Base</th></tr></thead><tbody>' + quest + '</tbody></table></div>' +
+
+      '<div class="cartao"><h2>Como a plataforma pontua</h2>' +
+      '<ul class="apoio">' +
+      '<li>Cada ponto da foto vale 100 (decisão adequado/melhorar), mais 70 pela categoria e 70 pela medida.</li>' +
+      '<li>Os 5 pontos com norma valem 90 a mais cada um.</li>' +
+      '<li>Priorização completa 200 · proposta em quatro frentes 250 · proposta de melhorias 250 · reflexão 300.</li>' +
+      '<li>O aluno só vê a pontuação no painel final; durante a atividade não há correção na tela.</li>' +
+      '</ul></div>';
+  }
+
+  /* ---------------- normas ---------------- */
+  function telaNormas() {
+    var cards = [
+      ['NR 1 — Disposições gerais e gerenciamento de riscos', 'Obriga o empregador a identificar perigos, avaliar riscos e adotar medidas, incluindo os riscos psicossociais relacionados ao trabalho.'],
+      ['NR 5 — CIPA', 'Comissão interna de prevenção: acompanha riscos, propõe medidas e registra o mapa de riscos do ambiente.'],
+      ['NR 6 — EPI', 'Define quando o equipamento de proteção é obrigatório, quem fornece, quem usa e o que acontece com quem não usa.'],
+      ['NR 7 — Saúde ocupacional', 'Programa de controle médico, exames e prontuário: a saúde do trabalhador acompanhada e documentada.'],
+      ['NR 8 — Edificações', 'Condições de circulação, vias de passagem, portas e proteção contra quedas no ambiente de trabalho.'],
+      ['NR 9 — Riscos ambientais', 'Identificação e avaliação das exposições a agentes químicos, físicos e biológicos, com medidas de controle.'],
+      ['NR 10 — Eletricidade', 'Segurança em instalações e serviços com eletricidade: cabos, quadros, manutenção e limites de intervenção.'],
+      ['NR 12 — Máquinas e equipamentos', 'Proteções, dispositivos de segurança e proibição de operar equipamento sem proteção ou com defeito.'],
+      ['NR 17 — Ergonomia', 'Adaptação do posto de trabalho: mobiliário, tela, postura, pausas e avaliação ergonômica preliminar.'],
+      ['NR 23 — Proteção contra incêndios', 'Saídas de emergência, extintores, sinalização, treinamento e procedimento de abandono de área.'],
+      ['NR 24 — Condições sanitárias e de conforto', 'Banheiros, vestiários, áreas de espera, água potável e condições de conforto nos locais de trabalho.'],
+      ['NR 26 — Sinalização de segurança', 'Sinalização, rotulagem e identificação de produtos químicos, com informação de risco ao usuário.'],
+      ['Lei 13.146/2015 — Lei Brasileira de Inclusão', 'Acessibilidade, atendimento adequado e recusa de barreiras: base das condutas de acessibilidade.'],
+      ['Lei 10.048/2000 — Atendimento prioritário', 'Prioridade de atendimento a pessoa com deficiência, idoso, gestante, lactante e pessoa com criança de colo.'],
+      ['Lei 13.709/2018 — LGPD', 'Tratamento de dados pessoais com finalidade e base legal: explica por que não se entrega documento de terceiro.'],
+      ['Lei 8.078/1990 — Código de Defesa do Consumidor', 'Informação clara, prevenção e reparação de danos e regras de cobrança.'],
+      ['Lei 12.305/2010 — Resíduos sólidos', 'Prevenção, redução na fonte, coleta seletiva e responsabilidade compartilhada pelo resíduo.'],
+      ['CLT art. 428 e Decreto 9.579/2018 — Aprendizagem', 'Contrato de aprendizagem, direitos e deveres do aprendiz e do empregador na formação profissional.']
+    ];
+    return '<div class="cartao"><h2>Normas e leis de apoio</h2>' +
+      '<p class="apoio">Cards para consulta rápida no debate. O texto integral de cada norma é a referência final.</p>' +
+      '<div class="grade g2 mt">' + cards.map(function (c) {
+        return '<div class="cartao plano"><h3>' + Conecta.esc(c[0]) + '</h3><p class="apoio">' + Conecta.esc(c[1]) + '</p></div>';
+      }).join('') + '</div></div>';
+  }
+
+  /* ---------------- imprimíveis ---------------- */
+  function telaImprimiveis() {
+    return '<div class="cartao"><h2>Material para imprimir</h2>' +
+      '<p class="apoio">Escolha a folha, imprima a quantidade de cópias e distribua antes de começar a dinâmica. ' +
+      'A foto numerada serve para grupos sem aparelho; o caderno de achados reproduz a mesma sequência da plataforma.</p>' +
+      '<div class="linha mt">' +
+      '<button class="btn secundario pequeno" data-folha="foto">Foto numerada</button>' +
+      '<button class="btn secundario pequeno" data-folha="caderno">Caderno de achados</button>' +
+      '<button class="btn secundario pequeno" data-folha="rubrica">Rubrica de avaliação</button>' +
+      '<button class="btn" id="btImprimir">Imprimir folha escolhida</button>' +
+      '</div><div id="folha" class="mt"></div></div>';
+  }
+  function folha(nome) {
+    if (nome === 'foto') {
+      return '<h1>Receção da Conecta Serviços — pontos numerados</h1>' +
+        '<p>Folha para o grupo que trabalha sem aparelho: cada número corresponde ao mesmo ponto da plataforma.</p>' +
+        '<img src="assets/cenario-numerado.jpg" style="width:100%;border:1px solid #666;border-radius:6px">' +
+        '<p>14 pontos: 12 precisam melhorar e 2 estão adequados. As normas aparecem em 5 deles.</p>';
+    }
+    if (nome === 'caderno') {
+      var vazias = '<td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
+      return '<h1>Caderno de achados — Dinâmica 1</h1>' +
+        '<p>Grupo: ______________________  Integrantes: ______________________________________</p>' +
+        '<img src="assets/cenario-numerado.jpg" style="width:100%;border:1px solid #666;border-radius:6px">' +
+        '<table><thead><tr><th>Ponto</th><th>O que é</th><th>Adequado ou problema</th><th>Categoria</th>' +
+        '<th>Medida</th><th>Norma</th><th>Impacto</th><th>Urgência</th><th>Quem resolve</th></tr></thead><tbody>' +
+        D1.itens.map(function (p) {
+          return '<tr><td><b>' + p.n + '</b></td><td>' + Conecta.esc(p.nome) + '</td>' + vazias + '</tr>';
+        }).join('') + '</tbody></table>' +
+        '<p>Depois do diagnóstico: priorizem os problemas (impacto, urgência e quem resolve) e escrevam no verso ' +
+        'o fluxo de atendimento, a comunicação, a acessibilidade com a segurança e o consumo consciente.</p>';
+    }
+    return '<h1>Rubrica de avaliação — seis critérios, 0 a 2 pontos</h1>' +
+      '<p>Grupo: ______________________  Avaliador: ______________________  Data: __________</p>' +
+      '<table><thead><tr><th>Critério</th><th>0</th><th>1</th><th>2</th></tr></thead><tbody>' +
+      ['Atendimento e acolhimento','Comunicação e mediação','Registro e encaminhamento','Acessibilidade e prioridade',
+       'Segurança e norma','Postura profissional e trabalho em grupo'].map(function (c) {
+        return '<tr><td>' + c + '</td><td></td><td></td><td></td></tr>'; }).join('') +
+      '</tbody></table><p>Total: ______ / 12   Observações: ______________________________________________</p>';
+  }
+
+  /* ---------------- acesso ---------------- */
+  function liberar() {
+    document.getElementById('acesso').classList.add('oculto');
+    document.getElementById('guia').classList.remove('oculto');
+    abrir('conducao');
+  }
+  document.getElementById('btEntrar').onclick = function () {
+    if (document.getElementById('senha').value.trim().toUpperCase() === SENHA) {
+      sessionStorage.setItem(CHAVE, '1'); liberar();
+    } else {
+      document.getElementById('retornoSenha').textContent = 'Código incorreto. Confira o código no arquivo LEIA-ME.md.';
+      Conecta.som('alerta');
+    }
+  };
+  document.getElementById('senha').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') document.getElementById('btEntrar').click();
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-aba]'), function (b) {
+    b.onclick = function () { abrir(b.getAttribute('data-aba')); };
+  });
+  document.getElementById('btSair').onclick = function () {
+    sessionStorage.removeItem(CHAVE); location.reload();
+  };
+  if (sessionStorage.getItem(CHAVE) === '1') liberar();
+
+  /* delegação para os botões de folha (recriados a cada aba) */
+  document.getElementById('painel').addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('[data-folha]') : null;
+    if (!b) return;
+    document.getElementById('folha').innerHTML = folha(b.getAttribute('data-folha'));
+  });
+})();
+</script>
+</body>
+</html>
